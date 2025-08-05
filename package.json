@@ -8,21 +8,12 @@
   },
   "keywords": [
     "UPEA",
-    "UPEA Corporation",
-    "UPEA Corp.",
-    "Unidad de Protección Especial Antropoide",
-    "Furry",
-    "Furro",
-    "Anthropomorphic Animals",
-    "Animales Antropomórficos",
-    "Furry Fandom",
-    "Web",
-    "Website",
+    "web",
     "Netlify",
-    "HTML5, CSS, JavaScript"
+    "JavaScript"
   ],
   "author": "UPEA Team",
-  "license": "Copyright 2025 UPEA Corporation",
+  "license": "ISC",
   "dependencies": {
     "@octokit/rest": "22.0.0"
   },
