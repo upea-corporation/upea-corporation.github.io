@@ -1,8 +1,9 @@
 // netlify/functions/verifyEntidad.js
-const { Octokit } = require("@octokit/rest");
-const { createAppAuth } = require("@octokit/auth-app");
-
 exports.handler = async (event) => {
+    // Importación dinámica para Octokit.rest y auth-app
+    const { Octokit } = await import("@octokit/rest");
+    const { createAppAuth } = await import("@octokit/auth-app");
+
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
