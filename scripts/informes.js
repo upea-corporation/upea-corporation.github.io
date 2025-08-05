@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Objeto para manejar los reportes por fecha, incluyendo su tipo
     const reporteFechas = {
-        '2025-5-19': { id: 'report-details-jul-19', type: 'serious' }, // 19 de julio
-        '2025-7-5': { id: 'report-details-aug-5', type: 'technical' }   // 5 de agosto
+        '2025-5-19': { id: 'report-details-jul-19', type: 'serious' }, // 19 de julio,
+        '2025-7-5': { id: 'report-details-aug-5', type: 'mixed' }   // 5 de agosto
     };
     
     let currentMonth = 4; // Mayo es el índice 4
@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         let calendarHTML = `
             <h2>Registro de Informes de Operaciones</h2>
-            <p>A continuación, se presenta un calendario con los días en los que se emitieron informes relevantes de UPEA Corporation. Los días marcados en rojo contienen información clasificada.</p>
+            <p>A continuación, se presenta un calendario con los días en los que se emitieron informes relevantes de UPEA Corporation.</p>
+            <p>Los días marcados en color rojo significan informes serios o internos. Los días marcados en color azul significan informes de misiones y actividades. Los días marcados en color amarillo significan informes técnicos y de seguridad. Los días marcados en color morado significan informes mixtos.</p>
             <div id="calendar-header">
                 <button id="prev-button"><</button>
                 <h3>${months[month]} ${year}</h3>

@@ -119,3 +119,7 @@
     color: #161b22;
     background-color: #ffc107; /* Amarillo para informes técnicos */
 }
+.report-day.report-day-mixed {
+    color: #fff;
+    background-color: #4B0082; /* Púrpura para informes mixtos */
+}
