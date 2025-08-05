@@ -53,9 +53,9 @@ exports.handler = async (event) => {
         const entrevistaCredentials = entrevistaData.find(item => item.entidad === entidad);
         
         if (entrevistaCredentials && entrevistaCredentials.code === code) {
-            // RUTA CORREGIDA: Usa el pageName del JSON para construir la ruta completa.
-            // Asegúrate de que el pageName en tu JSON contenga el nombre de archivo completo.
-            const pageName = `page/secret/entrevistas/${entrevistaCredentials.pageName}`;
+            // CORRECCIÓN: Usa el valor de 'pageName' directamente, ya que contiene la ruta completa.
+            // Ejemplo: 'page/secret/entrevistas/secret_1-entrevista_eaz000.html'
+            const pageName = entrevistaCredentials.pageName;
             const htmlPageResponse = await octokit.rest.repos.getContent({
                 owner,
                 repo,

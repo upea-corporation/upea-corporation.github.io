@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Prevenir el comportamiento por defecto del formulario (recargar la página)
 
             // Obtener los valores de identificación y contraseña de los campos de entrada
-            const idInput = document.getElementById('personalIdentification').value; // Nuevo ID para el campo de identificación de personal
-            const passwordInput = document.getElementById('personalPassword').value; // Nuevo ID para el campo de contraseña de personal
+            // CORRECCIÓN: Los IDs de los inputs en el HTML son 'personalIdentification' y 'personalPassword'
+            const idInput = document.getElementById('personalIdentification').value;
+            const passwordInput = document.getElementById('personalPassword').value;
 
             try {
                 // Realizar una petición POST a la Netlify Function de verificación de personal

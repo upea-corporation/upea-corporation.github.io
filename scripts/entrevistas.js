@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Prevenir el comportamiento por defecto del formulario (recargar la página)
 
             // Obtener los valores de identificación y código de los campos de entrada
-            const idInput = document.getElementById('entityIdentification').value; // Nuevo ID para el campo de identificación de entidad
-            const codeInput = document.getElementById('entityPassword').value; // Nuevo ID para el campo de código de entidad
+            // CORRECCIÓN: Los IDs de los inputs en el HTML son 'entityIdentification' y 'entityPassword'
+            const idInput = document.getElementById('entityIdentification').value;
+            const codeInput = document.getElementById('entityPassword').value;
 
             try {
                 // Realizar una petición POST a la Netlify Function de verificación de entrevistas
