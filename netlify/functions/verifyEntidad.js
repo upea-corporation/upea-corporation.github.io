@@ -1,10 +1,8 @@
 // netlify/functions/verifyEntidad.js
-
 const { Octokit } = require("@octokit/rest");
 const { createAppAuth } = require("@octokit/auth-app");
-const { Buffer } = require('buffer');
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
@@ -17,47 +15,69 @@ export const handler = async (event) => {
         return { statusCode: 400, body: JSON.stringify({ message: 'Formato de petición inválido.' }) };
     }
 
-    const appId = process.env.GITHUB_APP_ID;
-    const privateKey = process.env.GITHUB_APP_PRIVATE_KEY;
-    const installationId = process.env.GITHUB_APP_INSTALLATION_ID;
-    const owner = process.env.GITHUB_REPO_OWNER_DATA;
+    const { GITHUB_APP_ID, GITHUB_PRIVATE_KEY, GITHUB_INSTALLATION_ID, GITHUB_REPO_OWNER_DATA } = process.env;
+    const owner = GITHUB_REPO_OWNER_DATA;
     const repo = 'data-base';
     const credentialsPath = 'data/entrevista.json';
 
-    if (!appId || !privateKey || !installationId || !owner) {
-        return { statusCode: 500, body: JSON.stringify({ message: 'Error de configuración: Credenciales de GitHub App o propietario del repositorio no definidos.' }) };
+    if (!GITHUB_APP_ID || !GITHUB_PRIVATE_KEY || !GITHUB_INSTALLATION_ID || !owner || !repo) {
+        console.error('CRÍTICO: Las credenciales de GitHub App o el propietario del repositorio no están definidos.');
+        return { statusCode: 500, body: JSON.stringify({ message: 'Error de configuración interna. Contacta al administrador.' }) };
     }
 
-    const auth = createAppAuth({
-        appId: appId,
-        privateKey: privateKey,
-        installationId: installationId
-    });
-    
-    const { token } = await auth({ type: 'installation' });
-    const octokit = new Octokit({ auth: token });
+    let octokit;
+    try {
+        const auth = createAppAuth({
+            appId: GITHUB_APP_ID,
+            privateKey: GITHUB_PRIVATE_KEY,
+            installationId: GITHUB_INSTALLATION_ID,
+        });
+
+        const { token } = await auth({ type: "installation" });
+
+        octokit = new Octokit({
+            auth: token,
+        });
+    } catch (authError) {
+        console.error('Error al autenticar con la GitHub App:', authError);
+        return { statusCode: 500, body: JSON.stringify({ message: 'Error de autenticación con GitHub. Verifica las credenciales de la App.' }) };
+    }
 
     try {
-        const { data: fileData } = await octokit.rest.repos.getContent({
+        const credentialsResponse = await octokit.rest.repos.getContent({
             owner,
             repo,
             path: credentialsPath,
-            headers: { 'X-GitHub-Api-Version': '2022-11-28' },
+            headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
         });
+        const credentialsContent = Buffer.from(credentialsResponse.data.content, 'base64').toString('utf-8');
 
-        const credentialsBase64 = fileData.content;
-        const credentialsJson = Buffer.from(credentialsBase64, 'base64').toString('utf-8');
-        const entrevistaData = JSON.parse(credentialsJson);
+        let usersArray;
+        try {
+            usersArray = JSON.parse(credentialsContent);
+        } catch (jsonError) {
+            console.error('Error al parsear el JSON de credenciales de entrevista.json:', jsonError);
+            return { statusCode: 500, body: JSON.stringify({ message: 'Error en el formato del archivo de credenciales de entrevista.' }) };
+        }
 
-        const entrevistaCredentials = entrevistaData.find(item => item.entidad === entidad);
-        
-        if (entrevistaCredentials && entrevistaCredentials.code === code) {
-            const pagePath = entrevistaCredentials.pageName;
+        const foundUser = usersArray.find(user => user.entidad === entidad);
+
+        if (foundUser && foundUser.code === code) {
+            const pageName = foundUser.pageName;
+            if (!pageName) {
+                console.error(`Error crítico: No se definió la pagina para la entidad '${entidad}'.`);
+                return { statusCode: 500, body: JSON.stringify({ message: 'Error: Página de destino no configurada para la entidad autenticada.' }) };
+            }
+
             const htmlPageResponse = await octokit.rest.repos.getContent({
                 owner,
                 repo,
-                path: pagePath,
-                headers: { 'X-GitHub-Api-Version': '2022-11-28' }
+                path: pageName,
+                headers: {
+                    'X-GitHub-Api-Version': '2022-11-28'
+                }
             });
             const htmlContent = Buffer.from(htmlPageResponse.data.content, 'base64').toString('utf-8');
 
@@ -73,13 +93,9 @@ export const handler = async (event) => {
 
     } catch (error) {
         console.error('Error general en la verificación de entidad:', error);
-        
         if (error.status === 404) {
-             return { statusCode: 401, body: JSON.stringify({ message: 'Credenciales incorrectas para la entidad.' }) };
+             return { statusCode: 500, body: JSON.stringify({ message: 'Error interno: Archivo de credenciales o página HTML no encontrada.' }) };
         }
-        if (error.status === 401 || error.status === 403) {
-             return { statusCode: 500, body: JSON.stringify({ message: 'Error de autenticación con GitHub. Verifique las credenciales de su GitHub App y los permisos.' }) };
-        }
-        return { statusCode: 500, body: JSON.stringify({ message: 'Error interno en el servidor.' }) };
+        return { statusCode: 500, body: JSON.stringify({ message: 'Error inesperado del servidor en la verificación de entidad. Contacte al administrador.' }) };
     }
 };
