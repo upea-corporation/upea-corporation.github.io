@@ -2,7 +2,7 @@
 # Configuración General del Build
 # ===============================================
 [build]
-  command = "npm run build"
+  command = ""
   publish = "."
 
 # ===============================================
