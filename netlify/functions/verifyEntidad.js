@@ -10,7 +10,6 @@ exports.handler = async (event) => {
     console.log("DEBUG: GITHUB_PRIVATE_KEY:", process.env.GITHUB_PRIVATE_KEY ? "CONFIGURADO" : "NO CONFIGURADO");
     console.log("DEBUG: GITHUB_INSTALLATION_ID:", process.env.GITHUB_INSTALLATION_ID);
     console.log("DEBUG: GITHUB_REPO_OWNER_DATA:", process.env.GITHUB_REPO_OWNER_DATA);
-    console.log("DEBUG: GITHUB_REPO_NAME:", process.env.GITHUB_REPO_NAME);
 
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
