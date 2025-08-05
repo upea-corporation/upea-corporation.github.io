@@ -1,11 +1,11 @@
 // netlify/functions/verifyEntidad.js
 // Este script maneja la verificación de credenciales de acceso para las entrevistas.
 
-const { Octokit } = require("@octokit/rest");
-const { createAppAuth } = require("@octokit/auth-app");
-const Buffer = require('buffer').Buffer;
+import { Octokit } from "@octokit/rest";
+import { createAppAuth } from "@octokit/auth-app";
+import { Buffer } from 'buffer';
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
@@ -53,7 +53,6 @@ exports.handler = async (event) => {
         const entrevistaCredentials = entrevistaData.find(item => item.entidad === entidad);
         
         if (entrevistaCredentials && entrevistaCredentials.code === code) {
-            // Usa el valor de 'pageName' directamente del JSON.
             const pagePath = entrevistaCredentials.pageName;
             const htmlPageResponse = await octokit.rest.repos.getContent({
                 owner,

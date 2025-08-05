@@ -1,11 +1,11 @@
 // netlify/functions/verifyPersonal.js
 // Este script maneja la verificación de credenciales de acceso para el personal.
 
-const { Octokit } = require("@octokit/rest");
-const { createAppAuth } = require("@octokit/auth-app");
-const Buffer = require('buffer').Buffer;
+import { Octokit } from "@octokit/rest";
+import { createAppAuth } from "@octokit/auth-app";
+import { Buffer } from 'buffer';
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
@@ -53,7 +53,6 @@ exports.handler = async (event) => {
         const userCredentials = personalData.find(user => user.identificador === identificador);
 
         if (userCredentials && userCredentials.password === password) {
-            // Usa el valor de 'pageName' directamente del JSON.
             const pagePath = userCredentials.pageName;
             const htmlPageResponse = await octokit.rest.repos.getContent({
                 owner,
