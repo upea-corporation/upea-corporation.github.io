@@ -16,9 +16,9 @@ exports.handler = async (event) => {
 
     const githubToken = process.env.GITHUB_TOKEN;
     const owner = process.env.GITHUB_REPO_OWNER_DATA;
-    const repo = 'administracion-upea'; // Tu repositorio privado
+    const repo = 'data-base'; // Tu repositorio privado
 
-    // La ruta EXACTA a tu archivo personal.json dentro del repositorio 'administracion-upea'.
+    // La ruta EXACTA a tu archivo personal.json dentro del repositorio 'data-base'.
     const credentialsPath = 'data/personal.json'; // Apunta a personal.json
 
     console.log("DEBUG -- Estado de process.env.GITHUB_TOKEN:", githubToken ? "DEFINIDO" : "NO DEFINIDO");
