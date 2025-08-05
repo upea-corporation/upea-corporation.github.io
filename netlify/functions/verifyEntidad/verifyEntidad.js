@@ -1,10 +1,11 @@
-// netlify/functions/verifyEntidad/verifyEntidad.js
+// netlify/functions/verifyEntidad.js
+// Este script maneja la verificación de credenciales de acceso para las entrevistas.
 
-import { Octokit } from "@octokit/rest";
-import { createAppAuth } from "@octokit/auth-app";
-import { Buffer } from 'buffer';
+const { Octokit } = require("@octokit/rest");
+const { createAppAuth } = require("@octokit/auth-app");
+const { Buffer } = require('buffer');
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
