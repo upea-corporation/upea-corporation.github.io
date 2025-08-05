@@ -1,8 +1,16 @@
 // netlify/functions/verifyEntidad.js
 exports.handler = async (event) => {
+
     // Importación dinámica para Octokit.rest y auth-app
     const { Octokit } = await import("@octokit/rest");
     const { createAppAuth } = await import("@octokit/auth-app");
+
+        // AÑADE ESTO PARA DEPURAR
+    console.log("DEBUG: GITHUB_APP_ID:", process.env.GITHUB_APP_ID);
+    console.log("DEBUG: GITHUB_PRIVATE_KEY:", process.env.GITHUB_PRIVATE_KEY ? "CONFIGURADO" : "NO CONFIGURADO");
+    console.log("DEBUG: GITHUB_INSTALLATION_ID:", process.env.GITHUB_INSTALLATION_ID);
+    console.log("DEBUG: GITHUB_REPO_OWNER_DATA:", process.env.GITHUB_REPO_OWNER_DATA);
+    console.log("DEBUG: GITHUB_REPO_NAME:", process.env.GITHUB_REPO_NAME);
 
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
