@@ -1,0 +1,227 @@
+/* General styles for the page body */
+body {
+    background-color: #1a1a2e; /* Dark blue-grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Space Mono', monospace; /* Modern monospace font */
+    color: #00e676; /* Bright green for text */
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Main terminal container */
+.terminal-container {
+    background-color: #1c1c2c; /* Slightly lighter dark blue-grey for terminal body */
+    border: 1px solid #00e676; /* Thin, bright green border */
+    border-radius: 10px; /* More pronounced rounded corners */
+    box-shadow: 0 0 25px rgba(0, 230, 118, 0.4); /* Subtle glow effect */
+    width: 95%; /* Responsive width */
+    max-width: 1000px; /* Max width for larger screens */
+    height: 85vh; /* Responsive height */
+    max-height: 700px; /* Max height */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Terminal header (title bar) */
+.terminal-header {
+    background-color: #2a2a3e; /* Darker header background */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #00e676;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+/* Terminal title */
+.terminal-title {
+    font-size: 1em;
+    color: #00e676;
+    font-weight: bold;
+}
+
+/* Control buttons (close, minimize, maximize) */
+.terminal-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.terminal-button {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: none; /* No border for a cleaner look */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.terminal-button:hover {
+    transform: scale(1.1);
+}
+
+.terminal-button.close { background-color: #ff6b6b; } /* Red */
+.terminal-button.minimize { background-color: #ffd166; } /* Yellow */
+.terminal-button.maximize { background-color: #06d6a0; } /* Teal */
+
+/* Terminal screen (where text is displayed) */
+.terminal-screen {
+    flex-grow: 1;
+    padding: 20px 20px 15px; /* Added 5px top padding for slight margin */
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.95em;
+    line-height: 1.6; /* Increased line height for better spacing between lines */
+    scrollbar-width: thin;
+    scrollbar-color: #00e676 #3a3a4e; /* Scrollbar colors */
+    
+    /* Flexbox properties for precise top alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the start of the cross axis (top) */
+}
+
+/* Remove default paragraph margins for tighter text display */
+.terminal-screen p {
+    margin: 0; /* Ensures no top/bottom margin on paragraphs */
+    padding: 0; /* Ensures no internal padding on paragraphs */
+    line-height: inherit; /* Inherit line-height from parent to avoid discrepancies */
+}
+
+/* Removed p:first-child specific margin as Flexbox should handle it and we added general padding */
+
+
+/* Webkit scrollbar styles */
+.terminal-screen::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-screen::-webkit-scrollbar-track {
+    background: #3a3a4e;
+    border-radius: 10px;
+}
+
+.terminal-screen::-webkit-scrollbar-thumb {
+    background-color: #00e676;
+    border-radius: 10px;
+    border: 2px solid #1c1c2c;
+}
+
+/* Input area */
+.terminal-input-area {
+    display: flex;
+    padding: 15px 20px;
+    border-top: 1px solid #00e676;
+    align-items: center;
+}
+
+.prompt {
+    color: #00e676;
+    margin-right: 8px;
+    font-size: 0.95em;
+}
+
+.terminal-input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #00e676;
+    flex-grow: 1;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.95em;
+    caret-color: #00e676; /* Cursor color */
+    padding: 2px 0; /* Align text better with prompt */
+}
+
+/* Terminal footer */
+.terminal-footer {
+    padding: 10px 20px;
+    background-color: #2a2a3e;
+    border-top: 1px solid #00e676;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #00e676;
+}
+
+/* System messages */
+.system-message {
+    color: #00bfff; /* Bright blue for system messages */
+}
+
+/* Warning messages */
+.warning-message {
+    color: #ffaa00; /* Orange for warnings */
+}
+
+/* Disabled input styling */
+.terminal-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    .terminal-container {
+        width: 98%;
+        height: 98vh;
+        border-radius: 8px;
+        font-size: 0.9em;
+    }
+
+    .terminal-header {
+        padding: 8px 15px;
+    }
+
+    .terminal-title {
+        font-size: 0.9em;
+    }
+
+    .terminal-button {
+        width: 12px;
+        height: 12px;
+    }
+
+    .terminal-screen {
+        padding: 5px 15px 5px; /* Adjusted for mobile: 5px top, 5px bottom */
+        font-size: 0.85em;
+        line-height: 1.4;
+    }
+
+    .terminal-input-area {
+        padding: 10px 15px;
+    }
+
+    .prompt {
+        font-size: 0.85em;
+    }
+
+    .terminal-input {
+        font-size: 0.85em;
+    }
+
+    .terminal-footer {
+        font-size: 0.75em;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-container {
+        border-width: 1px;
+    }
+    .terminal-screen {
+        line-height: 1.3;
+    }
+}

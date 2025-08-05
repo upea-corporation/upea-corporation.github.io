@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de España/Mallorca</title>
+    <!-- Enlace al archivo CSS del informe clásico -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN UPEA CORPORATION</h1>
+            <p>UPEA Corporation - España/Mallorca</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>Vigía (ES) / Cala (IB)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Cordillera de Asturias, España (43°14'23.8"N 6°29'08.6"O) / Sierra de Tramuntana, Mallorca, España (39°47'19.3"N 2°47'42.1"E)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>12 de Abril de 1984</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado:</strong> <span>Operativa</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>La instalación principal de UPEA Corporation, ubicada en las profundidades de la Cordillera de Asturias, España, funciona como el epicentro neurálgico y la sede central primaria de la Corporación. Su misión abarca el registro exhaustivo y la catalogación de todas las Entidades Antropoides Zoomorfas (EAZ) conocidas y potenciales, la conducción de entrevistas clasificadas para la evaluación de su comportamiento e intenciones, y la provisión de un entorno controlado y confortable para aquellas EAZ sin contención que han demostrado cooperación y estabilidad. Este complejo es el custodio primario de la base de datos global de UPEA Corp., gestionando la inteligencia operativa y estratégica.</p>
+            <p>Complementariamente, la sede en Mallorca, designada como Bóveda de Respaldo Mediterránea, actúa como una instalación de redundancia crítica. Su función principal es replicar y salvaguardar la totalidad de la base de datos y los protocolos operativos de la sede asturiana, garantizando la continuidad de las operaciones de UPEA Corp. ante cualquier eventualidad. Aunque no ofrece las mismas comodidades para la interacción directa con entidades, su capacidad de procesamiento de datos y su seguridad perimetral son de vanguardia, sirviendo como un baluarte de resiliencia ante contingencias.</p>
+        </div>
+
+        <!-- Este bloque solo es visible si el estado es Inoperativo o Destruido -->
+        <div class="report-section" id="report-reason-section" style="display: [DISPLAY_NONE_O_BLOCK_SI_APLICA];">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>No hay informe, la instalación sigue operativo.</p>
+        </div>
+
+        <div class="report-section">
+        <h2>Incidencias / Ataques Importantes</h2>
+            <p>A lo largo de su extensa trayectoria operativa, las instalaciones de UPEA Corporation en España (Asturias y Mallorca) han mantenido un historial excepcional de seguridad y contención. No se han registrado incidencias de brechas de seguridad de Nivel Alfa o superior que hayan comprometido la integridad de la base de datos principal o la seguridad del personal y las entidades.</p>
+            <p>Las amenazas detectadas, principalmente intentos de intrusión externa o anomalías de baja escala, han sido sistemáticamente neutralizadas y resueltas con éxito mediante protocolos de respuesta rápida y contramedidas avanzadas. La vigilancia constante y las actualizaciones de seguridad proactivas aseguran la resiliencia de estas ubicaciones clave, manteniendo un registro impecable de contención y protección.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-HQ-ESP-001:XPS <!--Xavier Pelayo Suárez--> (Asturia) / UPEA-BKUP-MLC-001:MBF <!---Miquel Barceló Ferrer--> (Mallorca)</span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

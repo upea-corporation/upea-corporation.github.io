@@ -1,0 +1,223 @@
+/* --- Estilos Específicos para Páginas de Entrevistas (entrevista.css) - Efecto DOS --- */
+
+/* Fondo negro para toda la página */
+body {
+    background-color: #000;
+}
+
+/* Sobreescribe estilos generales de la cabecera, navegación y pie de página para el efecto DOS */
+.header, .navbar, .footer {
+    background-color: #000 !important; /* Fondo negro */
+    border-bottom: 1px solid #777 !important; /* Borde sutil gris */
+    color: #FFF !important; /* Texto blanco */
+    font-family: 'Consolas', 'Lucida Console', 'Courier New', monospace !important; /* Fuente de terminal */
+    text-shadow: none !important; /* Sin glow */
+}
+.header h1, .header p, .navbar a, .footer p {
+    color: #FFF !important; /* Asegura que el texto sea blanco */
+    text-shadow: none !important; /* Sin glow */
+}
+.navbar ul li a:hover {
+    background-color: #333 !important; /* Fondo gris oscuro al pasar el ratón */
+    text-shadow: none !important; /* Sin glow */
+}
+
+.interview-report {
+    background-color: #000; /* Fondo negro */
+    padding: 2em;
+    border-radius: 0; /* Sin bordes redondeados */
+    box-shadow: none; /* Sin sombras */
+    margin-top: 2em;
+    max-width: 950px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #E0E0E0; /* Texto gris claro, como una pantalla DOS */
+    line-height: 1.6; /* Espaciado de línea */
+    font-family: 'Consolas', 'Lucida Console', 'Courier New', monospace; /* Fuente monoespaciada */
+    border: 1px solid #888; /* Borde gris clásico */
+    position: relative;
+    overflow: hidden; /* Asegura que el contenido no desborde */
+    text-shadow: none; /* Sin glow */
+}
+
+/* Media query para optimizar la visualización en dispositivos móviles */
+@media (max-width: 768px) {
+    /* Ajustes para el header en móviles */
+    .header h1 {
+        font-size: 1.5em;
+        flex-direction: column;
+    }
+    
+    .header h1 img {
+        height: 60px;
+    }
+    
+    /* Ajustes para el reporte de entrevista en móviles */
+    .interview-report {
+        padding: 1.2em;
+        width: 95%;
+        margin-top: 1em;
+        font-size: 0.9em;
+    }
+    
+    .interview-report h2 {
+        font-size: 1.5em;
+        margin-bottom: 0.8em;
+    }
+    
+    .report-meta {
+        padding: 0.8em;
+        margin-bottom: 1.5em;
+        font-size: 0.85em;
+    }
+    
+    .transcript-container {
+        padding: 1em;
+        max-height: 400px;
+    }
+}
+
+/* Eliminar cualquier efecto de "papel quemado" o similar */
+.interview-report::before,
+.interview-report::after {
+    content: none;
+}
+
+.interview-report h2 {
+    color: #FFF; /* Blanco puro para los títulos */
+    text-align: left; /* Alineado a la izquierda */
+    font-size: 2em;
+    margin-bottom: 1em;
+    border-bottom: 1px dashed #555; /* Línea discontinua gris */
+    padding-bottom: 0.5em;
+    text-shadow: none; /* Sin glow */
+}
+
+.report-meta {
+    background-color: #111; /* Fondo muy oscuro, casi negro */
+    padding: 1em;
+    border-radius: 0;
+    margin-bottom: 2em;
+    border-left: 3px solid #BBB; /* Borde gris claro */
+    box-shadow: none;
+    font-size: 0.9em;
+    line-height: 1.4;
+    text-shadow: none;
+}
+
+.report-meta p {
+    margin: 0.3em 0;
+}
+
+.report-meta strong {
+    color: #DDD; /* Gris más claro para las etiquetas */
+    text-shadow: none;
+}
+
+.transcript-container {
+    background-color: #000; /* Fondo negro */
+    padding: 1.5em;
+    border-radius: 0;
+    border: 1px solid #888; /* Borde gris */
+    margin-bottom: 2em;
+    max-height: 500px; /* Altura máxima para la transcripción */
+    overflow-y: auto; /* Scroll si el contenido es muy largo */
+    box-shadow: none; /* Sin sombras */
+    line-height: 1.5;
+}
+
+/* Estilo de la barra de desplazamiento para navegadores Webkit (Chrome, Safari) */
+.transcript-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.transcript-container::-webkit-scrollbar-track {
+    background: #111; /* Fondo de la barra de desplazamiento */
+}
+
+.transcript-container::-webkit-scrollbar-thumb {
+    background-color: #BBB; /* Color del "pulgar" de la barra de desplazamiento */
+    border-radius: 4px;
+    border: 1px solid #888;
+}
+
+/* Estilo para cada línea del diálogo */
+.transcript-container p {
+    margin-bottom: 0.8em;
+    padding: 0.5em 0.8em;
+    border-radius: 0;
+    transition: background-color 0.1s ease; /* Transición sutil para el hover */
+}
+
+.transcript-container p:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Resaltado blanco muy sutil al pasar el ratón */
+}
+
+/* Estilo específico para el entrevistador */
+.speaker.interviwer {
+    background-color: transparent; /* Sin fondo */
+    border-left: none;
+    color: #FFF; /* Texto blanco */
+    text-indent: 0; /* Sin sangría */
+}
+
+/* Estilo específico para la entidad */
+.speaker.entity {
+    background-color: transparent; /* Sin fondo */
+    border-left: none;
+    color: #CCC; /* Texto gris claro */
+    padding-left: 2em; /* Sangría para la respuesta */
+    text-indent: -1.5em; /* Ajustar sangría para el nombre */
+}
+
+/* Texto en negrita para el nombre del orador */
+.speaker strong {
+    font-weight: normal; /* No negrita extra, ya que las fuentes de terminal son robustas */
+    color: #FFF; /* Blanco puro para los nombres */
+    margin-right: 0.5em;
+    text-shadow: none;
+}
+
+.report-conclusion {
+    margin-top: 2em;
+    padding-top: 1.5em;
+    border-top: 1px dashed #555; /* Línea discontinua gris */
+}
+
+.report-conclusion h3 {
+    color: #FFF; /* Blanco puro */
+    font-size: 1.5em;
+    margin-bottom: 0.8em;
+    text-align: left; /* Alineado a la izquierda */
+    text-shadow: none;
+}
+
+.report-conclusion p {
+    text-align: left; /* No justificar, mantener estilo terminal */
+    font-size: 0.95em;
+    color: #CCC; /* Gris claro */
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 2.5em;
+}
+
+.back-link a {
+    color: #FFF; /* Blanco puro */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.7em 1.2em;
+    border: 1px solid #FFF;
+    border-radius: 0; /* Sin bordes redondeados */
+    background-color: #111; /* Fondo sutil para el botón */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-shadow: none;
+}
+
+.back-link a:hover {
+    background-color: #333; /* Gris más oscuro al pasar el ratón */
+    color: #FFF;
+    text-shadow: none;
+}

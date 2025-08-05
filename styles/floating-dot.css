@@ -1,0 +1,49 @@
+/* floating-dot.css */
+
+/* Estilos para el punto rojo parpadeante */
+.floating-dot {
+    position: fixed; /* Esto es clave para que se mantenga fijo normalmente */
+    right: 20px;
+    /* bottom will be set by JS or default to 20px if no footer logic applies */
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+/* Estilos para la burbuja de mensaje */
+.message-bubble {
+    position: fixed; /* También fixed */
+    right: 20px; /* Align horizontally with the dot */
+    /* bottom will be set by JS */
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.4;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+    transform: translateY(20px); /* Initial state for animation */
+    z-index: 999;
+    max-width: 300px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.message-bubble.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}

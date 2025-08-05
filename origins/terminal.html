@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Modern Terminal Access</title>
+    <!-- Enlace al archivo CSS para el estilo de la terminal moderna -->
+    <link rel="stylesheet" href="terminal.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Inter' o 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">UPEA Corp. - CONSOLA DE ACCESO [Versión 3.10720.25]</span>
+            <div class="terminal-buttons">
+                <span class="terminal-button close"></span>
+                <span class="terminal-button minimize"></span>
+                <span class="terminal-button maximize"></span>
+            </div>
+        </div>
+        <div class="terminal-screen" id="terminalScreen">
+            <!-- Terminal output will appear here -->
+        </div>
+        <div class="terminal-input-area">
+            <span class="prompt"></span>
+            <input type="text" id="terminalInput" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+        </div>
+        <div class="terminal-footer">
+            <p>© 2025 UPEA Corporation - Todos los Derechos Reservados.</p>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript para la funcionalidad de la terminal -->
+    <script src="terminal.js"></script>
+</body>
+</html>

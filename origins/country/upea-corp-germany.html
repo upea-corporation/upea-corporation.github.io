@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de "Nombre del Pais"</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN CLASIFICADA</h1>
+            <p>UPEA Corporation - Alemania</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>Falkenhorst</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Frankfurt, Alemania (50°12'05.4"N 8°28'49.2"E)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>2 de Septiembre de 1991</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado Actual:</strong> <span>Operativo</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>La instalación sirve como un centro neurálgico para las operaciones de soporte y ayuda de UPEA Corporation en la región. Su función principal es proporcionar asistencia crucial a los agentes especiales desplegados en la contención de brechas y la neutralización de Entidades Antropoides Zoomorfas (EAZ). Este centro no solo coordina la respuesta a incidentes, sino que también ofrece un punto de apoyo auxiliar y médico para el personal de campo y sus colaboradores, garantizando la seguridad y el bienestar del personal en misiones de alto riesgo.</p>
+            <p>Adicionalmente, la instalación desempeña un papel fundamental en la gestión de recursos y la diplomacia con las entidades. Es responsable de la catalogación y el almacenamiento seguro de todo el armamento y equipamiento recuperado de las EAZ neutralizadas, lo que contribuye al análisis y la investigación. En casos excepcionales, la instalación facilita entrevistas con entidades EAZ que han mostrado disposición a cooperar y reintegrarse pacíficamente, explorando vías para una coexistencia no hostil. Para mantener la preparación operativa, el centro está equipado con vehículos y armamento especializado que pueden ser desplegados en apoyo de otras instalaciones de UPEA si se solicita. Regularmente, se llevan a cabo entrenamientos y simulacros de realidad virtual (VR) avanzados de tipo militar para garantizar que el personal mantenga un alto nivel de competencia y preparación táctica.</p>
+        </div>
+
+        <!-- Este bloque solo es visible si el estado es Inoperativo o Destruido -->
+        <div class="report-section" id="report-reason-section" style="display: [DISPLAY_NONE_O_BLOCK_SI_APLICA];">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>No hay informe, la instalación sigue operativo.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Incidencias/Ataques Importantes</h2>
+            <p>El 15 de marzo de 1993, la instalación sufrió un ataque coordinado por un grupo hostil de EAZ, probablemente actuando bajo el liderazgo de una entidad de alto nivel. La incursión se centró en el perímetro oeste, apuntando específicamente al área de almacenamiento de armamento y vehículos especializados. Los atacantes intentaron explotar una vulnerabilidad en los protocolos de seguridad de esa época para acceder a los recursos de la instalación, que se consideraban una amenaza para sus actividades.</p>
+            <p>El personal de seguridad de la instalación, apoyado por los equipos de respuesta rápida y los vehículos de la propia base, repelió la agresión en un enfrentamiento de 45 minutos. La rápida reacción y el uso de armamento no letal y de contención evitaron una brecha total. Sin embargo, el ataque causó daños significativos en la infraestructura de seguridad perimetral y en varios vehículos de apoyo. Como resultado de este incidente, se realizaron importantes actualizaciones en los protocolos de seguridad, se reforzó el perímetro con nuevas barreras cinéticas y se mejoraron los sistemas de vigilancia para detectar amenazas de EAZ con mayor anticipación.</p>
+        </div>
+
+        <div class="report-section" id="report-reason-section" style="display: none;">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>[INFORME_MOTIVO_INOPERATIVO_DESTRUIDO_TEXTO_LARGO_CON_CENSORED_SI_APLICA]</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-SU-DE-221:DLM <!---Dmitri Ludwing Müller--->(Alemania)</span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
