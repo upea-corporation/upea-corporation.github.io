@@ -2,8 +2,8 @@
 # Configuración General del Build
 # ===============================================
 [build]
-  command = ""
   publish = "."
+  command = ""
 
 # ===============================================
 # Configuración de las Funciones Netlify
@@ -16,12 +16,6 @@
 # ===============================================
 # Configuración de los Plugins de Netlify
 # ===============================================
-
-# --- Plugin: User Agent Blocker ---
-# Este plugin ya no se encuentra en el registro de npm para ser instalado
-# directamente en package.json. La funcionalidad de bloqueo de User Agents
-# se puede configurar y gestionar directamente desde la interfaz de Netlify
-# en las opciones del sitio.
 
 # --- Plugin: Lighthouse ---
 [[plugins]]
@@ -55,8 +49,18 @@ for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
   """
 
 # ===============================================
-# Redirecciones (Solo la redirección 404)
+# Redirecciones
 # ===============================================
+[[redirects]]
+  from = "/verifyPersonal"
+  to = "/.netlify/functions/verifyPersonal"
+  status = 200
+
+[[redirects]]
+  from = "/verifyEntidad"
+  to = "/.netlify/functions/verifyEntidad"
+  status = 200
+  
 [[redirects]]
   from = "/*" # Cualquier ruta que no coincida con un archivo existente
   to = "/error404.html" # Redirige a tu página 404 personalizada
