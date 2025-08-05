@@ -1,25 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtener referencias a los elementos del DOM específicos para el formulario de entrevistas
-    const interviewLoginForm = document.getElementById('interviewLoginForm'); // Nuevo ID para el formulario de entrevistas
-    const interviewLoginMessage = document.getElementById('interviewLoginMessage'); // Nuevo ID para el mensaje de entrevistas
+    const form = document.getElementById('interviewLoginForm');
+    const message = document.getElementById('interviewLoginMessage');
 
-    // Verificar si el formulario de login de entrevistas existe en la página
-    if (interviewLoginForm) {
-        // Añadir un event listener para cuando se envíe el formulario de entrevistas
-        interviewLoginForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevenir el comportamiento por defecto del formulario (recargar la página)
+    if (form) {
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-            // Obtener los valores de identificación y código de los campos de entrada
-            // CORRECCIÓN: Los IDs de los inputs en el HTML son 'entityIdentification' y 'entityPassword'
-            const idInput = document.getElementById('entityIdentification').value;
-            const codeInput = document.getElementById('entityPassword').value;
+            // CORRECCIÓN: Usar los IDs correctos de los inputs del HTML
+            const entidad = document.getElementById('entityIdentification').value;
+            const code = document.getElementById('entityPassword').value;
 
             try {
-                // Realizar una petición POST a la Netlify Function de verificación de entrevistas
-                const response = await fetch('/.netlify/functions/verifyEntidad', { // Apunta a la nueva función
+                const response = await fetch('/.netlify/functions/verifyEntidad', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ entidad: idInput, code: codeInput })
+                    body: JSON.stringify({ entidad, code })
                 });
 
                 const contentType = response.headers.get('content-type');
@@ -27,22 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok && contentType && contentType.includes('text/html')) {
                     const htmlContent = await response.text();
                     document.documentElement.innerHTML = htmlContent;
-
-                } else if (response.ok && contentType && contentType.includes('application/json')) {
+                } else {
                     const data = await response.json();
-                    interviewLoginMessage.textContent = data.message || "Respuesta inesperada de la función (JSON de éxito inesperado).";
-                    interviewLoginMessage.className = "message error";
+                    message.textContent = data.message || "Credenciales incorrectas o error desconocido.";
+                    message.className = "message error";
                 }
-                else {
-                    const errorData = await response.json();
-                    interviewLoginMessage.textContent = errorData.message || "Credenciales incorrectas o error desconocido.";
-                    interviewLoginMessage.className = "message error";
-                }
-
             } catch (error) {
-                console.error('Error al enviar la petición o al procesar la respuesta:', error);
-                interviewLoginMessage.textContent = "Error de conexión o respuesta inválida. Intente de nuevo.";
-                interviewLoginMessage.className = "message error";
+                console.error('Error al enviar la petición:', error);
+                message.textContent = "Error de conexión. Por favor, inténtelo de nuevo más tarde.";
+                message.className = "message error";
             }
         });
     }

@@ -25,8 +25,8 @@ exports.handler = async (event) => {
     const repo = 'data-base';
     const credentialsPath = 'data/personal.json';
 
-    if (!appId || !privateKey || !installationId) {
-        return { statusCode: 500, body: JSON.stringify({ message: 'Error de configuración: Credenciales de GitHub App no definidas.' }) };
+    if (!appId || !privateKey || !installationId || !owner) {
+        return { statusCode: 500, body: JSON.stringify({ message: 'Error de configuración: Credenciales de GitHub App o propietario del repositorio no definidos.' }) };
     }
 
     const auth = createAppAuth({
@@ -53,13 +53,12 @@ exports.handler = async (event) => {
         const userCredentials = personalData.find(user => user.identificador === identificador);
 
         if (userCredentials && userCredentials.password === password) {
-            // CORRECCIÓN: Usa el valor de 'pageName' directamente, ya que contiene la ruta completa.
-            // Ejemplo: 'page/secret/expedientes/expediente_1-personal-myl.html'
-            const pageName = userCredentials.pageName;
+            // Usa el valor de 'pageName' directamente del JSON.
+            const pagePath = userCredentials.pageName;
             const htmlPageResponse = await octokit.rest.repos.getContent({
                 owner,
                 repo,
-                path: pageName,
+                path: pagePath,
                 headers: { 'X-GitHub-Api-Version': '2022-11-28' }
             });
             const htmlContent = Buffer.from(htmlPageResponse.data.content, 'base64').toString('utf-8');
@@ -78,7 +77,7 @@ exports.handler = async (event) => {
         console.error('Error general en la verificación de personal:', error);
         
         if (error.status === 404) {
-             return { statusCode: 500, body: JSON.stringify({ message: 'Error interno: Archivo de credenciales de personal o página HTML no encontrada.' }) };
+             return { statusCode: 401, body: JSON.stringify({ message: 'Credenciales incorrectas para el personal.' }) };
         }
         if (error.status === 401 || error.status === 403) {
              return { statusCode: 500, body: JSON.stringify({ message: 'Error de autenticación con GitHub. Verifique las credenciales de su GitHub App y los permisos.' }) };
