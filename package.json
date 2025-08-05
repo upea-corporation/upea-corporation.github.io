@@ -1,7 +1,6 @@
 {
   "name": "upea-web-client",
-  "version": "2.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "description": "Sitio web del cliente para UPEA Corporation",
   "main": "index.html",
   "scripts": {
