@@ -15,7 +15,7 @@ You have the right to request the rectification or deletion of your EAZ's publis
 ---
 
 ## Contact and Social Media
-* **Email:** `<ins>upea.corp@hotmail.com</ins>`
+* **Email:** <ins>`upea.corp@hotmail.com`</ins>
 * **YouTube:** [Official UPEA Corp. YouTube Account](https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw)
 * **Twitter/X:** [Official UPEA Corp. Twitter/X Account](https://x.com/UPEA_Corp)
 * **BlueSky:** [Official UPEA Corp. BlueSky Account](https://bsky.app/profile/upea-corp.netlify.app)
@@ -37,8 +37,7 @@ Usted tiene el derecho de solicitar la rectificación o supresión de los datos 
 ---
 
 ## Contacto y Redes Sociales
-* **Correo Electrónico:** `<ins>upea.corp@hotmail.com</ins>`
-
+* **Correo Electrónico:** <ins>upea.corp@hotmail.com</ins>
 * **YouTube:** [Cuenta Oficial de YouTube de UPEA Corp.](https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw)
 * **Twitter/X:** [Cuenta Oficial de Twitter/X de UPEA Corp.](https://x.com/UPEA_Corp)
 * **BlueSky:** [Cuenta Oficial de BlueSky de UPEA Corp.](https://bsky.app/profile/upea-corp.netlify.app)
