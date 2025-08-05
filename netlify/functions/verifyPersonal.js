@@ -53,8 +53,9 @@ exports.handler = async (event) => {
         const userCredentials = personalData.find(user => user.identificador === identificador);
 
         if (userCredentials && userCredentials.password === password) {
-            // RUTA CORREGIDA: Ahora busca la página en la carpeta 'expedientes'
-            const pageName = `expedientes/${identificador}.html`; 
+            // RUTA CORREGIDA: Usa el pageName del JSON para construir la ruta completa.
+            // Asegúrate de que el pageName en tu JSON contenga el nombre de archivo completo.
+            const pageName = `page/secret/expedientes/${userCredentials.pageName}`; 
             const htmlPageResponse = await octokit.rest.repos.getContent({
                 owner,
                 repo,
