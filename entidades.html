@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Entidades</title>
+
+    <link rel="icon" type="image/png" href="image/upea-corp-logo.webp">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/floating-dot.css">
+
+    <meta name="description" content="Accede al archivo clasificado de Entidades Antropoides Zoomorfas (EAZ) de UPEA Corp. Información restringida sobre seres anómalos antropomórficos.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UPEA Corporation - Lista de Entidades EAZ">
+    <meta name="twitter:description" content="Explora el catálogo de Entidades Antropoides Zoomorfas (EAZ) de UPEA Corporation. Accede a la información detallada de cada entidad y descubre los seres anómalos antropomórficos que tenemos registrados.">
+
+    <script src="scripts/floating-dot.js" defer></script>
+
+    </head>
+<body>
+    <header class="header">
+        <h1>
+            <img src="image/upea-corp-logo.webp" alt="Icono UPEA">
+            UPEA Corporation
+        </h1>
+        <p class="slogan"><u>Unidad de Protección Especial Antropoide</u></p>
+    </header>
+
+        <nav class="navbar">
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links"> <li><a href="index.html">Inicio</a></li>
+                <li><a href="info_upea.html">Información UPEA Corp.</a></li>
+                <li><a href="entidades.html">Entidades</a></li>
+                <li><a href="informes.html">Informes</a></li>
+                <li><a href="formulario-eaz.html">Registrar Entidad</a></li>
+                <li><a href="actualizaciones.html">Actualizaciones</a></li>
+                <li><a href="acceso_upea.html">Acceso</a></li>
+                <li><a href="desechos.html">Contenido Desechado</a></li>
+            </ul>
+        </nav>
+
+    <main class="container">
+        <section class="entrada-principal">
+            <h2>Bienvenido al Archivo de la U.P.E.A.</h2>
+            <p>Esta es la base de datos central para la Unidad de Protección Especial Antropoide. Aquí encontrarás información sobre las entidades antropoides que hemos registrado y que están bajo nuestra custodia.</p>
+        </section>
+
+        <section class="lista-entidades">
+            <h3>Entidades Registradas</h3>
+            <ul>
+                <li><a href="entidades/eaz000.html">EAZ#000</a></li>
+                <li><a href="entidades/eaz000-1.html">EAZ#000-1</a></li>
+                <li><a href="error404.html">EAZ#001 (No Disponible)
+                <li><a href="error404.html">EAZ#002 (No Disponible)
+                <li><a href="error404.html">EAZ#003 (No Disponible)
+                <li><a href="entidades/eaz201.html">EAZ#201</a></li>
+                <li><a href="entidades/eaz666.html">EAZ#666</a></li>
+                <li><a href="entidades/eaz666-1.html">EAZ#666-1</a></li>
+                <li><a href="error404.html">EAZ#T17_13TI17TZX11J17</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 UPEA Corporation - Todos los derechos reservados.
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
+                <img src="image/rrss/YouTube-Icon.svg" alt="Cuenta Oficial de YouTube de UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://x.com/UPEA_Corp">
+                <img src="image/rrss/Twitter-Icon.svg" alt="Cuenta Oficial de Twitter/X de UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app">
+                <img src="image/rrss/Bluesky-Icon.svg" alt="Cuenta Oficial de BlueSky de UPEA Corp." class="icon-link"> 
+            </a>
+            <br> 
+                <a href="foot-page/netlify_extensions.html" class="footer-link">Extensiones de Netlify</a> | 
+                <a href="foot-page/politica_cookies.html" class="footer-link">Política de Cookies</a> |
+                <a href="foot-page/terminos_condiciones.html" class="footer-link">Términos y Condiciones</a> |
+                <a href="foot-page/politica_privacidad.html" class="footer-link">Política de Seguridad y Privacidad</a> |
+                <a href="foot-page/copyright_licencia.html" class="footer-link">Copyright y Licencia</a> |
+                <a href="foot-page/terminos_condiciones_registro-eaz.html" class="footer-link">Registros EAZ</a>
+        </p>
+    </footer>
+
+<style>
+  .icon-link {
+    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
+    height: 24px; /* Asegura que el icono sea cuadrado */
+    vertical-align: middle; /* Alinea el icono con el texto */
+    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
+  }
+</style>
+
+    <script>
+        // NEW: JavaScript for the accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.closest('.accordion-item');
+                    const accordionContent = accordionItem.querySelector('.accordion-content');
+
+                    // Toggle the 'active' class on the header
+                    this.classList.toggle('active');
+
+                    // Toggle the 'show' class on the content
+                    if (accordionContent.classList.contains('show')) {
+                        accordionContent.classList.remove('show');
+                        accordionContent.style.maxHeight = null; // Reset max-height
+                    } else {
+                        accordionContent.classList.add('show');
+                        // Set max-height to scrollHeight to allow for smooth transition
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    }
+
+                    // Optional: Close other open accordion items
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this) {
+                            otherHeader.classList.remove('active');
+                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
+                            otherContent.classList.remove('show');
+                            otherContent.style.maxHeight = null;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Script para el menú móvil -->
+    <script src="scripts/mobile-menu.js"></script>
+    
+</body>
+</html>

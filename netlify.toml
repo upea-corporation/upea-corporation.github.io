@@ -1,0 +1,63 @@
+# netlify.toml
+
+# ===============================================
+# Configuración General del Build
+# ===============================================
+[build]
+  publish = "."
+  command = ""
+
+# ===============================================
+# Configuración de las Funciones Netlify
+# ===============================================
+[functions]
+  directory = "netlify/functions"
+
+# ===============================================
+# Configuración de los Plugins de Netlify
+# ===============================================
+
+# --- Plugin: User Agent Blocker ---
+# Este plugin ya no se encuentra en el registro de npm para ser instalado
+# directamente en package.json. La funcionalidad de bloqueo de User Agents
+# se puede configurar y gestionar directamente desde la interfaz de Netlify
+# en las opciones del sitio.
+
+# --- Plugin: Lighthouse ---
+[[plugins]]
+package = "@netlify/plugin-lighthouse" # Mantendremos Lighthouse con la versión más reciente
+  [plugins.inputs]
+  # Puedes añadir inputs aquí si lo necesitas para Lighthouse, por ejemplo:
+  # output_path = "path/to/lighthouse/report.json"
+
+# ===============================================
+# Configuración de Cabeceras (incluyendo CSP)
+# ===============================================
+[[headers]]
+for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
+  [headers.values]
+  # Content-Security-Policy (CSP)
+  # Usamos tres comillas dobles (""") para cadenas multi-línea en TOML.
+  # Se han añadido los dominios de Jotform necesarios a las directivas
+  # Todos los comentarios internos de la CSP han sido eliminados.
+  Content-Security-Policy = """
+    default-src 'self' data: https://*.jotform.com https://cdn.jotfor.ms;
+    script-src 'self' 'unsafe-inline' https://*.jotform.com https://cdn.jotfor.ms;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.jotform.com https://cdn.jotfor.ms;
+    img-src 'self' data: https://*.jotform.com https://cdn.jotfor.ms;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' https://*.jotform.com https://cdn.jotfor.ms;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self' https://submit.jotform.com;
+    upgrade-insecure-requests;
+    block-all-mixed-content;
+  """
+
+# ===============================================
+# Redirecciones (Solo la redirección 404)
+# ===============================================
+[[redirects]]
+  from = "/*" # Cualquier ruta que no coincida con un archivo existente
+  to = "/error404.html" # Redirige a tu página 404 personalizada
+  status = 404 # Indica que es una redirección para un error "No encontrado"
