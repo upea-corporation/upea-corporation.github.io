@@ -36,6 +36,8 @@ export const handler = async (event) => {
     });
     
     const { token } = await auth({ type: 'installation' });
+    
+    // CORRECCIÓN: Inicializar Octokit de una manera más compatible.
     const octokit = new Octokit({ auth: token });
 
     try {
