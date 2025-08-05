@@ -1,17 +1,17 @@
-# netlify.toml
-
 # ===============================================
 # Configuración General del Build
 # ===============================================
 [build]
-  publish = "."
-  command = ""
+  command = "npm run build"
+  publish = "dist"
 
 # ===============================================
 # Configuración de las Funciones Netlify
 # ===============================================
 [functions]
   directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["@octokit/rest", "@octokit/auth-app"]
 
 # ===============================================
 # Configuración de los Plugins de Netlify
