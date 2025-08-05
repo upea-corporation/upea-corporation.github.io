@@ -1,9 +1,0 @@
-{
-  "name": "verify-personal-function",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "@octokit/rest": "22.0.0",
-    "@octokit/auth-app": "8.0.2"
-  }
-}
