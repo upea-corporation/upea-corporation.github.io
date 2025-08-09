@@ -546,7 +546,7 @@ strong {
  /* NEW: Basic styles for the accordion */
 .accordion-item {
     background-color: #21262d; /* Matches existing update-post background */
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     border-radius: 8px;
     overflow: hidden; /* Ensures content doesn't spill out of rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Matches existing update-post shadow */
@@ -555,7 +555,7 @@ strong {
 .accordion-header {
     background-color: #30363d; /* Slightly darker than item background */
     color: #58a6ff;
-    padding: 1em 1.5em;
+    padding: 8px 16px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -563,6 +563,10 @@ strong {
     font-weight: bold;
     border-bottom: 1px solid #30363d; /* Border to separate header from content */
     transition: background-color 0.3s ease;
+}
+
+.accordion-header h2 {
+    font-size: 1.2em;
 }
 
 .accordion-header:hover {
@@ -616,8 +620,9 @@ strong {
     color: #c9d1d9;
 }
 
+
 .accordion-content ul:last-child {
-    margin-bottom: 40px; /* Ajusta el valor según tus necesidades */
+    margin-bottom: 45px; /* Ajusta el valor según tus necesidades */
 }
 
 .opaco {
