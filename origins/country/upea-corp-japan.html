@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de Japón</title>
+    <!-- Enlace al archivo CSS del informe clásico -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN CLASIFICADA</h1>
+            <p>UPEA Corporation - Japón</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>暁</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Okinawa, Archipiélago de las Islas Yaeyama, Isla de Ishigaki (24°17′24″N,123°45′27″E)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>12 de octubre de 1995 - 12 de marzo de 2010</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado Actual:</strong> <span>Inoperativa</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>La instalación fue diseñada exclusivamente para el estudio y observación de Entidades Antropoides Zoomorfas (EAZ) marinas, así como de la vida marina y los ecosistemas afectados por la actividad de estas entidades. A diferencia de otras instalaciones, Akatsuki no tenía protocolos de contención. En su lugar, se centraba en la investigación no intrusiva y la recopilación de datos para comprender la biología, comportamiento y ecología de estas entidades en su hábitat natural. Su objetivo era obtener conocimientos que pudieran usarse para desarrollar métodos de convivencia y mitigación de amenazas, en lugar de la contención agresiva.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>El cese de operaciones de la instalación ocurrió el 12 de marzo de 2010, como resultado de un tsunami masivo. Aunque la infraestructura de la base estaba diseñada para resistir terremotos y tsunamis de gran magnitud, incluso superiores a la incidencia de Fukushima, el impacto del evento excedió toda previsión. La inundación masiva y repentina superó los sistemas de defensa y comprometió los sistemas eléctricos y de ventilación, causando el fallo total de los equipos y la muerte de gran parte del personal. La evacuación fue inmediata y se priorizó la vida del personal restante, dejando de lado la recuperación de equipos y archivos.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Incidencias / Ataques Importantes</h2>
+            <P>El motivo de la inundación fue un tsunami masivo, el cual no fue precedido por ningún terremoto o actividad sísmica considerable. A través de un análisis forense de los registros sísmicos y marinos, se llegó a la conclusión de que la causa más probable fue un evento anómalo. Se deduce que una entidad EAZ marina, de tamaño y poder desconocidos, provocó el tsunami. Este suceso, junto con la pérdida de personal y datos, fue clasificado como un incidente crítico, y se consideró que no hubo ataques anteriores a la instalación.</P>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-MR-JPN-210:KYY<!--Kōko Yasuko Yamaguchi--></span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

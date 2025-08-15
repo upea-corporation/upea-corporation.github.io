@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de Estados Unidos (EE.UU)</title>
+    <!-- Enlace al archivo CSS del informe clásico -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN CLASIFICADA</h1>
+            <p>UPEA Corporation - Estados Unidos (EE.UU)</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>Citadel</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Cordillera Sheep Range, Nevada, Estados Unidos (36°42′55″N,115°24′10″W)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>12 de marzo de 1985 - 24 de agosto de 1989</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado Actual:</strong> <span>Inoperativa</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>La instalación fue diseñada como una fortaleza de contención primaria de alta seguridad, con la misión de aislar y custodiar a las Entidades Antropoides Zoomorfas (EAZ) más peligrosas y volátiles. El propósito principal era el aislamiento total de estas entidades del mundo exterior. Para ello, el complejo estaba equipado con una infraestructura de contención de última generación, respaldada por un equipo altamente profesional y especializado en protocolos de seguridad extrema. La instalación contaba con un arsenal de armamento avanzado y un sistema de defensa perimetral altamente fortificado para repeler cualquier intento de brecha de contención. Además, estaba equipada con protocolos de emergencia para el uso de armamento de disuasión a gran escala, incluyendo una capacidad estratégica de respuesta nuclear, como medida de último recurso para evitar la propagación de una amenaza anómala de nivel catastrófico.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>La inoperatividad de esta instalación se debió a un cambio drástico en la política de la Corporación en el siglo XXI. Se determinó que los protocolos de contención primaria, que mantenían a las entidades EAZ en un estado de confinamiento perpetuo, eran insostenibles tanto operativa como éticamente. Este modelo de contención generaba una presión excesiva sobre las entidades, lo que incrementaba el riesgo de brechas. El desmantelamiento fue precipitado por la violación de las nuevas políticas éticas de la organización, que buscaban una relación más armoniosa con las entidades EAZ (Entidades Antropodes Zoomorfas). Además, un incidente crítico relacionado con la utilización no autorizada de armamento de gran escala, específicamente una amenaza de uso nuclear durante una situación de contención de rutina, fue un factor decisivo. Este evento subrayó la peligrosidad inherente de mantener tales capacidades defensivas en una instalación regional. Como resultado, todo el material anómalo y el armamento, incluyendo los componentes nucleares, fueron retirados y transportados de forma segura a la sede central de la Corporación en España, donde se establecieron protocolos de control más estrictos y centralizados.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Incidencias / Ataques Importantes</h2>
+            <P> Durante una brecha de contención a gran escala, el personal de la instalación activó los protocolos de seguridad de armamento nuclear como una medida extrema. La detonación no causó la destrucción física de la instalación subterránea, pero provocó una fuga masiva de material radiactivo en el sistema de ventilación. La radiación se extendió rápidamente a través de la instalación y las zonas perimetrales, resultando en la pérdida de personal aliado por exposición severa. Años de esfuerzos de descontaminación han logrado reducir los niveles de radiación en las áreas circundantes, pero el núcleo de la instalación, incluyendo las zonas de contención originales, presenta un nivel de contaminación radiactiva que lo hace inhabitable e inoperable de forma permanente.</P>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-PE-USA-554:JDW<!--Jermaine Demetrius Washington--></span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

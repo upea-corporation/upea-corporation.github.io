@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // Command to access classified information
-    const accessCodeCommand = "access code:alpha upea@corporation:8443";
+    const accessCodeCommand = "access code:gamma upea@corporation:8443";
     const accessCodeCommand2 = "access code:omega-prime upea@corporation:3307"; // New command for redirection
 
     // List of countries to display after access is granted (English, hyphenated)
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 printMessage("AUTORIZACIÓN DE NIVEL OMEGA-PRIME CONCEDIDA.", 'system-message');
                 printMessage("Accediendo a la base de datos clasificada...", 'system-message');
                 setTimeout(() => {
-                    window.location.href = 'classifield/origenes.html'; // Redirect to the specific HTML page
+                    window.location.href = 'classified/origenes.html'; // Redirect to the specific HTML page
                 }, 1500); // Small delay for message visibility
                 return; // Exit function after redirection
             } else {

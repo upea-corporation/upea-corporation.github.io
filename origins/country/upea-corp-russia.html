@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de Rusia</title>
+    <!-- Enlace al archivo CSS del informe clásico -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN CLASIFICADA</h1>
+            <p>UPEA Corporation - Rusia</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>Рубеж</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Distrito Autónomo de Yamalo-Nenets, Siberia Occidental, Rusia (66.5333° N, 73.3500° E)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>18 de octubre de 1988</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado: </strong> <span>Operativa</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>La instalación de UPEA Corporation en Rusia, opera como un centro de investigación y contención de alto nivel, primariamente enfocado en el estudio y análisis de fenómenos anómalos. Su misión principal abarca la investigación exhaustiva de Entidades Antropoides Zoomorfas (EAZ) con características anómalas, así como la clasificación, contención y estudio de objetos anómalos, ya sean intrínsecamente relacionados con las EAZ o de naturaleza independiente. El propósito fundamental es la comprensión de sus propiedades, orígenes y posibles implicaciones para la seguridad global. Complementariamente, la instalación también destina recursos a la investigación y desarrollo tecnológico, aunque esta es una función secundaria. Esto incluye la creación de protocolos de seguridad avanzados, sistemas de contención mejorados y tecnología adaptada para el monitoreo y la interacción segura con las anomalías, todo ello con el objetivo de salvaguardar la integridad de la instalación y prevenir cualquier riesgo potencial para la humanidad.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>No hay informe, la instalación sigue operativa.</p>
+        </div>
+
+        <div class="report-section">
+        <h2>Incidencias / Ataques Importantes</h2>
+            <p>Se registró un evento de brecha de contención el 2 de enero de 1994, atribuido a una Entidad Antropoide Zoomorfa (EAZ), que exhibía capacidades anómalas de manipulación de la realidad espacial. La entidad logró eludir los protocolos de seguridad, poniendo en riesgo crítico la integridad de la instalación y el personal operativo. Tras un despliegue táctico de emergencia y el uso de contramedidas de supresión de energía anómala, la entidad fue recontenida con éxito. Este incidente impulsó una revisión exhaustiva de los protocolos de seguridad, resultando en el desarrollo e implementación de un nuevo sistema de defensas perimetrales cuánticas y la construcción de un almacén de objetos anómalos con contención adaptativa, garantizando una protección sin precedentes contra futuras amenazas anómalas de similar naturaleza.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-AR-RUS-782:SNK <!--Svetlana Nikolayevna Kovalenko--></span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

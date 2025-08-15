@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de Corea del Sur</title>
+    <!-- Enlace al archivo CSS del informe clásico -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN CLASIFICADA</h1>
+            <p>UPEA Corporation - Corea del Sur</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>현도</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Sinan-gun, Provincia de Jeolla del Sur, Corea del Sur (34°49′52″N,126°05′55″E)</span>
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>14 de diciembre de 2001 - 5 de abril de 2018</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado</strong> <span>Inoperativa/Destruido</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>La instalación de UPEA Corporation en Corea del Sur, se estableció como un centro de investigación primario con el propósito de estudiar las Entidades Antropoides Zoomorfas (EAZ), centrándose específicamente en las propiedades biológicas únicas de estas entidades, la topografía de los entornos donde se manifiestan y la creación de medicinas o antídotos. La investigación principal abarcaba tres áreas críticas:</p>
+                <ul>1) Análisis genético y biológico de las EAZ para comprender su composición celular, sus capacidades de adaptación y su potencial para interactuar con la materia orgánica e inorgánica.</ul>
+                <ul>2) Un estudio del "terreno anómalo", es decir, la forma en que los entornos físicos son alterados por la presencia de las EAZ, con el fin de desarrollar protocolos de contención más efectivos.</ul>
+                <ul>3) El desarrollo de protocolos médicos y fármacos específicos para tratar tanto al personal expuesto a los efectos de las EAZ como a las propias entidades para fines de sedación o control, un campo de estudio crucial para la seguridad operativa de la Corporación.</ul>
+        </div>
+
+        <div class="report-section">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>La instalación fue declarada inoperativa y destruida tras un evento de brecha de contención masiva, iniciado por el descubrimiento y experimentación de un material biológico anómalo enviado desde la instalación de la Antártida. Este material, un látex de origen biológico parasitario, demostró una capacidad infecciosa extrema, eludiendo los protocolos de seguridad existentes e infectando a la totalidad del personal. La infección causó una transformación celular rápida y completa, convirtiendo a los individuos en entidades antropomórficas de látex. Estas entidades exhibieron un comportamiento primario de propagación, utilizando el contacto físico para transformar a otros organismos no infectados. Para evitar que el virus de látex se extendiera más allá de las instalaciones, se activó el protocolo de autodestrucción, sellando todas las salidas y conductos de ventilación. La instalación fue completamente demolida y enterrada para asegurar la contención del virus. La zona ha sido declarada de acceso prohibido para evitar cualquier intrusión.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Incidencias / Ataques Importantes</h2>
+            <P>Tras la llegada del material biológico anómalo de látex, se produjo una pequeña brecha inicial durante la fase de análisis primario. Varios miembros del personal de investigación resultaron infectados y transformados. Los protocolos de seguridad fueron activados con éxito, logrando una contención completa de los infectados en las alas de investigación selladas. Como resultado, la instalación mejoró y amplió sus medidas de seguridad, incluyendo un sistema de esclusas de presión negativa, y los sujetos infectados fueron utilizados para una investigación intensiva, con el objetivo de estudiar el virus en los huéspedes y desarrollar un posible antídoto.</P>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-PR-SKOR-518:RH<!--Ri Hyeon-woo--></span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Instalación de Antártida</title>
+    <!-- Enlace al archivo CSS del informe clásico -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para un aspecto moderno y legible (ej. 'Space Mono') -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>INFORME DE INSTALACIÓN CLASIFICADA</h1>
+            <p>UPEA Corporation - Antártida</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Datos Generales de la Instalación</h2>
+            <div class="report-detail">
+                <strong>Nombre en Clave:</strong> <span>Rune</span>
+            </div>
+            <div class="report-detail">
+                <strong>Ubicación:</strong> <span>Nunatak utsteinen, Tierra de la Reina Maud, Antártida (72°2′52″S, 23°7′48″E)</span>
+
+            </div>
+            <div class="report-detail">
+                <strong>Fecha de Actividad:</strong> <span>1 de marzo de 1978</span>
+            </div>
+            <div class="report-detail">
+                <strong>Estado</strong> <span>Operativa</span>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Propósito de la Instalación</h2>
+            <p>la instalación es una base de investigación y estudios de la Corporación UPEA, fue establecida con el objetivo de investigar y estudiar microorganismos, bacterias, virus y anomalías geológicas únicas en el entorno de la Antártida. A través de tecnologías de aislamiento y análisis avanzadas, la base se especializó en registrar y desarrollar investigaciones complejas para comprender la evolución y el impacto de estas formas de vida en los ecosistemas locales y globales. La información recopilada se consideraba crucial para el bienestar de la humanidad, ya que permitía desarrollar contramedidas contra posibles patógenos extremos y también para entender mejor las entidades EAZ que pudieran existir en ambientes tan inhóspitos. Los materiales y archivos de investigación se enviaban de forma regular a centros de análisis en el exterior.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Informe del Motivo de Inoperatividad/Destrucción</h2>
+            <p>No hay informe, la instalación sigue operativa.</p>
+        </div>
+
+        <div class="report-section">
+            <h2>Incidencias / Ataques Importantes</h2>
+            <P>El incidente de las entidades EAZ árticas fue clasificado como un 'incidente de contacto'. El personal de la instalación Rune tuvo varias incidencias con las entidades EAZ árticas. Aunque no hubo ataques directos, el personal informó de ruidos extraños, sombras moviéndose en los pasillos y objetos que se movían sin razón aparente. Los informes iniciales sugieren que el personal estaba asustado y desconfiado, pero con el tiempo se dieron cuenta de que las entidades eran benignas y que solo estaban buscando un lugar donde pudiesen refugiarse del frío y aprender más sobre el entorno de la Antártida. Durante un estudio de campo rutinario, un equipo de investigación descubrió que varias Entidades Antropoides Zoomorfas (EAZ) árticas, de naturaleza pasiva y no agresiva, habían entrado en las instalaciones. Se cree que las entidades se sintieron atraídas por las investigaciones y las consideraron una oportunidad para aprender y explorar el entorno de la Antártida de una forma que no hubieran podido hacer por sí mismas. Después de que se comprobó que no eran agresivas y que no tenían intenciones hostiles, se llegó a un acuerdo. Las entidades colaboraron con el personal y se unieron a los equipos de investigación para ayudar a encontrar y estudiar el terreno de la Antártida, ya que estaban familiarizadas con él.</P>
+        </div>
+
+        <div class="report-section">
+            <h2>Identificación y Encargo</h2>
+            <div class="report-detail">
+                <strong>ID del Encargo:</strong> <span>UPEA-RSH-ANT-056:SH (Noruega)<!--Sigurd Haraldsen--> / UPEA-RSH-ANT-057:JAT (España)<!--Javier Alejandro de la Torre--></span>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 UPEA Corporation - Todos los Derechos Reservados</p>
+    </div>
+
+    <script>
+        // Script para mostrar/ocultar la sección de motivo según el estado
+        document.addEventListener('DOMContentLoaded', () => {
+            const estadoActualSpan = document.querySelector('.report-detail span:nth-of-type(3)'); // Asume que es el 3er span de estado
+            const reportReasonSection = document.getElementById('report-reason-section');
+
+            if (estadoActualSpan && reportReasonSection) {
+                const estado = estadoActualSpan.textContent.toLowerCase();
+                if (estado.includes('inoperativo') || estado.includes('destruido')) {
+                    reportReasonSection.style.display = 'block';
+                } else {
+                    reportReasonSection.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

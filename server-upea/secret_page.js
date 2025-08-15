@@ -1,13 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     const terminal = document.getElementById('terminal');
     const upeaCorpBaseURL = "upea-corp.netlify.app";
-    const upeaCodexBaseURL = "upea-codex.github.io";
+    const upeaCodexBaseURL = "upea-corporation.github.io/upea-codex.github.io";
     const MAX_LINES = 70;
     const INITIAL_DELAY_SECONDS = 7; // Retraso inicial antes de que comience la actividad (en segundos)
 
     // Variable para controlar la velocidad de la simulación (en milisegundos)
     // Un valor más bajo hará la simulación más rápida.
     let simulationSpeed = 20; // Velocidad inicial: 50ms (más rápido que los 70ms anteriores)
+
+    // --- Lógica de Probabilidad Variable (Añadido) ---
+    // Probabilidad para una redirección en aproximadamente 1 hora (1/180,000)
+    const PROBABILITY_1_HOUR = 1 / (180000); 
+    // Probabilidad para una redirección en aproximadamente 3 horas (1/540,000)
+    const PROBABILITY_3_HOURS = 1 / (180000 * 3); 
+
+    // Elegir aleatoriamente una de las dos probabilidades al inicio del script
+    const redirectionProbability = Math.random() < 0.5 ? PROBABILITY_1_HOUR : PROBABILITY_3_HOURS;
+    console.log(`Probabilidad de redirección elegida: ${redirectionProbability}`);
+    //-----------------------------------------------------
 
     // Función para obtener la hora actual en formato HH:MM:SS
     const getTimeStamp = () => {
@@ -79,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `[INFO] Reiniciando servicio Apache2.`,
         `[DEBUG] Limpiando registros antiguos del sistema.`,
         `[SUCCESS] Tareas programadas ejecutadas correctamente.`
-        `[WARN] Se ha detectado un acceso no autorizado a los registros de los servidores con fecha 19 de julio de 2025, entre las 14:10 y las 14:21 horas.`
     ];
 
     // Mensajes para el easter egg de upea-codex.github.io (muy raros)
@@ -111,7 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "4241424D42594C52",
         "5648554F524A43525252",
         "4A594D52594C52452D525252",
-        "426E61656E6155787062" // ADMIN
+        "426E61656E6155787062", // ADMIN
+        //
+        `Detección de acceso no autorizado a los servidores con fecha 19 de julio de 2025, entre las 14:10 y las 14:21 horas.`
     ];
 
     // Mensajes de backup automático (muy raros)
@@ -162,18 +174,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const simulateActivity = () => {
         if (isPaused) return;
 
+        // Probabilidad de redirección. Ahora es variable.
+        if (Math.random() < redirectionProbability) {
+            isPaused = true;
+            clearInterval(currentInterval);
+            addLine(`[CRÍTICO] MÓDULO CLASUFICADO ACTIVADO. INICIANDO PROTOCOLO DE DESVÍO.`, 'error-message');
+            addLine(`[SISTEMA] Redireccionando a ubicación segura en 3 segundos...`, 'special-message');
+            
+            setTimeout(() => {
+                // Modifica esta URL con la página a la que quieres redirigir
+                window.location.href = '../origins/terminal.html'; 
+
+            }, 3000); // 3 segundos de pausa antes de la redirección
+            
+            return;
+        }
+
         // Probabilidad para mensajes de backup (0.05% - aparece 1 de cada 2000 líneas)
         if (Math.random() < 0.005) {
             const randomIndex = Math.floor(Math.random() * backupMessages.length);
-            addLine(backupMessages[randomIndex], 'info-message'); // Usamos 'info-message' o similar si quieres un color específico
+            addLine(backupMessages[randomIndex], 'info-message');
             return;
         }
 
         // Probabilidad para el easter egg (0.001% - aparece 1 de cada 100,000 líneas)
         if (Math.random() < 0.00001) {
             const randomIndex = Math.floor(Math.random() * easterEggMessages.length);
-            addLine(easterEggMessages[randomIndex], 'special-message'); // Usamos 'special-message' para que se vea diferente
-            return; // No generar otra línea en este mismo ciclo
+            addLine(easterEggMessages[randomIndex], 'special-message');
+            return;
         }
 
         // Probabilidad de que aparezca un mensaje aleatorio normal
@@ -192,9 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reanudar la actividad después de 1 segundo
             setTimeout(() => {
                 isPaused = false;
-                addLine("[INFO] Actividad de servidor reanudada.", 'success-message'); // Mensaje de reanudación más realista y con estilo
-                startSimulation(); // Reanudar la actividad con la velocidad actual
-            }, 1000); // 1 segundos de pausa
+                addLine("[INFO] Actividad de servidor reanudada.", 'success-message');
+                startSimulation();
+            }, 1000);
             return;
         }
 
@@ -227,8 +255,4 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn("Velocidad de simulación inválida. Debe ser un número positivo.");
         }
     };
-
-    // Ejemplo de cómo podrías cambiar la velocidad desde la consola:
-    // setSimulationSpeed(20); // Hará la simulación aún más rápida
-    // setSimulationSpeed(100); // Hará la simulación más lenta
 });
