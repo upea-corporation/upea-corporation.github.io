@@ -6,9 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Objeto para manejar los reportes por fecha, incluyendo su tipo
     const reporteFechas = {
-        '2025-5-19': { id: 'report-details-jul-19', type: 'serious' }, // 19 de julio,
+        '2025-5-16': { id: 'report-details-jun-16', type: 'serious' }, // 16 de junio,
+        '2025-6-19': { id: 'report-details-jul-19', type: 'serious' }, // 19 de julio,
         '2025-7-5': { id: 'report-details-aug-5', type: 'mixed' },   // 5 de agosto
-        '2025-7-16': { id: 'report-details-aug-16', type: 'mission' }   // 16 de agosto
+        '2025-7-16': { id: 'report-details-aug-16', type: 'mission' },   // 16 de agosto
+        '2025-7-22': { id: 'report-details-aug-22', type: 'serious' }   // 22 de agosto
     };
     
     let currentMonth = 4; // Mayo es el índice 4
