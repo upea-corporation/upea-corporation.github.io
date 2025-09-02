@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtener referencias a los elementos del DOM específicos para el formulario de códigos
+    // Obtener referencias a los elementos del DOM del formulario de un solo campo
     const valueLoginForm = document.getElementById('valueLoginForm');
     const valueLoginMessage = document.getElementById('valueLoginMessage');
 
-    // Verificar si el formulario de login de códigos existe en la página
+    // Verificar si el formulario existe en la página
     if (valueLoginForm) {
-        // Añadir un event listener para cuando se envíe el formulario de códigos
+        // Añadir un event listener para el evento 'submit'
         valueLoginForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevenir el envío tradicional del formulario
 
             // Obtener el valor del campo de entrada
             const idInput = document.getElementById('valueIdentification').value;
 
             try {
-                // Realizar una petición POST a la Netlify Function de verificación de códigos
+                // Realizar una petición POST a la Netlify Function de verificación
                 const response = await fetch('/.netlify/functions/verifyCode', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ value: idInput }) // ✅ CORREGIDO: Cambiado de 'code' a 'value'
+                    body: JSON.stringify({ value: idInput }) 
                 });
 
                 const contentType = response.headers.get('content-type');
@@ -27,14 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.documentElement.innerHTML = htmlContent;
                 } else {
                     const errorData = await response.json();
-                    // Usar la variable correcta para mostrar el mensaje de error
                     valueLoginMessage.textContent = errorData.message || "Credenciales incorrectas o error desconocido.";
                     valueLoginMessage.className = "message error";
                 }
 
             } catch (error) {
-                console.error('Error al enviar la petición o al procesar la respuesta:', error);
-                valueLoginMessage.textContent = "Error de conexión o respuesta inválida. Intente de nuevo.";
+                console.error('Error al enviar la petición:', error);
+                valueLoginMessage.textContent = "Error de conexión o respuesta inválida.";
                 valueLoginMessage.className = "message error";
             }
         });
