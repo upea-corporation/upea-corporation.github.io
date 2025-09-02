@@ -42,7 +42,7 @@ exports.handler = async (event) => {
         });
     } catch (authError) {
         console.error('Error al autenticar con la GitHub App:', authError);
-        return { statusCode: 500, body: JSON.stringify({ message: 'Error de autenticación con GitHub. Verifica las credenciales de la App.' }) };
+        return { statusValue: 500, body: JSON.stringify({ message: 'Error de autenticación con GitHub. Verifica las credenciales de la App.' }) };
     }
 
     try {

@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener referencias a los elementos del DOM específicos para el formulario de códigos
-    const codeLoginForm = document.getElementById('codeLoginForm');
-    const codeLoginMessage = document.getElementById('codeLoginMessage');
+    const valueLoginForm = document.getElementById('valueLoginForm');
+    const valueLoginMessage = document.getElementById('valueLoginMessage');
 
     // Verificar si el formulario de login de códigos existe en la página
-    if (codeLoginForm) {
+    if (valueLoginForm) {
         // Añadir un event listener para cuando se envíe el formulario de códigos
-        codeLoginForm.addEventListener('submit', async function(event) {
+        valueLoginForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
             // Obtener el valor del campo de entrada
-            const idInput = document.getElementById('codeIdentification').value;
+            const idInput = document.getElementById('valueIdentification').value;
 
             try {
                 // Realizar una petición POST a la Netlify Function de verificación de códigos
@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const errorData = await response.json();
                     // Usar la variable correcta para mostrar el mensaje de error
-                    codeLoginMessage.textContent = errorData.message || "Credenciales incorrectas o error desconocido.";
-                    codeLoginMessage.className = "message error";
+                    valueLoginMessage.textContent = errorData.message || "Credenciales incorrectas o error desconocido.";
+                    valueLoginMessage.className = "message error";
                 }
 
             } catch (error) {
                 console.error('Error al enviar la petición o al procesar la respuesta:', error);
-                codeLoginMessage.textContent = "Error de conexión o respuesta inválida. Intente de nuevo.";
-                codeLoginMessage.className = "message error";
+                valueLoginMessage.textContent = "Error de conexión o respuesta inválida. Intente de nuevo.";
+                valueLoginMessage.className = "message error";
             }
         });
     }
