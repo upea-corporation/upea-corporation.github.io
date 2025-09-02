@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const response = await fetch('/.netlify/functions/verifyCode', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ value: idInput }) // ✅ Enviar un objeto con la propiedad 'value'
+                    body: JSON.stringify({ value: idInput }) // ✅ CORREGIDO: Cambiado de 'code' a 'value'
                 });
 
                 const contentType = response.headers.get('content-type');

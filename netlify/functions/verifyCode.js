@@ -94,10 +94,10 @@ exports.handler = async (event) => {
         }
 
     } catch (error) {
-        console.error('Error general en la verificación de entidad:', error);
+        console.error('Error general en la verificación del código:', error);
         if (error.status === 404) {
              return { statusValue: 500, body: JSON.stringify({ message: 'Error interno: Archivo de credenciales o página HTML no encontrada.' }) };
         }
-        return { statusValue: 500, body: JSON.stringify({ message: 'Error inesperado del servidor en la verificación de entidad. Contacte al administrador.' }) };
+        return { statusValue: 500, body: JSON.stringify({ message: 'Error inesperado del servidor en la verificación de código. Contacte al administrador.' }) };
     }
 };
