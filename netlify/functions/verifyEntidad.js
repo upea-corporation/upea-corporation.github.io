@@ -27,13 +27,11 @@ exports.handler = async (event) => {
 
     let octokit;
     try {
-        // --- AQUÍ ESTÁ EL CAMBIO CRUCIAL ---
-        // Decodifica la clave Base64 de la variable de entorno
         const privateKey = Buffer.from(GITHUB_PRIVATE_KEY, 'base64').toString('utf8');
 
         const auth = createAppAuth({
             appId: GITHUB_APP_ID,
-            privateKey: privateKey, // Usamos la clave decodificada
+            privateKey: privateKey,
             installationId: GITHUB_INSTALLATION_ID,
         });
 

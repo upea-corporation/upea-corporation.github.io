@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const messageBubble = document.createElement('div');
     messageBubble.innerHTML = `
-        <p style="margin-bottom: 5px; font-weight: bold;">¡Días de Inactividad!</p>
-        <p>Tendremos días de inactividad por los avisos de días calurosos superiores de 35 grados centígrados. No olviden hidratarse y revisar todas las novedades en la página de Actualizaciones. Gracias por su comprensión.</p>
+        <p style="margin-bottom: 5px; font-weight: bold;">¡De Vuelta al Trabajo!</p>
+        <p>Sentimos las molestias por la inactividad constante en el desarrollo de la website, regresamos en el desarrollo y mejoras hasta tenerlo terminado. Algunas funciones que estamos implementando esta siendo complicado.</p>
 
     `;
     messageBubble.classList.add('message-bubble');

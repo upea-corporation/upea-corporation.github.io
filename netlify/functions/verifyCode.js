@@ -1,29 +1,28 @@
-// netlify/functions/verifyPersonal.js
+// netlify/functions/verifyCode.js
 exports.handler = async (event) => {
-    // Importación dinámica para Octokit.rest y auth-app
     const { Octokit } = await import("@octokit/rest");
     const { createAppAuth } = await import("@octokit/auth-app");
 
     if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, body: 'Method Not Allowed' };
+        return { statusValue: 405, body: 'Method Not Allowed' };
     }
 
-    let identificador, password;
+    let value;
     try {
-        ({ identificador, password } = JSON.parse(event.body));
+        ({ value } = JSON.parse(event.body));
     } catch (parseError) {
         console.error('Error al parsear el cuerpo de la petición:', parseError);
-        return { statusCode: 400, body: JSON.stringify({ message: 'Formato de petición inválido.' }) };
+        return { statusValue: 400, body: JSON.stringify({ message: 'Formato de petición inválido.' }) };
     }
 
     const { GITHUB_APP_ID, GITHUB_PRIVATE_KEY, GITHUB_INSTALLATION_ID, GITHUB_REPO_OWNER_DATA, GITHUB_REPO_NAME } = process.env;
     const owner = GITHUB_REPO_OWNER_DATA;
     const repo = GITHUB_REPO_NAME;
-    const credentialsPath = 'data/personal.json';
+    const credentialsPath = 'access/data.json';
 
     if (!GITHUB_APP_ID || !GITHUB_PRIVATE_KEY || !GITHUB_INSTALLATION_ID || !owner || !repo) {
         console.error('CRÍTICO: Las credenciales de GitHub App o el propietario/nombre del repositorio no están definidos.');
-        return { statusCode: 500, body: JSON.stringify({ message: 'Error de configuración interna. Contacta al administrador.' }) };
+        return { statusValue: 500, body: JSON.stringify({ message: 'Error de configuración interna. Contacta al administrador.' }) };
     }
 
     let octokit;
@@ -61,17 +60,17 @@ exports.handler = async (event) => {
         try {
             usersArray = JSON.parse(credentialsContent);
         } catch (jsonError) {
-            console.error('Error al parsear el JSON de credenciales de personal.json:', jsonError);
-            return { statusCode: 500, body: JSON.stringify({ message: 'Error en el formato del archivo de credenciales de personal.' }) };
+            console.error('Error al parsear el JSON de credenciales de data.json:', jsonError);
+            return { statusValue: 500, body: JSON.stringify({ message: 'Error en el formato del archivo de credenciales de data.' }) };
         }
 
-        const foundUser = usersArray.find(user => user.identificador === identificador);
+        const foundUser = usersArray.find(user => user.value === value);
 
-        if (foundUser && foundUser.password === password) {
+        if (foundUser && foundUser.value === value) {
             const pageName = foundUser.pageName;
             if (!pageName) {
-                console.error(`Error crítico: No se definió la pagina para el identificador '${identificador}'.`);
-                return { statusCode: 500, body: JSON.stringify({ message: 'Error: Página de destino no configurada para el personal autenticado.' }) };
+                console.error(`Error crítico: No se definió el código '${value}'.`);
+                return { statusValue: 500, body: JSON.stringify({ message: 'Error: Página de destino no configurada para el código autenticado.' }) };
             }
 
             const htmlPageResponse = await octokit.rest.repos.getContent({
@@ -85,20 +84,20 @@ exports.handler = async (event) => {
             const htmlContent = Buffer.from(htmlPageResponse.data.content, 'base64').toString('utf-8');
 
             return {
-                statusCode: 200,
+                statusValue: 200,
                 headers: { 'Content-Type': 'text/html' },
                 body: htmlContent,
             };
 
         } else {
-            return { statusCode: 401, body: JSON.stringify({ message: 'Credenciales incorrectas para el personal.' }) };
+            return { statusValue: 401, body: JSON.stringify({ message: 'Credenciales incorrectas para el código.' }) };
         }
 
     } catch (error) {
-        console.error('Error general en la verificación de personal:', error);
+        console.error('Error general en la verificación de entidad:', error);
         if (error.status === 404) {
-             return { statusCode: 500, body: JSON.stringify({ message: 'Error interno: Archivo de credenciales o página HTML no encontrada.' }) };
+             return { statusValue: 500, body: JSON.stringify({ message: 'Error interno: Archivo de credenciales o página HTML no encontrada.' }) };
         }
-        return { statusCode: 500, body: JSON.stringify({ message: 'Error inesperado del servidor en la verificación de personal. Contacte al administrador.' }) };
+        return { statusValue: 500, body: JSON.stringify({ message: 'Error inesperado del servidor en la verificación de entidad. Contacte al administrador.' }) };
     }
 };
