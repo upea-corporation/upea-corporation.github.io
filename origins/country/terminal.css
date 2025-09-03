@@ -1,0 +1,211 @@
+/* styles/main.css */
+
+body {
+    background-color: #000; /* Fondo negro puro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'VT323', monospace;
+    color: #00ff00;
+    overflow: hidden;
+
+    position: relative; /* Importante para posicionar el canvas */
+    z-index: 0;
+}
+
+/* NUEVO: Estilos para el canvas de fondo */
+#matrixCanvas {
+    position: absolute; /* Posiciona el canvas absolutamente */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Envía el canvas al fondo, detrás de todo */
+    background-color: #000; /* Asegura un fondo negro base para el canvas */
+}
+
+.terminal-container {
+    width: 90%;
+    max-width: 900px;
+    height: 65vh;
+    background-color: rgba(0, 0, 0, 0.96); /* Fondo interior terminal casi opaco para cubrir el fondo */
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    border-radius: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    z-index: 10; /* La terminal debe estar por encima del canvas */
+    opacity: 1; /* Asegura que la terminal tenga opacidad completa */
+}
+
+/* El resto de tu CSS para la terminal clásica (header, body, etc.) */
+.terminal-header {
+    background-color: #000;
+    color: #fff;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #00ff00;
+    font-size: 0.9em;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.terminal-title {
+    user-select: none;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.terminal-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    cursor: pointer;
+}
+
+.close-btn { background-color: #ff5f56; }
+.minimize-btn { background-color: #ffbd2e; }
+.maximize-btn { background-color: #27c93f; }
+
+.terminal-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: #008000 #000;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #0d0d0d;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background-color: #008000;
+    border-radius: 10px;
+    border: 1px solid #00ff00;
+}
+
+
+#terminalOutput {
+    flex-grow: 1;
+    white-space: pre-wrap;
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.3;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border-top: 1px dashed #008000;
+    padding-top: 10px;
+}
+
+.prompt {
+    color: #00ff00;
+    margin-right: 8px;
+    user-select: none;
+    font-size: 1.1em;
+}
+
+#terminalInput {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #00ff00;
+    font-family: 'VT323', monospace;
+    font-size: 1.1em;
+    caret-color: #00ff00;
+}
+/* styles/main.css - Asegúrate de que estas reglas estén presentes al final */
+
+body.system-compromised {
+    background-color: #330000; /* Fondo rojo oscuro para advertencia */
+    animation: flicker-bg 0.1s infinite alternate; /* Efecto de parpadeo de fondo */
+}
+
+@keyframes flicker-bg {
+    0% { background-color: #330000; }
+    100% { background-color: #400000; } /* Ligeramente más claro */
+}
+
+.terminal-container.compromised-border {
+    border: 2px solid #ff0000; /* Borde rojo brillante */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Sombra roja vibrante */
+    animation: border-glitch 0.2s infinite alternate; /* Parpadeo en el borde */
+}
+
+@keyframes border-glitch {
+    0% { border-color: #ff0000; }
+    50% { border-color: #cc0000; }
+    100% { border-color: #ff0000; }
+}
+
+.glitch-text {
+    font-family: 'VT323', monospace;
+    color: #ff0000; /* Rojo brillante */
+    font-size: 5em; /* Tamaño grande para el mensaje SCP */
+    text-align: center;
+    position: fixed; /* Cambiado a fixed para que esté siempre visible en el viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Inicialmente oculto */
+    animation: show-glitch-text 1s forwards, text-flicker 0.1s infinite alternate;
+    text-shadow:
+        1px 1px 2px rgba(255,0,0,0.8),
+        -1px -1px 2px rgba(0,255,0,0.8),
+        1px -1px 2px rgba(0,0,255,0.8); /* Efecto RGB de glitch */
+    z-index: 9999; /* Asegura que esté por encima de todo */
+}
+
+@keyframes show-glitch-text {
+    0% { opacity: 0; transform: translate(-50%, -100%) scale(0.8); } /* Empieza un poco más arriba y pequeño */
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes text-flicker {
+    0% { opacity: 1; text-shadow: 1px 1px 2px rgba(255,0,0,0.8); }
+    25% { opacity: 0.9; text-shadow: -1px -1px 2px rgba(0,255,0,0.8); }
+    50% { opacity: 1; text-shadow: 1px -1px 2px rgba(0,0,255,0.8); }
+    75% { opacity: 0.95; text-shadow: 2px 2px 3px rgba(255,0,0,0.8); }
+    100% { opacity: 1; text-shadow: -2px -2px 3px rgba(0,255,0,0.8); }
+}
+
+/* Ocultar elementos de la terminal cuando está comprometida */
+.terminal-container.system-locked .terminal-body,
+.terminal-container.system-locked .terminal-header,
+.terminal-container.system-locked .terminal-input-line { /* También ocultar la línea de input */
+    pointer-events: none; /* No permite interacciones */
+    opacity: 0.1; /* Difumina el contenido aún más */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Asegurar que el canvas de Matrix esté en el fondo y no se vea afectado */
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Envía al fondo */
+}

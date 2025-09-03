@@ -1,6 +1,6 @@
 {
   "name": "upea-web-client",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Sitio web del cliente para UPEA Corporation",
   "main": "index.html",
   "scripts": {
@@ -8,10 +8,16 @@
     "start": "netlify dev"
   },
   "keywords": [
+    "Unidad de Protección Especial Antropoide",
     "UPEA",
-    "web",
+    "UPEA Corporation",
+    "UPEA Corp.",
+    "Web",
+    "Website",
     "Netlify",
-    "JavaScript"
+    "Furry",
+    "Furro",
+    "Furry Fandom"
   ],
   "author": "UPEA Corp. Team",
   "license": "ISC",

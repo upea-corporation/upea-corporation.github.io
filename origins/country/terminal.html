@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corporation - Terminal</title>
+    <link rel="icon" type="image/png" href="../../image/upea-corp-logo.webp">
+    <link rel="stylesheet" href="terminal.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <meta name="description" content="Accede a la Consola de Cifrado UPEA Codex. Explora la interfaz de comando y descubre los secretos ocultos en el sistema de seguridad de UPEA Corp.">
+
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">UPEA Corporation - Terminal</span>
+            <div class="terminal-buttons">
+                <span class="terminal-btn close-btn"></span>
+                <span class="terminal-btn minimize-btn"></span>
+                <span class="terminal-btn maximize-btn"></span>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <pre id="terminalOutput"></pre>
+            <div class="terminal-input-line">
+                <span class="prompt">upea@root:omega-prime:~$</span> <input type="text" id="terminalInput" autofocus>
+            </div>
+        </div>
+    </div>
+
+    <script src="terminal.js"></script>
+    <script src="terminal-fondo.js"></script>
+</body>
+</html>
