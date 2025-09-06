@@ -1,6 +1,6 @@
 {
   "name": "upea-web-client",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Sitio web del cliente para UPEA Corporation",
   "main": "index.html",
   "scripts": {
@@ -14,10 +14,16 @@
     "UPEA Corp.",
     "Web",
     "Website",
+    "Website ARG",
+    "Web ARG",
     "Netlify",
     "Furry",
     "Furro",
-    "Furry Fandom"
+    "Furry Fandom",
+    "ARG",
+    "Alternative Reality Game",
+    "Juego de Realidad Alternativa",
+    "Feedback"
   ],
   "author": "UPEA Corp. Team",
   "license": "ISC",
