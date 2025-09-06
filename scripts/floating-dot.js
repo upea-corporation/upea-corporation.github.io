@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageBubble = document.createElement('div');
     messageBubble.innerHTML = `
         <p style="margin-bottom: 5px; font-weight: bold;">¡De Vuelta al Trabajo!</p>
-        <p>Sentimos las molestias por la inactividad constante en el desarrollo de la website, regresamos en el desarrollo y mejoras hasta tenerlo terminado. Algunas funciones que estamos implementando esta siendo complicado.</p>
+        <p>Nos acercamos más en la finalización de la pagina web. Pronto habrá más contenido relacionado con nosotros, UPEA Corporation.</p>
 
     `;
     messageBubble.classList.add('message-bubble');
