@@ -71,25 +71,25 @@ Escribe 'help' para ver los comandos disponibles del acceso a la información de
 
             switch (country) {
                 case 'spain':
-                    targetUrl = 'upea-corp-spain.html';
+                    targetUrl = 'country/upea-corp-spain.html';
                     break;
                 case 'germany':
-                    targetUrl = 'upea-corp-germany.html';
+                    targetUrl = 'country/upea-corp-germany.html';
                     break;
                 case 'russia':
-                    targetUrl = 'upea-corp-russia.html';
+                    targetUrl = 'country/upea-corp-russia.html';
                     break;
                 case 'southKorea':
-                    targetUrl = 'upea-corp-southKorea.html';
+                    targetUrl = 'country/upea-corp-southKorea.html';
                     break;
                 case 'japan':
-                    targetUrl = 'upea-corp-japan.html';
+                    targetUrl = 'country/upea-corp-japan.html';
                     break;
                 case 'unitedStates':
-                    targetUrl = 'upea-corp-unitedStates.html';
+                    targetUrl = 'country/upea-corp-unitedStates.html';
                     break;
                 case 'antarctica':
-                    targetUrl = 'upea-corp-antarctica.html';
+                    targetUrl = 'country/upea-corp-antarctica.html';
                     break;
                 default:
                     addLineToTerminal(`Error: Protocolo '${country}' no reconocido. Use 'country' para ver las instalaciones disponibles.

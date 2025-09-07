@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Access</title>
+
+    <link rel="icon" type="image/png" href="../../image/upea-corp-logo.webp">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/floating-dot.css">
+
+    <meta name="description" content="Access page for authorized personnel of UPEA Corp. Log in to access classified documents and interviews.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UPEA Corporation - Access to Personnel and Interviews">
+    <meta name="twitter:description" content="Confidential access to classified documents of UPEA Corporation. This portal is reserved exclusively for authorized personnel. Log in to access entity files, mission reports, and interviews.">
+
+    <script src="scripts/floating-dot.js" defer></script>
+
+    <style>
+        /* CSS específico para la página de acceso si es necesario */
+        /* Adaptando estilos del formulario de login para que se vean bien con el tema oscuro */
+        .login-container {
+            text-align: center; /* Centrar el contenido del formulario */
+            padding: 2em;
+            background-color: #21262d; /* Fondo ligeramente más oscuro para el contenedor del formulario */
+            border-radius: 8px;
+            max-width: 400px; /* Ancho máximo para el formulario */
+            margin: 2em auto; /* Centrar el contenedor en la página */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-container h2 {
+            color: #58a6ff; /* Color de título azul */
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid #30363d; /* Borde inferior para separar */
+            padding-bottom: 0.5em;
+        }
+
+        .form-group {
+            margin-bottom: 1.5em;
+            text-align: left; /* Alinear etiquetas a la izquierda dentro del grupo */
+        }
+
+        .form-group label {
+            display: block; /* Cada label en su propia línea */
+            margin-bottom: 0.5em;
+            color: #c9d1d9; /* Color de texto claro para labels */
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: calc(100% - 20px); /* Ocupa casi todo el ancho con padding */
+            padding: 10px;
+            border: 1px solid #30363d; /* Borde del input */
+            border-radius: 4px;
+            background-color: #0d1117; /* Fondo del input */
+            color: #c9d1d9; /* Color de texto del input */
+            font-size: 1em;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #58a6ff; /* Borde azul al enfocar */
+            box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.5); /* Sombra azul al enfocar */
+        }
+
+        .login-container button[type="submit"] {
+            background-color: #2ea043; /* Verde para el botón de acceder */
+            color: white;
+            padding: 0.8em 2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 1em;
+            width: 100%; /* Botón ocupa todo el ancho */
+        }
+
+        .login-container button[type="submit"]:hover {
+            background-color: #3fb950; /* Verde más claro al pasar el ratón */
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 1.5em;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .message.error {
+            background-color: rgba(236, 124, 124, 0.2); /* Fondo rojo para errores */
+            color: #ec7c7c; /* Texto rojo */
+            border: 1px solid #ec7c7c;
+        }
+
+        .message.success {
+            background-color: rgba(77, 208, 100, 0.2); /* Fondo verde para éxito */
+            color: #4dd064; /* Texto verde */
+            border: 1px solid #4dd064;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <img src="../../image/upea-corp-logo.webp" alt="Icono UPEA">
+            UPEA Corporation
+        </h1>
+        <p class="slogan"><u>Special Protection Unit for Anthropoids</u></p>
+    </header>
+
+        <nav class="navbar">
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links"> <li><a href="home.html">Home</a></li>
+                <li><a href="information.html">Information</a></li>
+                <li><a href="entities.html">Entities</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="access.html">Access</a></li>
+                <li><a href="discarded-content.html">Discarded Content</a></li>
+            </ul>
+        </nav>
+
+    <main class="container">
+        <section class="login-container">
+            <h2>Access for Personal</h2>
+            <form id="personalLoginForm">
+                <div class="form-group">
+                    <label for="personalIdentification">ID:</label>
+                    <input type="text" id="personalIdentification" name="identificación_personal" required>
+                </div>
+                <div class="form-group">
+                    <label for="personalPassword">Password:</label>
+                    <input type="password" id="personalPassword" name="password_personal" required>
+                </div>
+                <button type="submit">ACCESS</button>
+                <div id="personalLoginMessage" class="message"></div>
+            </form>
+        </section>
+
+        <section class="login-container">
+            <h2>Access for Interviews</h2>
+            <form id="interviewLoginForm">
+                <div class="form-group">
+                    <label for="entityIdentification">Entity:</label>
+                    <input type="text" id="entityIdentification" name="identificación_entidad" required>
+                </div>
+                <div class="form-group">
+                    <label for="entityPassword">Code:</label>
+                    <input type="password" id="entityPassword" name="password_entidad" required>
+                </div>
+                <button type="submit">ACCESS</button>
+                <div id="interviewLoginMessage" class="message"></div>
+                <a href="how-to-access-the-zae-interviews.html" class="main-link">¿How to Access Interviews?</a>
+            </form>
+        </section>
+
+        <section class="login-container">
+            <form id="codeLoginForm">
+                <div class="form-group">
+                    <input type="text" id="codeIdentification" name="identificación_code" required>
+                </div>
+                <button type="submit">ACCESS</button>
+                <div id="codeLoginMessage" class="message"></div>
+            </form>
+        </section>
+        <p style="text-align: center;">¿Interested in accessing our coding web? Enter <a href="https://upea-corporation.github.io/upea-codex.github.io" class="main-link">UPEA Codex</a>.</p>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 UPEA Corporation - All rights reserved.
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
+                <img src="../../image/rrss/YouTube-Icon.svg" alt="Official YouTube account of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://x.com/UPEA_Corp">
+                <img src="../../image/rrss/Twitter-Icon.svg" alt="Official Twitter/X account of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app">
+                <img src="../../image/rrss/Bluesky-Icon.svg" alt="Official Bluesky account of UPEA Corp." class="icon-link"> 
+            </a>
+            <br> 
+                <a href="foot-page/extensiones-de-netlify.html" class="footer-link">Netlify Extensions</a> | 
+                <a href="foot-page/politica-de-cookies.html" class="footer-link">Cookie Policy</a> |
+                <a href="foot-page/terminos-y-condiciones.html" class="footer-link">Terms and Conditions</a> |
+                <a href="foot-page/politica-de-seguridad-y-privacidad.html" class="footer-link">Security and Privacy Policy</a> |
+                <a href="foot-page/copyritgh-y-licencia.html" class="footer-link">Copyright and License</a> |
+                <a href="foot-page/terminos-y-condiciones-registro-eaz.html" class="footer-link">ZAE Register</a> |
+                <a href="foot-page/terminos-y-condiciones-registro-de-empleado.html" class="footer-link">Employee Register</a> |
+                <a href="foot-page/terminos-y-condiciones-feedback.html" class="footer-link">Feedback</a>
+        </p>
+    </footer>
+
+<style>
+  .icon-link {
+    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
+    height: 24px; /* Asegura que el icono sea cuadrado */
+    vertical-align: middle; /* Alinea el icono con el texto */
+    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
+  }
+</style>
+
+    <script>
+        // NEW: JavaScript for the accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.closest('.accordion-item');
+                    const accordionContent = accordionItem.querySelector('.accordion-content');
+
+                    // Toggle the 'active' class on the header
+                    this.classList.toggle('active');
+
+                    // Toggle the 'show' class on the content
+                    if (accordionContent.classList.contains('show')) {
+                        accordionContent.classList.remove('show');
+                        accordionContent.style.maxHeight = null; // Reset max-height
+                    } else {
+                        accordionContent.classList.add('show');
+                        // Set max-height to scrollHeight to allow for smooth transition
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    }
+
+                    // Optional: Close other open accordion items
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this) {
+                            otherHeader.classList.remove('active');
+                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
+                            otherContent.classList.remove('show');
+                            otherContent.style.maxHeight = null;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Script para el menú móvil -->
+    <script src="scripts/mobile-menu.js"></script>
+
+    <script src="scripts/personal.js"></script>
+    <script src="scripts/entrevistas.js"></script>
+    <script src="scripts/codes.js"></script>
+
+</body>
+</html>

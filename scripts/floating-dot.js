@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const messageBubble = document.createElement('div');
     messageBubble.innerHTML = `
-        <p style="margin-bottom: 5px; font-weight: bold;">¡De Vuelta al Trabajo!</p>
+        <p style="margin-bottom: 5px; font-weight: bold;">¡Hacia el Futuro!</p>
         <p>Nos acercamos más en la finalización de la pagina web. Pronto habrá más contenido relacionado con nosotros, UPEA Corporation.</p>
 
     `;

@@ -1,0 +1,487 @@
+/* ==========================================================================
+   2. Estilos del Encabezado (Header)
+   ========================================================================== */
+
+.header {
+    background-color: #161b22; /* Fondo ligeramente más claro que el body */
+    color: #c9d1d9;
+    text-align: center;
+    padding: 1em 0;
+    flex-shrink: 0; /* Evita que el header se encoja si el contenido es mucho */
+}
+
+/* Estilos para el título principal (h1) dentro del header, que contiene la imagen */
+.header h1 {
+    display: flex; /* Permite alinear la imagen y el texto en línea */
+    align-items: center; /* Centra verticalmente los elementos (imagen y texto) */
+    justify-content: center; /* Centra horizontalmente el contenido del h1 */
+    gap: 10px; /* Espacio entre la imagen y el texto */
+    border-bottom: none; /* Elimina el borde inferior si lo hereda de otros h1 */
+    padding-bottom: 0;
+    margin-bottom: 0.5em; /* Ajusta el margen inferior */
+    color: #58a6ff; /* Color del texto del título (azul brillante) */
+}
+
+/* Estilos para la imagen del icono dentro del título principal */
+.header h1 img {
+    height: 100px; /* Altura del icono */
+    width: auto; /* Ancho automático para mantener la proporción */
+    vertical-align: middle; /* Alineación vertical */
+}
+
+/* Estilos para el eslogan debajo del título */
+.slogan {
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 2em;
+    color: #8b949e; /* Un gris más oscuro para el eslogan */
+}
+
+/* --- Estilos para Páginas de Entidades Individuales (entity-profile) --- */
+
+.entity-profile {
+    background-color: #161b22; /* Fondo oscuro del marco, similar al de las listas de entidades */
+    padding: 2em; /* Reducido para móviles */
+    /* Eliminado: padding-top: 5em; - se manejará el espacio con la imagen directamente */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra sutil para darle profundidad */
+    margin-top: 2em;
+    max-width: 900px; /* Ancho máximo para el marco de la entidad */
+    width: 90%; /* Ancho responsivo */
+    margin-left: auto;
+    margin-right: auto;
+    color: #c9d1d9; /* Color de texto claro general para el contenido */
+    line-height: 1.6; /* Mejor legibilidad */
+}
+
+.entity-profile h2 {
+    text-align: center;
+    color: #58a6ff; /* Azul para títulos principales */
+    border-bottom: 2px solid #30363d; /* Línea separadora */
+    padding-bottom: 0.8em;
+    margin-bottom: 2em; /* Suficiente margen para que la imagen no lo tape en móvil */
+    font-size: 1.8em; /* Ajustado para móviles */
+}
+
+.profile-header {
+    display: flex; /* Permite que la imagen y los detalles estén lado a lado */
+    flex-direction: column; /* Por defecto apilados en móvil */
+    align-items: center; /* Centra los ítems verticalmente en móvil */
+    gap: 2em; /* Espacio entre la imagen y los detalles */
+    margin-bottom: 2.5em;
+    padding-bottom: 2em;
+    border-bottom: 1px dashed #30363d; /* Separador sutil */
+}
+
+.entity-image {
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+    width: 150px; /* Ancho fijo para la imagen de perfil en móvil */
+    height: 150px; /* Altura fija para la imagen de perfil en móvil */
+    border-radius: 50%; /* Opcional: imagen redonda. Quitar para cuadrada. */
+    overflow: hidden; /* Recorta la imagen si es redonda */
+    border: 3px solid #58a6ff; /* Borde alrededor de la imagen */
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.6); /* Resplandor azul alrededor de la imagen */
+    margin-top: 0; /* Ajustado: Sin margen negativo por defecto (para móviles) */
+}
+
+.entity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    display: block;
+}
+
+.entity-details {
+    flex-grow: 1; /* Permite que los detalles ocupen el espacio restante */
+    text-align: center; /* Centra el texto en móviles */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+/* Media query para optimizar la visualización en dispositivos móviles */
+@media (max-width: 768px) {
+    .entity-profile {
+        padding: 1.5em;
+        width: 95%;
+        margin-top: 1em;
+    }
+    
+    .entity-profile h2 {
+        font-size: 1.5em;
+        padding-bottom: 0.5em;
+        margin-bottom: 1.5em;
+    }
+    
+    .profile-header {
+        gap: 1.5em;
+        margin-bottom: 1.5em;
+        padding-bottom: 1.5em;
+    }
+    
+    .entity-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Ajustes para la lista de entidades en móviles */
+    .lista-entidades {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .lista-entidades h3 {
+        font-size: 1.4em;
+        text-align: center;
+        margin-bottom: 1.2em;
+    }
+    
+    .lista-entidades li {
+        margin-bottom: 0.8em;
+    }
+    
+    .lista-entidades a {
+        padding: 0.8em;
+        font-size: 1.1em;
+    }
+    .container {
+        width: 90%;
+        padding-right: 1.5em;
+        margin: 0.1em auto;
+    }
+    /* Mejoras para el header en móviles */
+    .header h1 {
+        font-size: 1.5em;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .header h1 img {
+        height: 70px; /* Reducir tamaño de imagen en móviles */
+    }
+    
+    .slogan {
+        font-size: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+/* NEW: Styles for the new detail boxes */
+.entity-details-box,
+.entity-physical-details-box {
+    background-color: #21262d; /* Darker background for the boxes */
+    border: 1px solid #30363d; /* Subtle border */
+    border-radius: 8px;
+    padding: 1em; /* Reducido para móviles */
+    margin-bottom: 1.5em; /* Space between boxes and other content */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.entity-details-box p,
+.entity-physical-details-box p {
+    margin: 0.5em 0; /* Reducido para móviles */
+    font-size: 1em; /* Ajustado para móviles */
+    color: #c9d1d9;
+}
+
+.entity-details-box p strong,
+.entity-physical-details-box p strong {
+    color: #58a6ff; /* Color for titles within the boxes */
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+
+.entity-details p {
+    margin: 0.8em 0;
+    font-size: 1.1em;
+    color: #c9d1d9;
+}
+
+.entity-details p strong {
+    color: #58a6ff; /* Color para los títulos de los detalles (Nombre, ID, etc.) */
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.entity-info {
+    margin-top: 2em;
+    padding-top: 0.00001em;
+}
+
+.entity-info h3 {
+    color: #79c0ff; /* Azul más claro para subtítulos */
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.5em;
+    margin-bottom: 1.5em;
+    font-size: 1.3em; /* Ajustado para móviles */
+}
+
+.entity-info p {
+    margin-bottom: 1.5em;
+    text-align: justify; /* Justifica el texto para una apariencia más formal */
+    font-size: 0.95em; /* Ajustado para móviles */
+}
+
+.entity-info ul {
+    list-style: disc; /* Puntos para la lista */
+    padding-left: 1.5em; /* Sangría reducida para móviles */
+    margin-bottom: 1.5em;
+}
+
+.entity-info ul li {
+    margin-bottom: 0.5em;
+    color: #c9d1d9;
+    font-size: 0.9em; /* Ajustado para móviles */
+}
+
+.entity-info ul li strong {
+    color: #79c0ff; /* Color para los títulos de los ítems de la lista */
+}
+
+
+/* Media Queries para responsividad */
+@media (min-width: 768px) {
+    .entity-profile {
+        padding: 3.5em; /* Restaurar padding para escritorio */
+        /* Eliminado: padding-top: 3.5em; - ya no es necesario aquí */
+    }
+
+    .entity-profile h2 {
+        font-size: 2em; /* Restaurar tamaño de fuente para escritorio */
+    }
+
+    .profile-header {
+        flex-direction: row; /* En pantallas más grandes, la imagen y detalles van en fila */
+        text-align: left; /* Alinea el texto a la izquierda en escritorio */
+        align-items: center; /* Vertically aligns image and details block */
+        gap: 3em; /* Restaurar espacio para escritorio */
+    }
+
+    .entity-image {
+        width: 200px; /* Restaurar ancho para escritorio */
+        height: 200px; /* Restaurar altura para escritorio */
+        margin-top: -100px; /* Restaurar margen negativo para escritorio */
+    }
+
+    .entity-details {
+        text-align: left; /* Alinea el texto a la izquierda en escritorio */
+        width: auto; /* Permite que los detalles ocupen el espacio natural */
+    }
+
+    /* Adjust layout for multiple detail boxes on larger screens */
+    .entity-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center the boxes vertically if needed */
+    }
+
+    .entity-details-box,
+    .entity-physical-details-box {
+        width: auto; /* Allow boxes to take natural width */
+        padding: 1.5em; /* Restaurar padding para escritorio */
+    }
+
+    .entity-details-box p,
+    .entity-physical-details-box p {
+        margin: 0.8em 0; /* Restaurar margen para escritorio */
+        font-size: 1.1em; /* Restaurar tamaño de fuente para escritorio */
+    }
+
+    .entity-info h3 {
+        font-size: 1.5em; /* Restaurar tamaño de fuente para escritorio */
+    }
+
+    .entity-info p {
+        font-size: 1em; /* Restaurar tamaño de fuente para escritorio */
+    }
+
+    .entity-info ul {
+        padding-left: 2em; /* Restaurar sangría para escritorio */
+    }
+
+    .entity-info ul li {
+        font-size: 1em; /* Restaurar tamaño de fuente para escritorio */
+    }
+}
+
+/* ==========================================================================
+    Estilos del Pie de Página (Footer)
+   ========================================================================== */
+
+.footer {
+    background-color: #161b22; /* Fondo del pie de página */
+    color: #c9d1d9;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em; /* Margen superior para separarlo del contenido si es corto */
+    flex-shrink: 0; /* Evita que el footer se encoja */
+}
+
+/* ==========================================================================
+   Estilos para Los Enlaces de Pie de Pagina
+   ========================================================================= */
+
+.footer-link { /* Estilos para los nuevos enlaces en el footer */
+    color: #ffffff; /* Cian para enlaces en el pie de página de origenes.css */
+    text-decoration: none;
+    margin: 0 5px; /* Espacio entre los enlaces del footer */
+    white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color: #ffffff; /* Color al pasar el ratón */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.icon-link {
+    text-decoration: none;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+    Estilos para Los Enlaces Visual
+   ========================================================================== */
+
+.main-link {
+    text-decoration: none;
+    color: #ffffff; /* Color al pasar el ratón */
+}
+
+.main-link:hover {
+    text-decoration: underline;
+    color: #ffffff; /* Color al pasar el ratón */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================================================
+    Estilos para Texto Censurado
+   ========================================================================== */
+
+/* Opción 1: Bloque negro simple */
+.censored-text {
+    background-color: #000; /* Fondo negro */
+    color: #000; /* Texto también negro, haciéndolo ilegible */
+    padding: 0 0.5em; /* Espacio alrededor del texto censurado */
+    border-radius: 3px;
+    /* Opcional: para evitar que la selección de texto lo revele */
+    user-select: none; /* Deshabilita la selección de texto */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+ /* NEW: Basic styles for the accordion */
+.accordion-item {
+    background-color: #21262d; /* Matches existing update-post background */
+    margin-bottom: 1em;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures content doesn't spill out of rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Matches existing update-post shadow */
+}
+
+.accordion-header {
+    background-color: #30363d; /* Slightly darker than item background */
+    color: #58a6ff;
+    padding: 1em 1.5em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #30363d; /* Border to separate header from content */
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #40464d;
+}
+
+.accordion-header h3 {
+    margin: 0; /* Remove default margin from h3 */
+    color: inherit; /* Inherit color from parent */
+    border-bottom: none; /* Remove border from h3 */
+    padding-bottom: 0;
+    font-size: 1.2em; /* Adjust font size for header title */
+}
+
+.accordion-header .arrow {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .arrow {
+    transform: rotate(90deg); /* Rotate arrow when active */
+}
+
+.accordion-content {
+    padding: 0 1.5em;
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    box-sizing: border-box; /* Include padding in max-height calculation */
+}
+
+.accordion-content.show {
+    max-height: 500px; /* Adjust as needed; should be larger than content height */
+    padding: 0.5em 1.5em;
+}
+
+/* Styles for the content within the accordion, using existing .update-post child styles */
+.accordion-content .update-date {
+    font-style: italic;
+    color: #8b949e;
+    margin-top: 0.5em;
+    display: block;
+}
+
+.accordion-content p {
+    margin-bottom: 2em;
+    color: #c9d1d9;
+    text-align: justify; /* Ensure justified text within accordion content */
+}
+
+.accordion-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 2em;
+}
+
+.accordion-content li {
+    margin-bottom: 0.5em;
+    color: #c9d1d9;
+}
+
+.accordion-content ul:last-child {
+    margin-bottom: 40px; /* Ajusta el valor según tus necesidades */
+}
+
+.opaco {
+    opacity: 0.01; /* Un valor muy bajo para que apenas se vea */
+    text-align: center;
+    /* ... otras propiedades de estilo ... */
+}
+
+/* Asegura que html y body ocupen el 100% de la altura de la ventana
+   para permitir que el pie de página se ancle correctamente. */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117; /* Fondo oscuro (similar a GitHub dark theme) */
+    color: #c9d1d9; /* Color de texto principal (gris claro) */
+
+    /* Configuración de Flexbox para el "Sticky Footer" */
+    display: flex; /* Habilita flexbox para organizar los hijos */
+    flex-direction: column; /* Organiza los hijos en una columna (header, nav, main, footer) */
+    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+}

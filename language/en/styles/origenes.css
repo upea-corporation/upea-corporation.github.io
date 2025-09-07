@@ -1,0 +1,302 @@
+/*
+ * Archivo de estilos CSS específico para la página de Orígenes Clasificados (origenes.html)
+ *
+ * Este archivo define un estilo retro-moderno para la información clasificada,
+ * independiente de main.css.
+ */
+
+/* ==========================================================================
+   1. Reseteo Básico y Estilos del Body
+   ========================================================================== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evitar scroll horizontal */
+}
+
+body {
+    background-color: #0a0a0a; /* Negro muy oscuro */
+    color: #00ff00; /* Verde "terminal" para el texto */
+    font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace; /* Fuente monoespaciada para efecto retro */
+    line-height: 1.6;
+    text-shadow: 0 0 4px rgba(0, 255, 0, 0.4); /* Resplandor verde sutil para el texto */
+
+    /* Flexbox para el "Sticky Footer" */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+}
+
+a {
+    color: #00ffff; /* Cian para enlaces */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #00ff00; /* Verde al pasar el ratón */
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+}
+
+/* ==========================================================================
+   2. Estilos del Contenedor Principal (Container-Document)
+   ========================================================================== */
+.container-document {
+    background-color: #111; /* Fondo del documento ligeramente más claro */
+    border: 2px solid #00ff00; /* Borde verde brillante */
+    box-shadow: 0 0 18px rgba(0, 255, 0, 0.8), inset 0 0 6px rgba(0, 255, 0, 0.4); /* Sombra exterior e interior */
+    padding: 3.5em;
+    margin: 3em auto;
+    border-radius: 12px;
+    max-width: 960px;
+    animation: flicker 1.2s infinite alternate; /* Efecto de parpadeo sutil */
+    flex-grow: 1; /* Permitir que el contenido crezca y empuje el footer */
+}
+
+/* Efecto de parpadeo */
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.99; }
+    100% { opacity: 1; }
+}
+
+/* ==========================================================================
+   3. Estilos de Secciones y Títulos del Documento
+   ========================================================================== */
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5em;
+    border-bottom: 2px dashed #00ffff; /* Línea de separación punteada cian */
+    padding-bottom: 2em;
+}
+
+.section-title h2 {
+    color: #ff0000; /* Rojo de advertencia para el título principal */
+    font-size: 2.2em; /* Título más compacto */
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(255, 0, 0, 0.9);
+    margin: 0;
+    padding: 0.2em 0;
+    letter-spacing: 2px;
+}
+
+.doc-meta {
+    color: #ffff00; /* Amarillo para el eslogan */
+    font-size: 1.2em; /* Ajustado */
+    margin-top: 5px;
+    text-shadow: 0 0 6px rgba(255, 255, 0, 0.6);
+    letter-spacing: 1px;
+}
+
+.security-banner-inline { /* Nuevo estilo para el banner dentro del documento */
+    display: block; /* Para que ocupe su propia línea */
+    background-color: #330000; /* Rojo oscuro para el banner de seguridad */
+    color: #ffcc00; /* Naranja/amarillo para el texto */
+    padding: 0.8em 1.5em; /* Añadido padding horizontal */
+    font-size: 1.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
+    border-top: 1px dashed #ff0000;
+    border-bottom: 1px dashed #ff0000;
+    margin-top: 1.5em;
+}
+
+.document-section {
+    margin-bottom: 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px dashed rgba(0, 255, 0, 0.4); /* Línea punteada sutil entre secciones */
+}
+
+.document-section:last-of-type {
+    border-bottom: none; /* No hay borde en la última sección */
+}
+
+.section-heading {
+    color: #00ffff; /* Cian para los títulos de sección principales */
+    font-size: 1.9em;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    margin-bottom: 1.2em;
+    border-bottom: 1px dotted rgba(0, 255, 255, 0.5);
+    padding-bottom: 0.5em;
+}
+
+.sub-section-heading {
+    color: #ffff00; /* Amarillo para los subtítulos de subsección */
+    font-size: 1.5em;
+    text-shadow: 0 0 7px rgba(255, 255, 0, 0.5);
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.document-section p {
+    margin-bottom: 1.2em;
+    color: #00ff00; /* Texto principal verde */
+}
+
+.document-section strong {
+    color: #ffff00; /* Amarillo para texto importante */
+    text-shadow: 0 0 6px rgba(255, 255, 0, 0.5);
+}
+
+.document-section ul {
+    list-style: none; /* Quitamos el estilo por defecto */
+    padding-left: 20px;
+    margin-bottom: 1.5em;
+}
+
+.document-section ul li {
+    position: relative;
+    margin-bottom: 0.8em;
+    color: #00cc00; /* Un verde ligeramente más oscuro para la lista */
+}
+
+.document-section ul li::before {
+    content: '>'; /* Carácter tipo terminal */
+    color: #00ffff; /* Cian para el prefijo */
+    font-weight: bold;
+    position: absolute;
+    left: -10px;
+    top: 0;
+}
+
+.document-section ul ul { /* Para listas anidadas */
+    padding-left: 25px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.document-section ul ul li::before {
+    content: '- '; /* Otro prefijo para anidados */
+    color: #ff9900; /* Naranja para el prefijo anidado */
+}
+
+/* ==========================================================================
+   4. Efecto REDACTADO (Censura Visual - Texto oculto pero inspeccionable)
+   ========================================================================== */
+.redacted-text {
+    background-color: #ff0000; /* Fondo rojo para simular tinta de censura */
+    color: transparent; /* Hace el texto invisible */
+    text-shadow: none; /* Elimina el resplandor verde del texto original */
+    padding: 0 5px; /* Pequeño padding para la barra roja */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7); /* Borde luminoso rojo */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: help; /* Indica que hay algo oculto */
+    /* Importante: el texto original debe estar dentro del span */
+    /* Ej: <span class="redacted-text">Texto Secreto</span> */
+}
+
+
+/* ==========================================================================
+   5. Estilos del Pie de Página (Footer)
+   ========================================================================== */
+.footer { /* Asegúrate de que el selector coincida con tu HTML: <footer class="footer"> */
+    background-color: #0a0a0a;
+    color: #00ff00;
+    text-align: center; /* Centra el texto y los elementos en línea */
+    padding: 1.5em;
+    border-top: 2px solid #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    margin-top: 2em;
+    font-size: 0.9em;
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.4);
+    /* Añadir Flexbox para centrado completo del contenido del footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0.5em 0; /* Ajusta el margen del párrafo dentro del footer */
+}
+
+/* Corrección: Apunta a la clase 'icon-link' que es la que se usa en el HTML */
+.footer .icon-link { /* Usa .footer .icon-link para más especificidad */
+    height: 20px; /* Tamaño más pequeño para los iconos */
+    width: 20px; /* Tamaño más pequeño para los iconos */
+    margin: 0 3px; /* Espacio más pequeño alrededor de los iconos */
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+    display: inline-block; /* Asegura que los iconos estén en línea */
+}
+
+.footer-link { /* Estilos para los nuevos enlaces en el footer */
+    color: #00ffff; /* Cian para enlaces en el pie de página de origenes.css */
+    text-decoration: none;
+    margin: 0 5px; /* Espacio entre los enlaces del footer */
+    white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color: #00ff00; /* Verde al pasar el ratón */
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+}
+
+
+/* ==========================================================================
+   6. Media Queries para Responsividad
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-title h2 {
+        font-size: 1.8em; /* Ajustado para pantallas más pequeñas */
+    }
+
+    .container-document {
+        padding: 2em;
+        margin: 2em auto;
+    }
+
+    .section-heading {
+        font-size: 1.5em;
+    }
+
+    .sub-section-heading {
+        font-size: 1.3em;
+    }
+
+    .security-banner-inline {
+        font-size: 0.9em;
+        padding: 0.8em 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title h2 {
+        font-size: 1.5em; /* Ajustado para pantallas muy pequeñas */
+    }
+
+    .container-document {
+        padding: 1.5em;
+        margin: 1.5em auto;
+    }
+
+    .doc-meta, .disclaimer {
+        font-size: 0.8em;
+    }
+
+    .section-heading {
+        font-size: 1.3em;
+    }
+
+    .sub-section-heading {
+        font-size: 1.1em;
+    }
+
+    .document-section p, .document-section li {
+        font-size: 0.9em;
+    }
+
+    .security-banner-inline {
+        font-size: 0.8em;
+        padding: 0.6em 0.8em;
+    }
+
+    .footer-link { /* Ajuste de enlaces en pantallas pequeñas */
+        margin: 0 3px;
+        font-size: 0.85em;
+    }
+}

@@ -1,0 +1,741 @@
+/*
+ * Archivo de estilos CSS global para UPEA Corp.
+ *
+ * Este archivo contiene todos los estilos base para una apariencia consistente
+ * en todas las páginas de la web pública de la UPEA.
+ */
+
+/* ==========================================================================
+   1. Reseteo Básico y Estilos del Body
+   ========================================================================== */
+
+/* Asegura que html y body ocupen el 100% de la altura de la ventana
+   para permitir que el pie de página se ancle correctamente. */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117; /* Fondo oscuro (similar a GitHub dark theme) */
+    color: #c9d1d9; /* Color de texto principal (gris claro) */
+
+    /* Configuración de Flexbox para el "Sticky Footer" */
+    display: flex; /* Habilita flexbox para organizar los hijos */
+    flex-direction: column; /* Organiza los hijos en una columna (header, nav, main, footer) */
+    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+}
+
+/* ==========================================================================
+   2. Estilos del Encabezado (Header)
+   ========================================================================== */
+
+.header {
+    background-color: #161b22; /* Fondo ligeramente más claro que el body */
+    color: #c9d1d9;
+    text-align: center;
+    padding: 1em 0;
+    flex-shrink: 0; /* Evita que el header se encoja si el contenido es mucho */
+}
+
+/* Estilos para el título principal (h1) dentro del header, que contiene la imagen */
+.header h1 {
+    display: flex; /* Permite alinear la imagen y el texto en línea */
+    align-items: center; /* Centra verticalmente los elementos (imagen y texto) */
+    justify-content: center; /* Centra horizontalmente el contenido del h1 */
+    gap: 10px; /* Espacio entre la imagen y el texto */
+    border-bottom: none; /* Elimina el borde inferior si lo hereda de otros h1 */
+    padding-bottom: 0;
+    margin-bottom: 0.5em; /* Ajusta el margen inferior */
+    color: #58a6ff; /* Color del texto del título (azul brillante) */
+}
+
+/* Estilos para la imagen del icono dentro del título principal */
+.header h1 img {
+    height: 100px; /* Altura del icono */
+    width: auto; /* Ancho automático para mantener la proporción */
+    vertical-align: middle; /* Alineación vertical */
+}
+
+/* Estilos para el eslogan debajo del título */
+.slogan {
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 2em;
+    color: #8b949e; /* Un gris más oscuro para el eslogan */
+}
+
+/* ==========================================================================
+   3. Estilos de la Barra de Navegación (Navbar) - Y Efecto de Activo/Hover
+   ========================================================================== */
+
+.navbar {
+    background-color: #21262d; /* Color de fondo de la barra de navegación */
+    padding: 0.5em 0;
+    border-bottom: 1px solid #30363d; /* Borde inferior de la barra de navegación */
+    position: relative; /* Needed for positioning the hamburger icon */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: #58a6ff; /* Color normal del texto del enlace */
+    text-decoration: none;
+    padding: 0.5em 1em;
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+}
+
+/* ESTA ES LA REGLA CLAVE: Mantendrá el fondo más claro tanto al pasar el ratón como para la página activa */
+.navbar a:hover,
+.navbar a.active {
+    color: #c9d1d9; /* Color del texto al pasar el ratón y para la página activa */
+    background-color: #30363d; /* Color de fondo al pasar el ratón y para la página activa */
+}
+
+/* Hamburger icon for mobile */
+.menu-toggle {
+    display: none; /* Hidden by default for desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000; /* Ensure it's above other content */
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animación del botón hamburguesa cuando está activo */
+.menu-toggle.active {
+    transform: rotate(0deg);
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    /* Mejoras para el header en móviles */
+    .header h1 {
+        font-size: 1.5em;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .header h1 img {
+        height: 70px; /* Reducir tamaño de imagen en móviles */
+    }
+    
+    .slogan {
+        font-size: 1em;
+        margin-bottom: 1em;
+    }
+    
+    /* Mejoras para el menú desplegable */
+    .navbar {
+        padding: 0.8em 0;
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        background-color: #21262d;
+        position: absolute;
+        top: 100%; /* Position below the navbar */
+        left: 0;
+        width: 100%;
+        max-height: 0; /* Initially hidden */
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, opacity 0.3s ease;
+        border-top: 1px solid #30363d;
+        z-index: 999;
+        opacity: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar ul.active {
+        max-height: 500px; /* Adjust as needed to reveal all menu items */
+        opacity: 1;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .navbar li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid #30363d; /* Separator for menu items */
+    }
+
+    .navbar li:last-child {
+        border-bottom: none;
+    }
+
+    .navbar a {
+        padding: 1em;
+        text-align: left;
+        font-size: 1.1em; /* Texto más grande para mejor toque */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon on mobile */
+        transition: transform 0.3s ease;
+    }
+    
+    .menu-toggle.active {
+        transform: rotate(90deg);
+    }
+}
+
+/* ==========================================================================
+   4. Estilos del Contenido Principal (Main)
+   ========================================================================== */
+
+main { /* NEW: Aplica la regla directamente al elemento <main> */
+    flex-grow: 1; /* Permite que el contenedor principal crezca para ocupar el espacio restante
+                      y empujar el footer hacia abajo */
+}
+
+.container { /* Esta clase se aplicará al elemento <main> */
+    width: 90%; /* Aumentado para móviles */
+    max-width: 1000px;
+    margin: 1.5em auto; /* Reducido para móviles */
+    padding: 1.5em; /* Reducido para móviles */
+    background-color: #161b22; /* Fondo del contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Media query para ajustar el contenedor en dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 1em;
+        margin: 1em auto;
+    }
+    
+    /* Ajuste para hacer más estrecho el contenedor de entidades */
+    .lista-entidades {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Estilos para subtítulos de secciones */
+h2, h3 {
+    color: #58a6ff; /* Color de los subtítulos */
+    border-bottom: 2px solid #30363d; /* Borde inferior para separar visualmente */
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* Estilos para listas no ordenadas dentro del contenido */
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Estilos para elementos de lista */
+li {
+    margin-bottom: 0.5em;
+}
+
+/* Estilos para texto en negrita */
+strong {
+    color: #c9d1d9;
+}
+
+/* Estilos para notas o textos pequeños */
+.note {
+    font-size: 0.9em;
+    color: #8b949e;
+    margin-top: 2em;
+    border-top: 1px dashed #30363d; /* Borde superior punteado */
+    padding-top: 1em;
+}
+
+/* ==========================================================================
+   5. Estilos del Pie de Página (Footer)
+   ========================================================================== */
+
+.footer {
+    background-color: #161b22; /* Fondo del pie de página */
+    color: #c9d1d9;
+    text-align: center;
+    padding: 1em 0;
+    border-top: 1px solid #30363d;
+    margin-top: auto; /* Permite que el footer se mueva al final del espacio disponible */
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   6. Estilos específicos para la página de Entidades (ej. lista de enlaces)
+      (Mantengo estos aquí, aunque son específicos, para tenerlos en un solo lugar.
+       Puedes moverlos a un CSS específico de la página si quieres).
+   ========================================================================== */
+
+.lista-entidades ul {
+    list-style-type: none; /* Quitar viñetas para esta lista específica */
+    padding: 0;
+    margin: 1em 0;
+}
+
+.lista-entidades li {
+    background-color: #21262d; /* Fondo para cada elemento de la lista */
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.lista-entidades li:hover {
+    background-color: #30363d; /* Fondo al pasar el ratón */
+}
+
+.lista-entidades a {
+    display: block; /* Para que todo el área del li sea clicable */
+    padding: 1em;
+    color: #58a6ff; /* Color del enlace */
+    text-decoration: none; /* Eliminar subrayado */
+}
+
+.lista-entidades a:hover {
+    color: #c9d1d9; /* Color del texto al pasar el ratón */
+}
+
+/* ==========================================================================
+   7. Estilos de la Página de Inicio (index.html)
+   ========================================================================== */
+
+.presentation-intro {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.presentation-intro h2 {
+    font-size: 2.2em;
+    color: #58a6ff;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.8em;
+}
+
+.presentation-intro p {
+    font-size: 1.1em;
+    color: #c9d1d9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+/* Estilos del Carrusel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Ancho máximo del carrusel */
+    margin: 2em auto;
+    overflow: hidden; /* Oculta partes de las imágenes que sobresalgan */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-slide {
+    display: flex; /* Para que las imágenes se coloquen en línea */
+    transition: transform 0.5s ease-in-out; /* Transición suave para el desplazamiento */
+}
+
+/* Media query para ajustar el carrusel en dispositivos móviles */
+@media (max-width: 768px) {
+    .carousel-container {
+        margin: 1.5em auto;
+        border-radius: 6px;
+    }
+    
+    .presentation-intro h2 {
+        font-size: 1.8em;
+        padding-bottom: 0.3em;
+        margin-bottom: 0.6em;
+    }
+    
+    .presentation-intro p {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+}
+
+.carousel-slide img {
+    width: 100%; /* Cada imagen ocupa el 100% del ancho del contenedor del slide */
+    flex-shrink: 0; /* Evita que las imágenes se encojan */
+    height: auto;
+    display: block; /* Elimina espacio extra debajo de las imágenes */
+}
+
+.carousel-dots {
+    text-align: center;
+    padding: 1em 0;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #8b949e; /* Color de los puntos inactivos */
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #58a6ff; /* Color del punto activo */
+}
+
+/* Estilos para la sección de beneficios */
+.benefits-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.benefit-card {
+    background-color: #21262d;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.benefit-card h3 {
+    color: #58a6ff;
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 1.5em;
+}
+
+.benefit-card p {
+    color: #c9d1d9;
+    font-size: 1em;
+}
+
+/* NEW: Estilos para la sección de introducción a actualizaciones */
+.updates-intro {
+    text-align: center;
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px dashed #30363d;
+}
+
+.updates-intro h2 {
+    font-size: 2em;
+    color: #58a6ff;
+    border-bottom: none; /* No queremos doble borde si ya hay uno arriba */
+    padding-bottom: 0;
+    margin-bottom: 0.8em;
+}
+
+.updates-intro p {
+    font-size: 1.1em;
+    color: #c9d1d9;
+    max-width: 800px;
+    margin: 0.5em auto 1.5em auto;
+}
+
+/* NEW: Estilo para un botón/enlace genérico */
+.button-link {
+    display: inline-block;
+    background-color: #58a6ff; /* Color de fondo del botón */
+    color: #161b22; /* Color del texto del botón */
+    padding: 0.8em 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-link:hover {
+    background-color: #79c0ff; /* Color de fondo al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+/* ==========================================================================
+    Estilos para Los Enlaces Visual
+   ========================================================================== */
+
+.main-link {
+    text-decoration: none;
+    color: #ffffff; /* Color al pasar el ratón */
+}
+
+.main-link:hover {
+    text-decoration: underline;
+    color: #ffffff; /* Color al pasar el ratón */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================================================
+    Estilos para Texto Censurado
+   ========================================================================== */
+
+/* Opción 1: Bloque negro simple */
+.censored-text {
+    background-color: #000; /* Fondo negro */
+    color: #000; /* Texto también negro, haciéndolo ilegible */
+    padding: 0 0.5em; /* Espacio alrededor del texto censurado */
+    border-radius: 3px;
+    /* Opcional: para evitar que la selección de texto lo revele */
+    user-select: none; /* Deshabilita la selección de texto */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+@media (max-width: 768px) {
+    .censored-text {
+        /* Permitir que el texto fluya normalmente en dispositivos móviles */
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        display: inline-block;
+        max-width: 100%;
+    }
+}
+
+ /* NEW: Basic styles for the accordion */
+.accordion-item {
+    background-color: #21262d; /* Matches existing update-post background */
+    margin-bottom: 1.5em;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures content doesn't spill out of rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Matches existing update-post shadow */
+}
+
+.accordion-header {
+    background-color: #30363d; /* Slightly darker than item background */
+    color: #58a6ff;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #30363d; /* Border to separate header from content */
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header h2 {
+    font-size: 1.2em;
+}
+
+.accordion-header:hover {
+    background-color: #40464d;
+}
+
+.accordion-header .arrow {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .arrow {
+    transform: rotate(90deg); /* Rotate arrow when active */
+}
+
+.accordion-content {
+    padding: 0 1.5em;
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    box-sizing: border-box; /* Include padding in max-height calculation */
+}
+
+.accordion-content.show {
+    max-height: 500px; /* Adjust as needed; should be larger than content height */
+    padding: 0.5em 1.5em;
+}
+
+/* Styles for the content within the accordion, using existing .update-post child styles */
+.accordion-content .update-date {
+    font-style: italic;
+    color: #8b949e;
+    margin-top: 0.5em;
+    display: block;
+}
+
+.accordion-content p {
+    margin-bottom: 2em;
+    color: #c9d1d9;
+    text-align: justify; /* Ensure justified text within accordion content */
+}
+
+.accordion-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 2em;
+}
+
+.accordion-content li {
+    margin-bottom: 0.5em;
+    color: #c9d1d9;
+}
+
+
+.accordion-content ul:last-child {
+    margin-bottom: 45px; /* Ajusta el valor según tus necesidades */
+}
+
+.opaco {
+    opacity: 0.01; /* Un valor muy bajo para que apenas se vea */
+    text-align: center;
+    /* ... otras propiedades de estilo ... */
+}
+
+/* ==========================================================================
+   Estilos para Los Enlaces de Pie de Pagina
+   ========================================================================== */
+
+.footer-link { /* Estilos para los nuevos enlaces en el footer */
+    color: #ffffff; /* Cian para enlaces en el pie de página de origenes.css */
+    text-decoration: none;
+    margin: 0 5px; /* Espacio entre los enlaces del footer */
+    white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color: #ffffff; /* Color al pasar el ratón */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.icon-link {
+    text-decoration: none;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+   Estilos para Los Enlaces Visual
+   ========================================================================== */
+
+.main-link {
+    text-decoration: none;
+    color: #ffffff; /* Color al pasar el ratón */
+}
+
+.main-link:hover {
+    text-decoration: underline;
+    color: #ffffff; /* Color al pasar el ratón */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================================================
+   Estilos para el Contenido Desechado
+   ========================================================================== */
+
+.discarded-item {
+    border: 1px solid #30363d; /* Borde más oscuro */
+    padding: 1.5em;
+    margin-bottom: 2em; /* Mayor margen entre elementos desechados */
+    border-radius: 8px; /* Bordes más redondeados */
+    background-color: #21262d; /* Fondo ligeramente diferente para destacar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+}
+
+.discarded-item h2 {
+    margin-top: 0;
+    color: #d9534f; /* Rojo para títulos de contenido desechado, para contraste */
+    border-bottom: none; /* Eliminar borde inferior para estos h2 específicos */
+    padding-bottom: 0;
+    margin-bottom: 0.5em;
+}
+
+.date-discarded {
+    font-style: italic;
+    color: #8b949e; /* Un gris más oscuro para la fecha */
+    font-size: 0.9em;
+    margin-bottom: 1em;
+    display: block; /* Asegura que ocupe su propia línea */
+}
+
+blockquote {
+    border-left: 4px solid #58a6ff; /* Borde de cita de color azul */
+    margin: 0;
+    padding: 0.5em 1.5em;
+    background-color: #1a222c; /* Fondo para citas */
+    color: #c9d1d9;
+    font-style: italic;
+    border-radius: 4px;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: 0.5em;
+    text-align: right;
+    color: #8b949e;
+    font-size: 0.9em;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed #30363d; /* Línea divisoria punteada */
+    margin: 3em 0;
+}
+
+.h1-desecho {
+    color: #58a6ff; /* Color azul brillante de main.css */
+    border-bottom: 2px solid #30363d; /* Borde inferior para títulos */
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    text-align: center; /* Centrar el título principal */
+}
+
+.discarded-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+    border-radius: 4px;
+}

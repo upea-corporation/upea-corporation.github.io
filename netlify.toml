@@ -79,3 +79,10 @@ for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
   from = "/github-callback"
   to = "/.netlify/functions/github-callback"
   status = 200
+# ===============================================
+# URL Invisible Carpeta language
+# ===============================================
+[[redirects]]
+  from = "/en/*"
+  to = "/language/en/:splat"
+  status = 200
