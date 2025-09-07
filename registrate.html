@@ -64,7 +64,53 @@
         
         </section>
     </main>
+    
+    <section class="image-section" style="text-align: center; margin-bottom: 20px;">
+        <h2>Trato de Confidencialidad y Gestión de Datos</h2>
+        <p>Gracias a la ayuda de un usuario de internet por trabajar con UPEA Corporation ARG Web, se hizo posible nuestra existencia y funcionamiento.</p>
+        <button onclick="abrirImagenes()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+            Abrir Copia del CaDMT
+        </button>
+        <p><a href="https://x.com/Irdur_" class="main-link">Twitter/X de IrdurDev</a></p>
+    </section>
 
+    <script>
+        function abrirImagenes() {
+            const nuevaVentana = window.open("", "_blank", "width=800,height=600");
+
+            const contenidoHTML = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <title>Trato de Confidencialidad y Gestión de Datos</title>
+                    <style>
+                        body {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 20px;
+                            flex-wrap: wrap;
+                            margin: 20px;
+                        }
+                        img {
+                            max-width: 45%;
+                            height: auto;
+                            border: 2px solid #333;
+                            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+                        }
+                    </style>
+                </head>
+                <body>
+                    <img src="image/treatments/Page1-UPEA_Corporation-CaDMA.webp" alt="Imagen 1">
+                    <img src="image/treatments/Page2-UPEA_Corporation-CaDMA.webp" alt="Imagen 2">
+                </body>
+                </html>
+            `;
+
+            nuevaVentana.document.write(contenidoHTML);
+            nuevaVentana.document.close();
+        }
+    </script>
     <footer class="footer">
         <p>© 2025 UPEA Corporation - Todos los derechos reservados.
             <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
