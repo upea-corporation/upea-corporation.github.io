@@ -529,6 +529,12 @@ strong {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
 }
 
 @media (max-width: 768px) {

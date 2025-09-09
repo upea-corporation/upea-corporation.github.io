@@ -79,10 +79,19 @@ for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
   from = "/github-callback"
   to = "/.netlify/functions/github-callback"
   status = 200
+
 # ===============================================
-# URL Invisible Carpeta language
+# URL Invisible Carpeta foot-page (Regla general)
 # ===============================================
 [[redirects]]
-  from = "/en/*"
-  to = "/language/en/:splat"
+  from = "/:splat"
+  to = "/foot-page/:splat"
   status = 200
+
+# ===============================================
+# Pagina de Error 404 Personalizada
+# ===============================================
+[[redirects]]
+  from = "/*"
+  to = "/error404.html"
+  status = 404
