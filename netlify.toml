@@ -16,23 +16,16 @@
 # ===============================================
 # Configuración de los Plugins de Netlify
 # ===============================================
-
-# --- Plugin: Lighthouse ---
 [[plugins]]
-package = "@netlify/plugin-lighthouse" # Mantendremos Lighthouse con la versión más reciente
+package = "@netlify/plugin-lighthouse"
   [plugins.inputs]
-  # Puedes añadir inputs aquí si lo necesitas para Lighthouse, por ejemplo:
-  # output_path = "path/to/lighthouse/report.json"
 
 # ===============================================
 # Configuración de Cabeceras (incluyendo CSP)
 # ===============================================
 [[headers]]
-for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
+for = "/*"
   [headers.values]
-  # Content-Security-Policy (CSP)
-  # Usamos tres comillas dobles (""") para cadenas multi-línea en TOML.
-  # Se han eliminado los dominios de Jotform y se ha mantenido el de Google Forms.
   Content-Security-Policy = """
     default-src 'self' data: https://forms.gle;
     script-src 'self' 'unsafe-inline' https://forms.gle;
@@ -48,7 +41,7 @@ for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
   """
 
 # ===============================================
-# Redirecciones
+# Redirecciones para las funciones de Netlify
 # ===============================================
 [[redirects]]
   from = "/verifyPersonal"
@@ -81,7 +74,8 @@ for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
   status = 200
 
 # ===============================================
-# URL Invisible Carpeta foot-page (Regla general)
+# Regla de Reescritura para la carpeta foot-page
+# La he movido al final para evitar conflictos
 # ===============================================
 [[redirects]]
   from = "/:splat"
@@ -89,9 +83,13 @@ for = "/*" # Aplica estas cabeceras a todas las rutas de tu sitio web
   status = 200
 
 # ===============================================
-# Pagina de Error 404 Personalizada
+# Página de Error 404 Personalizada
 # ===============================================
 [[redirects]]
   from = "/*"
+  to = "/error404.html"
+  status = 404
+
+  from = "/EN/*"
   to = "/error404.html"
   status = 404
