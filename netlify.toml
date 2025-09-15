@@ -89,7 +89,3 @@ for = "/*"
   from = "/*"
   to = "/error404.html"
   status = 404
-
-  from = "/EN/*"
-  to = "/error404.html"
-  status = 404

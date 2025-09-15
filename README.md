@@ -1,16 +1,16 @@
 # UPEA Corporation [EN]
 
 ## About the Website
-This website simulates a secret governmental corporation where anthropomorphic animals, registered as EAZ (Anthropoid Zoomorphic Entities), exist. Some have powers, others do not, and some are not from this world. It all depends on your story about your fursona, whether you have one or many.
+This website simulates a secret governmental corporation where anthropomorphic animals, registered as ZAE (Zoomorphic Anthropoid Entities), exist. Some have powers, others do not, and some are not from this world. It all depends on your story about your fursona, whether you have one or many.
 
 This website is inspired by the SCP wikidot and the official wiki of UrbanShade (Roblox game, Pressure).
 
 ---
 
 ## EAZ Registration
-By registering an EAZ, you authorize UPEA Corp. to use the entity's information for publication on the website. The user's personal information, such as name and email, is treated with the strictest confidentiality and will not be shared without explicit consent.
+By registering a ZAE, you authorize UPEA Corp. to use the entity's information for publication on the website. The user's personal information, such as name and email, is treated with the strictest confidentiality and will not be shared without explicit consent.
 
-You have the right to request the rectification or deletion of your EAZ's published data on the website and the removal of your personal contact information. To do this, you can contact us via email at: upea.corp@hotmail.com.
+You have the right to request the rectification or deletion of your ZAE's published data on the website and the removal of your personal contact information. To do this, you can contact us via email at: upea.corp@hotmail.com.
 
 ---
 
@@ -37,7 +37,7 @@ Usted tiene el derecho de solicitar la rectificación o supresión de los datos 
 ---
 
 ## Contacto y Redes Sociales
-* **Correo Electrónico:** <ins>upea.corp@hotmail.com</ins>
+* **Correo Electrónico:** <ins>`upea.corp@hotmail.com`</ins>
 * **YouTube:** [Cuenta Oficial de YouTube de UPEA Corp.](https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw)
 * **Twitter/X:** [Cuenta Oficial de Twitter/X de UPEA Corp.](https://x.com/UPEA_Corp)
 * **BlueSky:** [Cuenta Oficial de BlueSky de UPEA Corp.](https://bsky.app/profile/upea-corp.netlify.app)
