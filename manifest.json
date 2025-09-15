@@ -1,0 +1,21 @@
+{
+  "name": "UPEA Corporation",
+  "short_name": "UPEA Corp.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "icons": [
+    {
+      "src": "/image/upea-corp-logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/image/upea-corporation-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

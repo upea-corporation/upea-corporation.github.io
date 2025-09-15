@@ -6,10 +6,15 @@
     <title>UPEA Corporation - Website</title>
 
     <link rel="icon" type="image/png" href="image/upea-corp-logo.webp">
+    <link rel="apple-touch-icon" href="image/upea-corp-logo.webp">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/floating-dot.css">
 
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d1117">
+
     <meta name="description" content="Bienvenido a UPEA Corporation: Unidad de Protección Especial Antropoide. Descubre nuestra misión secreta para estudiar, proteger y coexistir con lo extraordinario.">
+    <meta name="keywords" content="UPEA Corporation, Unidad de Protección Especial Antropoide, UPEA Corp, ARG, proyecto web, SCP, UrbanShade, Entidades Antropoides Zoomorfas, EAZ, fursona, furry, furro, furry fandom, antropomórfico, secreto, corporación gubernamental, investigación, protección, coexistencia">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UPEA Corporation - Unidad de Protección Especial Antropoide">
@@ -221,6 +226,22 @@
 
         // Ajustar el carrusel al redimensionar la ventana
         window.addEventListener('resize', initializeCarousel); // Re-inicializa en resize
+    </script>
+
+    <script>
+    // Comprobar si el navegador soporta Service Workers
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        // Registrar el Service Worker desde la ruta raíz del sitio
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          // Registro exitoso
+          console.log('ServiceWorker registrado con éxito en el ámbito: ', registration.scope);
+        }).catch(function(err) {
+          // Fallo en el registro
+          console.log('Fallo en el registro del ServiceWorker: ', err);
+        });
+      });
+    }
     </script>
     
     <!-- Script para el menú móvil -->    
