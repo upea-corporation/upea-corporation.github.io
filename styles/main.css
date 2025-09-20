@@ -74,10 +74,14 @@ body {
    ========================================================================== */
 
 .navbar {
-    background-color: #21262d; /* Color de fondo de la barra de navegación */
+    background-color: #21262d;
     padding: 0.5em 0;
-    border-bottom: 1px solid #30363d; /* Borde inferior de la barra de navegación */
-    position: relative; /* Needed for positioning the hamburger icon */
+    border-bottom: 1px solid #30363d;
+    position: relative;
+    /* --- CAMBIOS AQUI --- */
+    display: flex; /* Permite alinear los elementos en una fila */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos (menú y botón) */
 }
 
 .navbar ul {
@@ -87,26 +91,29 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    /* --- CAMBIOS AQUI --- */
+    flex-grow: 1; /* Permite que la lista ocupe el espacio disponible */
 }
+
 
 .navbar li {
     margin: 0 15px;
 }
 
 .navbar a {
-    color: #58a6ff; /* Color normal del texto del enlace */
+    color: #58a6ff;
     text-decoration: none;
     padding: 0.5em 1em;
     display: block;
-    transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave */
-    border-radius: 4px; /* Bordes ligeramente redondeados */
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 4px;
 }
 
 /* ESTA ES LA REGLA CLAVE: Mantendrá el fondo más claro tanto al pasar el ratón como para la página activa */
 .navbar a:hover,
 .navbar a.active {
-    color: #c9d1d9; /* Color del texto al pasar el ratón y para la página activa */
-    background-color: #30363d; /* Color de fondo al pasar el ratón y para la página activa */
+    color: #c9d1d9;
+    background-color: #30363d;
 }
 
 /* Hamburger icon for mobile */
@@ -123,18 +130,16 @@ body {
     position: absolute;
     right: 1em;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-150%);
     z-index: 1000; /* Ensure it's above other content */
-    transition: transform 0.3s ease;
 }
 
 .menu-toggle span {
     display: block;
-    height: 3px;
+    height: 5px;
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Animación del botón hamburguesa cuando está activo */
@@ -174,7 +179,7 @@ body {
     
     /* Mejoras para el menú desplegable */
     .navbar {
-        padding: 0.8em 0;
+        padding: 0 0;
     }
     
     .navbar ul {
@@ -218,7 +223,6 @@ body {
 
     .menu-toggle {
         display: block; /* Show hamburger icon on mobile */
-        transition: transform 0.3s ease;
     }
     
     .menu-toggle.active {
@@ -744,4 +748,116 @@ hr {
     display: block;
     margin: 1em auto;
     border-radius: 4px;
+}
+
+/* ==========================================================================
+   8. Estilos para el Selector de Idiomas (Language Switcher)
+   ========================================================================== */
+.language-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+    position: absolute;
+    right: 50px; /* Ajusta este valor si necesitas más espacio */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.language-icon {
+    width: 30px; /* Tamaño del icono */
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.language-icon:hover {
+    transform: scale(1.1); /* Efecto al pasar el ratón */
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque (opcional) */
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #161b22;
+    padding: 2em;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-content h2 {
+    color: #58a6ff;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #c9d1d9;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #d9534f;
+}
+
+/* Language List */
+.language-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.language-list li {
+    margin: 1em 0;
+}
+
+.language-list a {
+    display: block;
+    padding: 0.8em;
+    background-color: #21262d;
+    color: #c9d1d9;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.language-list a:hover {
+    background-color: #30363d;
+    transform: translateY(-2px);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .language-toggle {
+        right: 1em; /* Ajusta la posición para evitar conflictos con el menú hamburguesa */
+        top: 10%;
+        transform: translateY(-50%);
+        padding: 0.5em;
+        z-index: 1001; /* Asegura que esté por encima del menú hamburguesa */
+    }
 }

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Entities</title>
+
+    <link rel="icon" type="image/png" href="../image/upea-corp-logo.webp">
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/floating-dot.css">
+
+    <meta name="description" content="Access the classified archive of Zoomorphic Anthropoid Entities (ZAE) of UPEA Corp. Restricted information on anomalous antropomorphic beings.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UPEA Corporation - List of Entities ZAE">
+    <meta name="twitter:description" content="Explore the catalog of Zoomorphic Anthropoid Entities (ZAE) of UPEA Corporation. Access detailed information on each entity and discover the anomalous antropomorphic beings we have registered.">
+
+    <script src="scripts/floating-dot.js" defer></script>
+
+    </head>
+<body>
+    <header class="header">
+        <h1>
+            <img src="../image/upea-corp-logo.webp" alt="Icono UPEA">
+            UPEA Corporation
+        </h1>
+        <p class="slogan"><u>Anthropoid Special Protection Unit</u></p>
+    </header>
+
+<nav class="navbar">
+    <button class="menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="information.html">Information</a></li>
+            <li><a href="entities.html">Entities</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="discarded-content.html">Discarded Content</a></li>
+        <li><button id="language-toggle" class="language-toggle" aria-label="Cambiar idioma">
+        <img src="../image/language-icon.webp" alt="Icono de Idioma" class="language-icon">
+    </button></li>
+    </ul>
+</nav>
+
+<div id="language-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Select a Language</h2>
+        <ul class="language-list">
+            <li><a href="../index.html">Español</a></li>
+            <li><a href="home.html">English</a></li>
+            <li><a href="error404.html">Português Brasileiro (Não Disponível)</a></li>
+            <li><a href="error404.html">日本人 (利用不可)</a></li>
+            <li><a href="error404.html">한국어 (사용 불가)</a></li>
+        </ul>
+    </div>
+</div>
+
+    <main class="container">
+        <section class="entrada-principal">
+            <h2>Welcome to the UPEA Corporation Registered Entities Archive</h2>
+            <p>This is the central database for the Anthropoid Special Protection Unit. Here you will find information about the anthropoid entities that we have registered and that are under our custody.</p>
+        </section>
+
+        <section class="lista-entidades">
+            <h3>Registered Entities</h3>
+            <ul>
+                <li><a href="entities/zae000.html">ZAE#000</a></li>
+                <li><a href="entities/zae000-1.html">ZAE#000-1</a></li>
+                <li><a href="error404.html">ZAE#001 (Not Registered)</a></li>
+                <li><a href="error404.html">ZAE#002 (Not Registered)</a></li>
+                <li><a href="error404.html">ZAE#003 (Not Registered)</a></li>
+                <li><a href="error404.html">ZAE#004 (Not Registered)</a></li>
+                <li><a href="entities/zae005.html">ZAE#005</a></li>
+                <li><a href="entities/zae201.html">ZAE#201</a></li>
+                <li><a href="entities/zae666.html">ZAE#666</a></li>
+                <li><a href="entities/zae666-1.html">ZAE#666-1</a></li>
+                <li><a href="error404.html">ZAE#T17_13TI17TZX11J17</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 UPEA Corporation - All Rights Reserved.
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
+                <img src="../image/rrss/YouTube-Icon.svg" alt="Official YouTube Channel of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://x.com/UPEA_Corp">
+                <img src="../image/rrss/Twitter-Icon.svg" alt="Official Twitter/X Account of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app">
+                <img src="../image/rrss/Bluesky-Icon.svg" alt="Official Bluesky Account of UPEA Corp." class="icon-link"> 
+            </a>
+            <br> 
+                <a href="netlify-extensions" class="footer-link">Netlify Extensions</a> |
+                <a href="cookie-policy" class="footer-link">Cookie Policy</a> |
+                <a href="terms-and-conditions" class="footer-link">Terms and Conditions</a> |
+                <a href="security-and-privacy-policy" class="footer-link">Security and Privacy Policy</a> |
+                <a href="copyright-and-license" class="footer-link">Copyright and License</a> |
+                <a href="zae-registration-terms" class="footer-link">ZAE Registration Terms</a> |
+                <a href="employee-registration-terms" class="footer-link">Employee Registration Terms</a> |
+                <a href="feedback-terms" class="footer-link">Feedback</a>
+        </p>
+    </footer>
+
+<style>
+  .icon-link {
+    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
+    height: 24px; /* Asegura que el icono sea cuadrado */
+    vertical-align: middle; /* Alinea el icono con el texto */
+    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
+  }
+</style>
+
+    <script>
+        // NEW: JavaScript for the accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.closest('.accordion-item');
+                    const accordionContent = accordionItem.querySelector('.accordion-content');
+
+                    // Toggle the 'active' class on the header
+                    this.classList.toggle('active');
+
+                    // Toggle the 'show' class on the content
+                    if (accordionContent.classList.contains('show')) {
+                        accordionContent.classList.remove('show');
+                        accordionContent.style.maxHeight = null; // Reset max-height
+                    } else {
+                        accordionContent.classList.add('show');
+                        // Set max-height to scrollHeight to allow for smooth transition
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    }
+
+                    // Optional: Close other open accordion items
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this) {
+                            otherHeader.classList.remove('active');
+                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
+                            otherContent.classList.remove('show');
+                            otherContent.style.maxHeight = null;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Script para el menú móvil -->
+    <script src="../scripts/mobile-menu.js"></script>
+    <script src="../scripts/language-menu.js"></script>
+    
+</body>
+</html>

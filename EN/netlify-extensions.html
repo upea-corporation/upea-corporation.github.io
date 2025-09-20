@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Netlify Extensions</title>
+    <link rel="icon" type="image/png" href="../image/upea-corp-logo.webp">
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#0d1117">
+
+    <meta name="description" content="Discover the Netlify technologies and extensions that power our platform. Technical transparency and performance at your service.">
+    <meta name="keywords" content="UPEA Corporation, Netlify, Extensions, Technology, Security, Performance, UPEA Corp.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UPEA Corporation - Netlify Extensions">
+    <meta name="twitter:description" content="Explore the Netlify technologies and extensions that power our platform. Technical transparency and performance at your service.">
+
+</head>
+
+<body>
+    <header class="header">
+        <h1>
+            <img src="../image/upea-corp-logo.webp" alt="UPEA Icon"> UPEA Corporation
+        </h1>
+        <p class="slogan"><u>Anthropoid Special Protection Unit</u></p>
+    </header>
+
+<nav class="navbar">
+    <button class="menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="information.html">Information</a></li>
+            <li><a href="entities.html">Entities</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="discarded-content.html">Discarded Content</a></li>
+        <li><button id="language-toggle" class="language-toggle" aria-label="Cambiar idioma">
+        <img src="../image/language-icon.webp" alt="Icono de Idioma" class="language-icon">
+    </button></li>
+    </ul>
+</nav>
+
+<div id="language-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Select a Language</h2>
+        <ul class="language-list">
+            <li><a href="../index.html">Español</a></li>
+            <li><a href="home.html">English</a></li>
+            <li><a href="error404.html">Português Brasileiro (Não Disponível)</a></li>
+            <li><a href="error404.html">日本人 (利用不可)</a></li>
+            <li><a href="error404.html">한국어 (사용 불가)</a></li>
+        </ul>
+    </div>
+</div>
+
+    <main class="container">
+        <h2>Netlify Extensions at UPEA Corp.</h2>
+        <p>Our website uses several Netlify extensions to improve security, performance, and functionality. Below, we detail the extensions relevant to the user experience:</p>
+
+        <section class="benefits-section">
+            <div class="benefit-card">
+                <h3>User Agent Blocker</h3>
+                <p>This extension allows us to block unwanted web trackers and malicious bots through specific rules in our <code>robots.txt</code> file or via Edge functions, which helps maintain the integrity and security of our content.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Bluesky Custom Domain</h3>
+                <p>We use this extension to manage our custom domain on Bluesky, allowing us to maintain a consistent and recognizable presence on this platform.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Content Security Policy (CSP)</h3>
+                <p>We implement a Content Security Policy that generates a unique <code>script-src</code> directive for each request. This is a crucial security measure that helps prevent script injection attacks and ensures that only resources from trusted sources are executed, thereby protecting our users from potential vulnerabilities.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Auth0 Integration [REMOVED]</h3>
+                <p>UPEA Corp. integrates Auth0 to securely manage user authentication and authorization. This allows our users to register and log in efficiently and securely, ensuring that only authorized individuals can access specific functionalities, such as entity registration. We use this platform to provide login options with email/password, as well as social connections like Google or Facebook (if enabled), offering flexibility and security to our users.</p>
+            </div>
+        </section>
+
+        <p class="note">These extensions are managed by Netlify, our web hosting provider, and contribute to UPEA Corp.'s technical infrastructure without requiring direct interaction from the end user.</p>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 UPEA Corp. - All rights reserved. 
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
+                <img src="../../image/rrss/YouTube-Icon.svg" alt="Official YouTube account of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://x.com/UPEA_Corp">
+                <img src="../../image/rrss/Twitter-Icon.svg" alt="Official Twitter/X account of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app">
+                <img src="../../image/rrss/Bluesky-Icon.svg" alt="Official BlueSky account of UPEA Corp." class="icon-link"> 
+            </a>
+            <br> 
+                <a href="netlify-extensions.html" class="footer-link">Netlify Extensions</a> | 
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a> |
+                <a href="terms-and-conditions.html" class="footer-link">Terms and Conditions of Use</a> |
+                <a href="security-and-privacy-policy.html" class="footer-link">Security and Privacy Policy</a> |
+                <a href="copyright-and-license.html" class="footer-link">Copyright and License</a> |
+                <a href="eaz-registrations.html" class="footer-link">EAZ Registrations</a> |
+                <a href="employee-registration.html" class="footer-link">Employee Registration</a> |
+                <a href="feedback.html" class="footer-link">Feedback</a>
+        </p>
+    </footer>
+
+    <!-- Script for mobile menu -->    
+    <script src="../scripts/mobile-menu.js"></script>
+    <script src="../scripts/language-menu.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPEA Corp. - Registrate</title>
+
+    <link rel="icon" type="image/png" href="../image/upea-corp-logo.webp">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/floating-dot.css">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UPEA Corporation - Registration">
+    <meta name="twitter:description" content="Register with UPEA Corporation. Complete the form to register an Anthropoid Zoomorphic Entity (EAZ), employee record or simply send Feedback.">
+
+    <script src="scripts/floating-dot.js" defer></script>
+
+    </head>
+<body>
+    <header class="header">
+        <h1>
+            <img src="../image/upea-corp-logo.webp" alt="Icono UPEA"> UPEA Corporation
+        </h1>
+        <p class="slogan"><u>Anthropoid Special Protection Unit</u></p>
+    </header>
+
+<nav class="navbar">
+    <button class="menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="information.html">Information</a></li>
+            <li><a href="entities.html">Entities</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="discarded-content.html">Discarded Content</a></li>
+        <li><button id="language-toggle" class="language-toggle" aria-label="Cambiar idioma">
+        <img src="../image/language-icon.webp" alt="Icono de Idioma" class="language-icon">
+    </button></li>
+    </ul>
+</nav>
+
+<div id="language-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Select a Language</h2>
+        <ul class="language-list">
+            <li><a href="../index.html">Español</a></li>
+            <li><a href="home.html">English</a></li>
+            <li><a href="error404.html">Português Brasileiro (Não Disponível)</a></li>
+            <li><a href="error404.html">日本人 (利用不可)</a></li>
+            <li><a href="error404.html">한국어 (사용 불가)</a></li>
+        </ul>
+    </div>
+</div>
+
+    <main class="container">
+        <section class="presentation-intro">
+            <h2>¡Welcome to UPEA Corporation Registration!</h2>
+            <p>We appreciate your interest in joining our narrative world. Here you can register both an Anthropoid Zoomorphic Entity (EAZ) and an employee record.</p>
+            <p>This process is crucial for ensuring the correct integration of all elements in our history.</p>
+            <hr>
+            <p>Click the button below to access the form for registering an Anthropoid Zoomorphic Entity (ZAE).</p>
+
+            <a href="https://forms.gle/4M99aB9WSH2w8yxE7" class="button-link">Access ZAE Registration Form</a>
+            <p>Do not forget to take a look at the Terms and Conditions on ZAE registrations in <a href="foot-page/terminos-y-condiciones-registro-eaz.html" class="footer-link">EAZ Registrations</a> for greater security and understanding of how we use the information in relation to it.</p>
+            <hr>
+            <p>If you want to register an employee record, click the button below:</p>
+            <a href="https://forms.gle/gkuCJoaFVdeCLXH2A" class="button-link">Access Employee Record Registration Form</a>
+        
+            <p>Do not forget to take a look at the Terms and Conditions on employee registrations in <a href="foot-page/terminos-y-condiciones-registro-de-empleado.html" class="footer-link">Employee Registration</a> for greater security and understanding of how we use the information in relation to it.</p>
+            <hr>
+            <p>If you want to send Feedback, click the button below:</p>
+            <a href="https://forms.gle/BEy4UZ4PVKPZrS25A" class="button-link">Access Feedback Form</a>
+        
+            <p>Do not forget to take a look at the Terms and Conditions on Feedback registrations in <a href="foot-page/terminos-y-condiciones-feedback.html" class="footer-link">Feedback Registration</a> for greater security and understanding of how we use the information in relation to it.</p>
+        
+        </section>
+    </main>
+    
+    <section class="image-section" style="text-align: center; margin-bottom: 20px;">
+        <h2>Confidentiality Treatment and Data Management</h2>
+        <p>Thanks to the help of a user on the internet who worked with UPEA Corporation ARG Web, it was possible for us to exist and function.</p>
+        <button onclick="abrirImagenes()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+            Open Copy of CaDMT
+        </button>
+        <p><a href="https://x.com/Irdur_" class="main-link">Twitter/X of IrdurDev</a></p>
+    </section>
+
+    <script>
+        function abrirImagenes() {
+            const nuevaVentana = window.open("", "_blank", "width=800,height=600");
+
+            const contenidoHTML = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>Confidentiality and Data Management Treatment</title>
+                    <style>
+                        body {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 20px;
+                            flex-wrap: wrap;
+                            margin: 20px;
+                        }
+                        img {
+                            max-width: 45%;
+                            height: auto;
+                            border: 2px solid #333;
+                            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+                        }
+                    </style>
+                </head>
+                <body>
+                    <img src="../image/treatments/Page1-UPEA_Corporation-CaDMT.webp" alt="Imagen 1">
+                    <img src="../image/treatments/Page2-UPEA_Corporation-CaDMT.webp" alt="Imagen 2">
+                </body>
+                </html>
+            `;
+
+            nuevaVentana.document.write(contenidoHTML);
+            nuevaVentana.document.close();
+        }
+    </script>
+    <footer class="footer">
+        <p>© 2025 UPEA Corporation - All Rights Reserved.
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
+                <img src="../image/rrss/YouTube-Icon.svg" alt="Official YouTube Channel of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://x.com/UPEA_Corp">
+                <img src="../image/rrss/Twitter-Icon.svg" alt="Official Twitter/X Account of UPEA Corp." class="icon-link">
+            </a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app">
+                <img src="../image/rrss/Bluesky-Icon.svg" alt="Official Bluesky Account of UPEA Corp." class="icon-link"> 
+            </a>
+            <br> 
+                <a href="netlify-extensions" class="footer-link">Netlify Extensions</a> |
+                <a href="cookie-policy" class="footer-link">Cookie Policy</a> |
+                <a href="terms-and-conditions" class="footer-link">Terms and Conditions</a> |
+                <a href="security-and-privacy-policy" class="footer-link">Security and Privacy Policy</a> |
+                <a href="copyright-and-license" class="footer-link">Copyright and License</a> |
+                <a href="zae-registration-terms" class="footer-link">ZAE Registration Terms</a> |
+                <a href="employee-registration-terms" class="footer-link">Employee Registration Terms</a> |
+                <a href="feedback-terms" class="footer-link">Feedback</a>
+        </p>
+    </footer>
+
+    <script src="../scripts/mobile-menu.js"></script>
+    <script src="../scripts/language-menu.js"></script>
+
+</body>
+</html>

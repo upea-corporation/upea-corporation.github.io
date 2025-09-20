@@ -27,22 +27,39 @@
         <p class="slogan"><u>Unidad de Protección Especial Antropoide</u></p>
     </header>
 
-        <nav class="navbar">
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../informacion.html">Información</a></li>
-                <li><a href="../entidades.html">Entidades</a></li>
-                <li><a href="../acceso.html">Acceso</a></li>
-                <li><a href="../registrate.html">Registrate</a></li>
-                <li><a href="../actualizaciones.html">Actualizaciones</a></li>
-                <li><a href="../contenido-desechado.html">Contenido Desechado</a></li>
-            </ul>
-        </nav>
+<nav class="navbar">
+    <button class="menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../informacion.html">Información</a></li>
+        <li><a href="../entidades.html">Entidades</a></li>
+        <li><a href="../acceso.html">Acceso</a></li>
+        <li><a href="../registrate.html">Registrate</a></li>
+        <li><a href="../actualizaciones.html">Actualizaciones</a></li>
+        <li><a href="../contenido-desechado.html">Contenido Desechado</a></li>
+        <li><button id="language-toggle" class="language-toggle" aria-label="Cambiar idioma">
+        <img src="../image/language-icon.webp" alt="Icono de Idioma" class="language-icon">
+    </button></li>
+    </ul>
+</nav>
+
+<div id="language-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Selecciona un Idioma</h2>
+        <ul class="language-list">
+            <li><a href="../index.html">Español</a></li>
+            <li><a href="../EN/home.html">English</a></li>
+            <li><a href="error404.html">Português Brasileiro (Não Disponível)</a></li>
+            <li><a href="error404.html">日本人 (利用不可)</a></li>
+            <li><a href="error404.html">한국어 (사용 불가)</a></li>
+        </ul>
+    </div>
+</div>
 
     <main class="container">
         <div class="disclaimer">
@@ -134,6 +151,7 @@
     </footer>
 
     <script src="../scripts/mobile-menu.js"></script>
+    <script src="../scripts/language-menu.js"></script>
 
 </body>
 </html>
