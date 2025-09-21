@@ -7,7 +7,7 @@ This website is inspired by the SCP wikidot and the official wiki of UrbanShade 
 
 ---
 
-## EAZ Registration
+## ZAE Registration
 By registering a ZAE, you authorize UPEA Corp. to use the entity's information for publication on the website. The user's personal information, such as name and email, is treated with the strictest confidentiality and will not be shared without explicit consent.
 
 You have the right to request the rectification or deletion of your ZAE's published data on the website and the removal of your personal contact information. To do this, you can contact us via email at: upea.corp@hotmail.com.
