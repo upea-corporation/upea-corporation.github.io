@@ -1,43 +1,61 @@
-# UPEA Corporation [EN]
+# <u>**UPEA Corporation [EN]**</u>
 
-## About the Website
-This website simulates a secret governmental corporation where anthropomorphic animals, registered as ZAE (Zoomorphic Anthropoid Entities), exist. Some have powers, others do not, and some are not from this world. It all depends on your story about your fursona, whether you have one or many.
+## **About the Website**
+Our website, UPEA Corporation, belongs to a secret government corporation funded by high international authorities. We specialize in the study and coexistence with ZAE (Zoomorphic Anthropoid Entities), currently known as anthropomorphic animals and their variants. Our mission is clear: we don't hunt, we study and protect.
 
-This website is inspired by the SCP wikidot and the official wiki of UrbanShade (Roblox game, Pressure).
+<br>
 
----
+## **Project Details**
+This website is inspired by the SCP wiki and the UrbanShade wiki from the Roblox game, Pressure. The site also functions as an ARG (Alternate Reality Game) to create a more interactive and mysterious experience. It's important to note that the entire history of UPEA Corporation, as well as the employee registry, is completely fictional.
 
-## ZAE Registration
-By registering a ZAE, you authorize UPEA Corp. to use the entity's information for publication on the website. The user's personal information, such as name and email, is treated with the strictest confidentiality and will not be shared without explicit consent.
+The initials UPEA stand for Unidad de Protección Especial Antropoide (Anthropoid Special Protection Unit).
 
-You have the right to request the rectification or deletion of your ZAE's published data on the website and the removal of your personal contact information. To do this, you can contact us via email at: upea.corp@hotmail.com.
+<br>
 
----
+## **UPEA Corporation Registration**
+By registering as a ZAE entity, employee, or through the feedback form, you agree to the terms and conditions of each registration.
 
-## Contact and Social Media
+According to our employee registration terms and conditions, information cannot be deleted once registered and published. This measure is maintained to preserve the historical narrative of our ARG website. However, when an entity ceases to be part of the UPEA Corporation universe, all their information will be redacted using UPEA Codex's exclusive character encoder.
+
+<br>
+
+## **Contact and Social Media**
 * **Email:** <ins>`upea.corp@hotmail.com`</ins>
 * **YouTube:** [Official UPEA Corp. YouTube Account](https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw)
 * **Twitter/X:** [Official UPEA Corp. Twitter/X Account](https://x.com/UPEA_Corp)
 * **BlueSky:** [Official UPEA Corp. BlueSky Account](https://bsky.app/profile/upea-corp.netlify.app)
 
-# UPEA Corporation [ES]
+<br>
+<br>
 
-## Sobre la Página Web
-Esta página web simula una corporación gubernamental secreta donde existen animales antropomórficos, registrados como EAZ (Entidades Antropoides Zoomorfas). Hay quienes tienen poderes, otros que no, y algunos que no son de este mundo. Todo depende de tu historia sobre tu fursona, tanto si tienes una, como si tienes muchas.
+# <u>**UPEA Corporation [ES]**</u>
 
-Esta página web está inspirada en la wiki de SCP (wikidot scp) y la wiki oficial de UrbanShade (juego de Roblox, Pressure).
+## **Sobre la Página Web**
+Nuestra página web, UPEA Corporation, pertenece a una corporación gubernamental secreta financiada por altos mandos internacionales. Nos especializamos en el estudio y la coexistencia con las EAZ (Entidades Antropoides Zoomorfas), conocidas actualmente como animales antropomórficos y sus variantes. Nuestra misión es clara: no cazamos, estudiamos y protegemos.
 
----
+<br>
 
-## Registro de EAZ
-Al registrar una EAZ, usted autoriza a UPEA Corp. a utilizar la información de la entidad para su publicación en la página web. La información personal del usuario, como nombre y correo electrónico, es tratada con la más estricta confidencialidad y no se compartirá sin consentimiento explícito.
+## **Detalles del Proyecto**
+Esta página web está inspirada en la wiki de SCP y en la wiki de UrbanShade del juego de Roblox, Pressure. El sitio también funciona como un ARG (Alternate Reality Game) para crear una experiencia más interactiva y misteriosa. Es importante destacar que toda la historia de UPEA Corporation, así como el registro de empleados, es completamente ficticia.
 
-Usted tiene el derecho de solicitar la rectificación o supresión de los datos de su EAZ publicados en la web y la eliminación de su información personal de contacto. Para ello, puede comunicarse a través del correo electrónico: upea.corp@hotmail.com.
+Las iniciales UPEA provienen de Unidad de Protección Especial Antropoide.
 
----
+<br>
 
-## Contacto y Redes Sociales
+## **Registros en UPEA Corporation**
+Al registrarse como entidad EAZ, empleado o a través del formulario de feedback, usted acepta los términos y condiciones de cada registro.
+
+De acuerdo con nuestros términos y condiciones de registro de empleados, la información no podrá ser eliminada una vez registrada y publicada. Esta medida se mantiene con el fin de preservar la narrativa histórica de nuestro sitio web ARG. Sin embargo, en el momento en que una entidad deje de formar parte del universo de UPEA Corporation, toda su información será redactada con el codificador de caracteres exclusivo de UPEA Codex.
+
+<br>
+
+## **Contacto y Redes Sociales**
 * **Correo Electrónico:** <ins>`upea.corp@hotmail.com`</ins>
 * **YouTube:** [Cuenta Oficial de YouTube de UPEA Corp.](https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw)
 * **Twitter/X:** [Cuenta Oficial de Twitter/X de UPEA Corp.](https://x.com/UPEA_Corp)
 * **BlueSky:** [Cuenta Oficial de BlueSky de UPEA Corp.](https://bsky.app/profile/upea-corp.netlify.app)
+
+<br>
+
+---
+<div align="center">© 2025 UPEA Corporation - All rights reserved.</div>
