@@ -11,13 +11,73 @@
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#0d1117">
 
-    <meta name="description" content="Expediente de EAZ#666-1 (Toxer). Descubre los detalles la entidad de sus variaciones, y evalúa el alcance de su potencial y peligrosidad.">
+    <meta name="description" content="Expediente de EAZ#666-1 (Toxer). Descubre los detalles de la entidad, el alcance de su potencial y su peligrosidad.">
     <meta name="keywords" content="UPEA Corporation, UPEA Corp, EAZ, entidades, entidad, EAZ#666-1, Toxer, Exploración, Seguridad, Tecnología, información, secretos, entidad, expediente, anómalo, clasificación, seguridad">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UPEA Corporation - Entidad EAZ#666-1">
     <meta name="twitter:description" content="Explora la entidad EAZ#666-1 (Toxer). Descubre los detalles de su primera aparición, y evalúa el alcance de su potencial y peligrosidad.">
 
+<style>
+#infoContainer {
+    position: relative;
+    cursor: pointer;
+}
+
+#infoTooltip {
+    /* ESTILO PREDETERMINADO: PC y Tabletas grandes (500px - 850px) */
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%); 
+    
+    /* Apariencia */
+    background: #333;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+    min-width: 300px;
+    max-width: 850px;
+    cursor: default; 
+
+    /* OCULTACIÓN Y TRANSICIÓN */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 100;
+}
+
+/* ---------------------------------------------------------------------- */
+/* OPTIMIZACIÓN ESTÁNDAR PARA MÓVILES PEQUEÑOS (480px y menos) */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 480px) {
+    #infoTooltip {
+        /* Se mueve con el contenido del scroll */
+        position: absolute; 
+        
+        /* Centrado Horizontal - La técnica más fiable */
+        left: 50%; 
+        transform: translateX(-100%); 
+        
+        /* Posición Vertical (Encima del símbolo) */
+        bottom: 110%; 
+        top: auto;
+        
+        /* CONTROL DE CONTENIDO (Clave para que no desborde) */
+        max-width: 90vw; /* Limita el ancho al 90% del viewport */
+        min-width: 0; 
+        
+        /* Estética y Limpieza */
+        font-size: 13px;
+        text-align: center; 
+        right: auto;
+        margin: 0;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -39,14 +99,14 @@
                     <div class="entity-details-box">
                         <p><strong>Nombre:</strong> Toxer</p>
                         <p><strong>Fecha de Registro:</strong> N/A</p>
-                        <p><strong>Especie:</strong> ¿Protogen?</p>
+                        <p><strong>Especie:</strong> Protoxia Aetherea <span id="infoContainer">ⓘ<span id="infoTooltip">Protoxia Aetherea, nombre fusionado con referencia al especie Protogen (Proto-) con su naturaleza tóxica (Toxia) y su origen en la información pura y etérea (Aetherea).</span></span></p>
                         <p><strong>Subespecie:</strong> Antropomórfico</p>
                         <p><strong>Entidad:</strong> EAZ#666-1</p>
                         <p style="word-break: break-all; overflow-wrap: break-word; max-width: 100%;"><strong>ID:</strong> 85748C4C7AEKEKEK3DEF45</p>
                         <p><strong>Peso:</strong> 1.400kg</p>
                         <p><strong>Altura:</strong> 365cm</p>
                         <p><strong>Género:</strong> Varón</p>
-                        <p><strong>Clasificación Preliminar:</strong> Épsilon (E)</p>
+                        <p><strong>Clasificación:</strong> Épsilon (E)</p>
                         <p><strong>Entidades Relacionadas:</strong> <a href="eaz666.html" class="main-link">EAZ#666</a></p>
                     </div>
                 </div>
@@ -187,5 +247,48 @@
             });
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const infoElement = document.getElementById('infoContainer');
+        const tooltip = document.getElementById('infoTooltip');
+        
+        // Variable para controlar si el temporizador ya está activo
+        let isTimerRunning = false; 
+        
+        function showTip() {
+            // Si el temporizador ya está contando, ignoramos el clic
+            if (isTimerRunning) {
+                return; 
+            }
+            
+            isTimerRunning = true; // Activar el bloqueo
+            
+            // 1. Mostrar la burbuja
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '1';
+
+            // 2. Temporizador para ocultarla después de 10 segundos
+            setTimeout(() => {
+                // Iniciar la transición de desvanecimiento
+                tooltip.style.opacity = '0';
+                
+                // Ocultar completamente después de que termine la transición (0.3s)
+                setTimeout(() => {
+                    tooltip.style.visibility = 'hidden';
+                    isTimerRunning = false; // Desbloquear la función para un nuevo clic
+                }, 300); 
+                
+            }, 10000); // 10,000 milisegundos = 10 segundos
+        }
+
+        // Adjuntar el evento para la activación SOLO con Clic
+        if (infoElement && tooltip) {
+            infoElement.addEventListener('click', showTip);
+        }
+    });
+</script>
+
 </body>
 </html>
