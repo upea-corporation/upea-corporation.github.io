@@ -59,3 +59,4 @@ De acuerdo con nuestros términos y condiciones de registro de empleados, la inf
 
 ---
 <div align="center">© 2025 UPEA Corporation - All rights reserved.</div>
+<div align="center"><a href="https://upea-corp.netlify.app/politica-de-cookies">Política de Cookies</a> | <a href="https://upea-corp.netlify.app/politica-de-seguridad-y-privacidad">Política de Seguridad y Privacidad</a> | <a href="https://upea-corp.netlify.app/copyright-y-licencia">Copyright y Licencia</a> | <a href="https://upea-corp.netlify.app/foot-page/terminos-y-condiciones-de-registros">Términos y Condiciones de Registro</a></div>
