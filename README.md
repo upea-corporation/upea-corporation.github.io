@@ -6,8 +6,7 @@ Our website, UPEA Corporation, belongs to a secret government corporation funded
 <br>
 
 ## **Project Details**
-This website is inspired by the SCP wiki and the UrbanShade wiki from the Roblox game, Pressure. The site also functions as an ARG (Alternate Reality Game) to create a more interactive and mysterious experience. It's important to note that the entire history of UPEA Corporation, as well as the employee registry, is completely fictional.
-
+This website is inspired by the SCP wiki and the UrbanShade wiki from the Roblox game, Pressure. The site functions as a Community Wikipedia to create a more interactive and mysterious experience. It is important to note that the entire history of UPEA Corporation, as well as the employee registry, is entirely fictional.
 The initials UPEA stand for Unidad de Protección Especial Antropoide (Anthropoid Special Protection Unit).
 
 <br>
@@ -36,7 +35,7 @@ Nuestra página web, UPEA Corporation, pertenece a una corporación gubernamenta
 <br>
 
 ## **Detalles del Proyecto**
-Esta página web está inspirada en la wiki de SCP y en la wiki de UrbanShade del juego de Roblox, Pressure. El sitio también funciona como un ARG (Alternate Reality Game) para crear una experiencia más interactiva y misteriosa. Es importante destacar que toda la historia de UPEA Corporation, así como el registro de empleados, es completamente ficticia.
+Esta página web está inspirada en la wiki de SCP y en la wiki de UrbanShade del juego de Roblox, Pressure. El sitio web funciona como una Wikipedia Comunitaria para crear una experiencia más interactiva y misteriosa. Es importante destacar que toda la historia de UPEA Corporation, así como el registro de empleados, es completamente ficticia.
 
 Las iniciales UPEA provienen de Unidad de Protección Especial Antropoide.
 
@@ -59,4 +58,4 @@ De acuerdo con nuestros términos y condiciones de registro de empleados, la inf
 
 ---
 <div align="center">© 2025 UPEA Corporation - All rights reserved.</div>
-<div align="center"><a href="https://upea-corp.netlify.app/politica-de-cookies">Política de Cookies</a> | <a href="https://upea-corp.netlify.app/politica-de-seguridad-y-privacidad">Política de Seguridad y Privacidad</a> | <a href="https://upea-corp.netlify.app/copyright-y-licencia">Copyright y Licencia</a> | <a href="https://upea-corp.netlify.app/foot-page/terminos-y-condiciones-de-registros">Términos y Condiciones de Registro</a></div>
+<div align="center"><a href="https://upea-corp.netlify.app/politica-de-cookies">Política de Cookies</a> | <a href="https://upea-corp.netlify.app/politica-de-seguridad-y-privacidad">Política de Seguridad y Privacidad</a> | <a href="https://upea-corp.netlify.app/copyright">Copyright</a> | <a href="https://upea-corp.netlify.app/terminos-y-condiciones-de-registros">Términos y Condiciones de Registro</a></div>
