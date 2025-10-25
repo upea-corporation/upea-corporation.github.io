@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const messageBubble = document.createElement('div');
     messageBubble.innerHTML = `
-        <p style="margin-bottom: 5px; font-weight: bold;">¡AVISO!</p>
-        <p>Cambio en la jerarquía de UPEA Corporation: Algunos entrevistadores no estarán disponibles pronto.</p>
+        <p style="margin-bottom: 5px; font-weight: bold;">¡Bienvenido/a!</p>
+        <p>¿Estás interesado/a en unirte a UPEA Corporation? Regístrate tanto como entidad o como empleado. Tú eres quien aporta para ampliar el universo de UPEA Corp.</p>
 
     `;
     messageBubble.classList.add('message-bubble');

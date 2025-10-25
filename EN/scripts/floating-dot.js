@@ -5,9 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const messageBubble = document.createElement('div');
     messageBubble.innerHTML = `
-        <p style="margin-bottom: 5px; font-weight: bold;">Towards the Future!</p>
-        <p>We are getting closer to completing the website. Soon there will be more content related to us, UPEA Corporation.</p>
-
+        <p style="margin-bottom: 5px; font-weight: bold;">Welcome!</p>
+        <p>Are you interested in joining UPEA Corporation? Register either as an entity or as an employee. You are the one who contributes to expanding the universe of UPEA Corp.</p>
     `;
     messageBubble.classList.add('message-bubble');
     document.body.appendChild(messageBubble);
