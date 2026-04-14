@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
     const languageToggle = document.getElementById('language-toggle');
     const languageModal = document.getElementById('language-modal');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = languageModal.querySelector('.close-btn');
     const navLinks = document.querySelector('.nav-links');
     const menuToggle = document.querySelector('.menu-toggle');
 
-    // Function to show the modal
+    // Mostrar modal añadiendo la clase 'active'
     function showModal() {
-        languageModal.style.display = 'flex';
-        // Close the mobile menu if it's open
+        languageModal.classList.add('active');
+        // Cierra el menú móvil si está abierto
         if (navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('active');
         }
     }
 
-    // Function to hide the modal
+    // Ocultar modal quitando la clase 'active'
     function hideModal() {
-        languageModal.style.display = 'none';
+        languageModal.classList.remove('active');
     }
 
     // Event listeners
@@ -25,16 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closeBtn.addEventListener('click', hideModal);
 
-    // Close modal if user clicks outside of the modal content
+    // Cerrar al hacer clic fuera del contenido
     languageModal.addEventListener('click', function(event) {
         if (event.target === languageModal) {
             hideModal();
         }
     });
 
-    // Handle keyboard accessibility (Escape key)
+    // Cerrar con tecla Escape
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && languageModal.style.display === 'flex') {
+        if (event.key === 'Escape' && languageModal.classList.contains('active')) {
             hideModal();
         }
     });

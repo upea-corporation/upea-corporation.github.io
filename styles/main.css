@@ -753,111 +753,142 @@ hr {
 /* ==========================================================================
    8. Estilos para el Selector de Idiomas (Language Switcher)
    ========================================================================== */
-.language-toggle {
+   .language-toggle {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5em;
     position: absolute;
-    right: 50px; /* Ajusta este valor si necesitas más espacio */
+    right: 50px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.language-toggle:hover {
+    background: #21262d;
 }
 
 .language-icon {
-    width: 30px; /* Tamaño del icono */
+    width: 30px;
     height: 30px;
-    transition: transform 0.3s ease;
+    vertical-align: middle;
+    filter: brightness(0.9);
+    transition: filter 0.2s, transform 0.2s;
 }
 
-.language-icon:hover {
-    transform: scale(1.1); /* Efecto al pasar el ratón */
+.language-toggle:hover .language-icon {
+    filter: brightness(1.2);
+    transform: scale(1.05);
 }
 
 /* Modal Overlay */
 .modal-overlay {
-    display: none; /* Oculto por defecto */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
-    backdrop-filter: blur(5px); /* Efecto de desenfoque (opcional) */
-    z-index: 2000;
-    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Modal Content Box */
 .modal-content {
-    background-color: #161b22;
-    padding: 2em;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    width: 90%;
+    background: #161b22;
+    border: 1px solid #58a6ff;
+    border-radius: 12px;
     max-width: 400px;
+    width: 90%;
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
 }
 
 .modal-content h2 {
+    margin: 0;
+    padding: 20px 20px 15px;
     color: #58a6ff;
-    border-bottom: 2px solid #30363d;
-    padding-bottom: 0.5em;
-    margin-bottom: 1em;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #30363d;
 }
 
 /* Close Button */
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2em;
-    font-weight: bold;
-    color: #c9d1d9;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 28px;
     cursor: pointer;
-    transition: color 0.2s ease;
+    padding: 0 8px;
+    transition: color 0.2s;
+    line-height: 1;
 }
 
 .close-btn:hover {
-    color: #d9534f;
+    color: #f85149;
 }
 
 /* Language List */
 .language-list {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 15px 0;
 }
 
 .language-list li {
-    margin: 1em 0;
+    margin: 0;
 }
 
 .language-list a {
     display: block;
-    padding: 0.8em;
-    background-color: #21262d;
+    padding: 12px 20px;
     color: #c9d1d9;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+    transition: background 0.2s, color 0.2s, border-left 0.2s;
+    border-left: 3px solid transparent;
 }
 
 .language-list a:hover {
-    background-color: #30363d;
-    transform: translateY(-2px);
+    background: #21262d;
+    color: #58a6ff;
+    border-left-color: #58a6ff;
 }
 
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
     .language-toggle {
-        right: 1em; /* Ajusta la posición para evitar conflictos con el menú hamburguesa */
+        right: 1em;
         top: 10%;
         transform: translateY(-50%);
         padding: 0.5em;
-        z-index: 1001; /* Asegura que esté por encima del menú hamburguesa */
+        z-index: 1001;
     }
 }

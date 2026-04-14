@@ -1,3 +1,7 @@
+![Badge Hostinger](https://img.shields.io/badge/Host-Netlify-brightgreen)
+![Badge OctoKit](https://img.shields.io/badge/OctoKit_Rest-22.0.0-lightgrey)
+![Badge OctoKit](https://img.shields.io/badge/OctoKit_Auth--App-8.1.0-lightgrey)
+
 # <u>**UPEA Corporation [EN]**</u>
 
 ## **About the Website**

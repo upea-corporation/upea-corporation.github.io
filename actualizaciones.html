@@ -9,50 +9,325 @@
     <link rel="apple-touch-icon" href="image/upea-corp-logo.webp">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/floating-dot.css">
+    
+    <!-- Estilos del calendario + Modal de idioma mejorado -->
     <style>
-        .month-buttons {
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .calendar-container {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        .calendar-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
-        
-        .month-btn {
-            padding: 8px 15px;
-            background-color: #2d333b;
+        .calendar-header h3 {
+            margin: 0;
             color: #c9d1d9;
-            border: 1px solid #444c56;
-            border-radius: 4px;
+            font-size: 1.3rem;
+        }
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+        .calendar-nav button {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.2s;
         }
-        
-        .month-btn:hover {
-            background-color: #444c56;
+        .calendar-nav button:hover:not(:disabled) {
+            background: #30363d;
         }
-        
-        .month-btn.active {
-            background-color: #58a6ff;
-            color: #0d1117;
+        .calendar-nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
-        
-        .month-content {
-            margin-top: 15px;
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+        .calendar-weekday {
+            text-align: center;
+            font-weight: bold;
+            color: #8b949e;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        .calendar-day {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            font-weight: 500;
+            cursor: default;
+            transition: all 0.1s;
+        }
+        .calendar-day.has-updates {
+            background: #1f2a3a;
+            border-color: #58a6ff;
+            color: #58a6ff;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(88, 166, 255, 0.3);
+        }
+        .calendar-day.has-updates:hover {
+            background: #2d3a4a;
+            transform: scale(1.02);
+        }
+        .calendar-day.other-month {
+            opacity: 0.4;
+        }
+        .calendar-day.today {
+            border: 2px solid #f0883e;
+        }
+        /* Modal de actualizaciones */
+        .updates-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        .modal-content {
+            background: #161b22;
+            border: 1px solid #58a6ff;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0d1117;
+            border-radius: 12px 12px 0 0;
+        }
+        .modal-header h3 {
+            margin: 0;
+            color: #58a6ff;
+            font-size: 1.3rem;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
+            color: #f85149;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        .update-entry {
+            margin-bottom: 24px;
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 16px;
+        }
+        .update-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .update-time {
+            color: #8b949e;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .update-list {
+            margin: 8px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        .update-list li {
+            margin-bottom: 4px;
+            color: #c9d1d9;
+        }
+        .update-next, .update-future {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: #21262d;
+            border-left: 3px solid #f0883e;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+        }
+        .update-next strong, .update-future strong {
+            color: #f0883e;
+        }
+        .censored-text {
+            background: #1a1e24;
+            color: #1a1e24;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            transition: color 0.2s;
+        }
+        .no-updates {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+        }
+
+        /* ===== MODAL DE IDIOMA MEJORADO (añadido) ===== */
+        .language-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .language-toggle:hover {
+            background: #21262d;
+        }
+        .language-icon {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            filter: brightness(0.9);
+            transition: filter 0.2s, transform 0.2s;
+        }
+        .language-toggle:hover .language-icon {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+
+        /* Sobrescribimos modal-overlay para que funcione con animaciones */
+        #language-modal.modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #language-modal.modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        #language-modal .modal-content {
+            background: #161b22;
+            border: 1px solid #58a6ff;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            padding: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        #language-modal.active .modal-content {
+            transform: scale(1);
+        }
+        #language-modal .modal-content h2 {
+            margin: 0;
+            padding: 20px 20px 15px;
+            color: #58a6ff;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #30363d;
+        }
+        #language-modal .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        #language-modal .close-btn:hover {
+            color: #f85149;
+        }
+        #language-modal .language-list {
+            list-style: none;
+            margin: 0;
+            padding: 15px 0;
+        }
+        #language-modal .language-list li {
+            margin: 0;
+        }
+        #language-modal .language-list a {
+            display: block;
+            padding: 12px 20px;
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.2s, color 0.2s, border-left 0.2s;
+            border-left: 3px solid transparent;
+        }
+        #language-modal .language-list a:hover {
+            background: #21262d;
+            color: #58a6ff;
+            border-left-color: #58a6ff;
+        }
+
+        @media (max-width: 600px) {
+            .calendar-grid { gap: 2px; }
+            .calendar-day { font-size: 0.8rem; }
+            .calendar-weekday { font-size: 0.7rem; }
         }
     </style>
 
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0d1117">
-
-    <meta name="description" content="Consulta los registros de actualizaciones y cambios operativos de UPEA Corp. Mantente al día con los desarrollos en nuestra base de datos clasificada.">
-    <meta name="keywords" content="UPEA Corporation, UPEA Corp, actualizaciones, logs, registros, cambios, operativos, mejoras, novedades, optimizaciones">
-
+    <meta name="description" content="Consulta los registros de actualizaciones y cambios operativos de UPEA Corp.">
+    <meta name="keywords" content="UPEA Corporation, UPEA Corp, actualizaciones, logs, registros">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UPEA Corporation - Lista de Actualizaciones">
-    <meta name="twitter:description" content="Mantente al día con los últimos cambios y mejoras en nuestro sitio web. Revisa nuestro registro de actualizaciones para conocer las novedades y optimizaciones implementadas.">
+    <meta name="twitter:description" content="Mantente al día con los últimos cambios y mejoras.">
 
     <script src="scripts/floating-dot.js" defer></script>
-
 </head>
 <body>
     <header class="header">
@@ -62,1550 +337,75 @@
         <p class="slogan"><u>Unidad de Protección Especial Antropoide</u></p>
     </header>
 
-<nav class="navbar">
-    <button class="menu-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <ul class="nav-links">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="informacion.html">Información</a></li>
-        <li><a href="entidades.html">Entidades</a></li>
-        <li><a href="acceso.html">Acceso</a></li>
-        <li><a href="registrate.html">Registrate</a></li>
-        <li><a href="actualizaciones.html">Actualizaciones</a></li>
-        <li><a href="contenido-desechado.html">Contenido Desechado</a></li>
-        <li><button id="language-toggle" class="language-toggle" aria-label="Cambiar idioma">
-        <img src="image/language-icon.webp" alt="Icono de Idioma" class="language-icon">
-    </button></li>
-    </ul>
-</nav>
-
-<div id="language-modal" class="modal-overlay">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Selecciona un Idioma</h2>
-        <ul class="language-list">
-            <li><a href="index.html">Español</a></li>
-            <li><a href="EN/home.html">English</a></li>
-            <li><a href="error404.html">Deutsch (Nicht Verfügbar)</a></li>
-            <li><a href="error404.html">Português Brasileiro (Não Disponível)</a></li>
-            <li><a href="error404.html">日本人 (利用不可)</a></li>
-            <li><a href="error404.html">한국어 (사용 불가)</a></li>
+    <nav class="navbar">
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="informacion.html">Información</a></li>
+            <li><a href="entidades.html">Entidades</a></li>
+            <li><a href="acceso.html">Acceso</a></li>
+            <li><a href="registrate.html">Registrate</a></li>
+            <li><a href="actualizaciones.html">Actualizaciones</a></li>
+            <li><a href="contenido-desechado.html">Contenido Desechado</a></li>
+            <li><button id="language-toggle" class="language-toggle" aria-label="Cambiar idioma">
+                <img src="image/language-icon.webp" alt="Icono de Idioma" class="language-icon">
+            </button></li>
         </ul>
+    </nav>
+
+    <div id="language-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Selecciona un Idioma</h2>
+            <ul class="language-list">
+                <li><a href="index.html">Español</a></li>
+                <li><a href="EN/home.html">English</a></li>
+                <li><a href="error404.html">Deutsch (Nicht Verfügbar)</a></li>
+                <li><a href="error404.html">Português Brasileiro (Não Disponível)</a></li>
+                <li><a href="error404.html">日本人 (利用不可)</a></li>
+                <li><a href="error404.html">한국어 (사용 불가)</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 
     <main class="container">
-        <h2>Últimas Actualizaciones de UPEA Corp.</h2>
-        <p>¡AVISO! Todas las actualizaciones se registran localmente antes de su publicación desde el 26 de mayo de 2025. Y a partir del 21 de septiembre de 2025, las actualizaciones se registrarán con actualizaciones dedicadas a las páginas traducidas en su idioma correspondiente en lugar de hacerse de manera general.</p>
-        <div class="accordion">
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <h2>2025</h2>
-                    <span class="arrow">&#9658;</span>
-                </div>
-                <div class="accordion-content">
-                    <p></p>
-                    <div class="month-buttons">
-                        <button class="month-btn" data-month="may">Mayo</button>
-                        <button class="month-btn" data-month="june">Junio</button>
-                        <button class="month-btn" data-month="july">Julio</button>
-                        <button class="month-btn" data-month="august">Agosto</button>
-                        <button class="month-btn" data-month="september">Septiembre</button>
-                        <button class="month-btn" data-month="october">Octubre</button>
-                    </div>
-                    
-                    <div class="month-content" id="may-content" style="display:none;">
-                        <h2>30/05/2025 - 18:47 UTC+2</h2>
-                        <ul>
-                            <li>Corrección ortográficas realizadas.</li>
-                            <li>Corrección de nombre de un archivo de imagen.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de la información de entrevistas de las entidades.</li>
-                        </ul>
-                        <hr>
-                        <h2>29/05/2025 - 19:50 UTC+2</h2>
-                        <ul>
-                            <li>Arreglada una mala sintaxis de código en la base de datos del personal para acceder en <a href="acceso.html" class="main-link">Administración</a>.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de la información de entrevistas de las entidades.</li>
-                        </ul>
-                        <hr>
-                        <h2>29/05/2025 - 19:20 UTC+2</h2>
-                        <ul>
-                            <li>Modificaciones en el base de datos administrativo.</li>
-                            <li>Se elimino la sección de "Medidas de Contención" en la información de las entidades.</li>
-                            <li>Reajustado el metodo de acceso administrativo.</li>
-                            <li>Eliminación de una función no funcional para dispositivos móviles y un archivo no funcional.</li>
-                            <li>Corrección del nombre de una sección mal formulada.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de la información de entrevistas de las entidades.</li>
-                        </ul>
-                        <hr>
-                        <h2>29/05/2025 - 14:26 UTC+2</h2>
-                        <ul>
-                            <li>Corrección de pequeños errores visuales en la barra superior.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de la información de entrevistas de las entidades.</li>
-                            <li>Reajustar metodo de acceso e implementación mejorada de ID.</li>
-                        </ul>
-                        <hr>
-                        <h2>29/05/2025 - 14:17 UTC+2</h2>
-                        <ul>
-                            <li>Cambios de información más elaborada de la corporación en la pagina <a href="informacion.html" class="main-link">Información UPEA Corporation</a>.</li>
-                            <li>Backup de los archivos de la pagina web realizadas.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de la información de entrevistas de las entidades.</li>
-                            <li>Reajustar metodo de acceso e implementación mejorada de ID.</li>
-                        </ul>
-                        <hr>
-                        <h2>28/05/2025 - 13:35 UTC+2</h2>
-                        <ul>
-                            <li>Se añadió información a otra entidad registrada en UPEA Corporation.</li>
-                            <li>Revisión de datos y códigos de la pagina web.</li>
-                            <li>Ajustes realizados en una de las identidades registradas en UPEA Corporation.</li>
-                        </ul>
-                        <hr>
-                        <h2>27/05/2025 - 21:14 UTC+2</h2>
-                        <ul>
-                            <li>Se añadió información a la primera entidad registrada en UPEA Corporation.</li>
-                            <li>Se ajusto margenes de las informaciones de las entidades registradas.</li>
-                        </ul>
-                        <h2>26/05/2025 - 16:31 UTC+2</h2>
-                         <ul>
-                            <li>Arreglo visual al abrir el menú desplegable del registro desde dispositivos móviles.</li>
-                            <li>Corrección de pequeños errores visuales en la barra superior.</li>
-                        </ul>
-                        <hr>
-                        <h2>26/05/2025 - 16:22 UTC+2</h2>
-                         <ul>
-                            <li>Implementación de la pagina de actualizaciones.</li>
-                            <li>Corrección de pequeños errores visuales en la barra superior.</li>
-                            <li>Mejoras en la carga de las imágenes del carrusel.</li>
-                        </ul>
-                        <hr>
-                    </div>
-                    
-                    <div class="month-content" id="june-content" style="display:none;">
-                        <h2>22/06/2025 - 21:63 UTC+2</h2>
-                        <ul>
-                            <li>Se ha actualizado la base de datos de UPEA Corp.</li>
-                            <li>Se incorporó el primer expediente del personal de UPEA Corp.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>21/06/2025 - 15:54 UTC+2</h2>
-                        <ul>
-                            <li>Se ha corregido la redirección de la red social <strong>Twitter/X</strong> del pie de página a la correspondiente.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>20/06/2025 - 12:42 UTC+2</h2>
-                        <ul>
-                            <li>Se ha actualizado la base de datos en la redirección de página.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>18/06/2025 - 12:18 UTC+2</h2>
-                        <ul>
-                            <li>Se ha implementado una redirección personalizada para el ERROR 404.</li>
-                            <li>Se optimizó un archivo interno para mayor eficiencia.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>20/06/2025 - 11:31 UTC+2</h2>
-                        <ul>
-                            <li>Se ha corregido el problema de diseño de la página de error "externo" de UPEA Corporation.</li>
-                            <li>Se aplicó la información del pie de página principal a la página de error "externo" de UPEA Corporation.</li>
-                            <li>Se aplicó un ajuste ligero para una comodidad visual del botón de acceder al formulario de <a href="registrate.html" class="main-link">Registrar EAZ</a>.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>19/06/2025 - 15:34 UTC+2</h2>
-                        <ul>
-                            <li>Se ha solucionado los problemas de los archivos internos.</li>
-                            <li>Se ha corregido el contraste de la ayuda de cómo acceder a las entrevistas de las entidades EAZ.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>19/06/2025 - 15:13 UTC+2</h2>
-                         <ul>
-                            <li>Se corrigió el problema de acceso en la sección de <a href="acceso.html" class="main-link">Acceso</a> desde los expedientes de las entidades EAZ.</li>
-                            <li>Se actualizó la base de datos por completo.</li>
-                            <li>Se añadió la ayuda de cómo acceder a las entrevistas de las entidades EAZ.</li>
-                            <li>Arreglos menores de los registros de actividad del servidor.</li>
-                            <li>Se añadió la entrevista de la entidad <a href="entidades/eaz000.html" class="main-link">EAZ#000</a>.</li>
-                            <li>Se ha aplicado una ligera modificación para una mejora de visualización a los enlaces fuera del pie de página.</li>
-                            <li>Se ha actualizado la página de la <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a>.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>> FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>18/06/2025 - 16:24 UTC+2</h2>
-                        <ul>
-                            <li>Se ha añadido en el pie de página el acceso a la red social <strong>Twitter/X</strong> oficial de UPEA Corp.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>18/06/2025 - 15:26 UTC+2</h2>
-                         <ul>
-                            <li>Se ha corregido un error del cliente por una sintaxis incorrecta en un archivo interno.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>18/06/2025 - 15:12 UTC+2</h2>
-                        <ul>
-                            <li>Se ha cambiado el metodo de los registros de los EAZ.</li>
-                            <li>Se ha añadido los Términos y Condiciones sobre la información de los registros de los EAZ, echa un vistazo en <a href="terminos-y-condiciones-registro-eaz" class="main-link">Registros EAZ</a>.</li>
-                            <li>Se han actualizado la información de <a href="politica-de-cookies" class="main-link">Política de Cookies</a>, <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a> y <a href="extensiones-de-netlify" class="main-link">Extensiones de Netlify</a>.</li>
-                            <li>Se ha eliminado por completo el uso de la extensión <strong><u>auth0</u></strong> de la página web.</li>
-                            <li>Se ha implementado la fecha de la actualización en <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a> respectivo a los cambios realizados.</li>
-                            <li>Se corregio problemas de lectura por las modificaciones realizadas de la información de los origenes de UPEA Corp.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>15/06/2025 - 18:22 UTC+2</h2>
-                        <ul>
-                            <li>Los problemas con los registros de las entidades EAZ han sido corregidos por completo.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>15/06/2025 - 17:39 UTC+2</h2>
-                         <ul>
-                            <li>Se han corregido los problemas de registro de entidades EAZ.</li>
-                            <li>Se ha actualizado la información de las cookies en <a href="politica-de-cookies" class="main-link">Política de Cookies</a> de nuestra página web.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                        <h2>15/06/2025 - 16:22 UTC+2</h2>
-                         <ul>
-                            <li>Se descartó la implementación de traducción.</li>
-                            <li>Se ha implementado la sección de <a href="registrate.html" class="main-link">Registrar Entidades</a>.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Contenido descartado y registros de contenido desechos.</li>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de audios informativos.</li>
-                        </ul>
-                        <hr>
-                    </div>
-                    
-                    <div class="month-content" id="july-content" style="display:none;">
-                        <h2>31/07/2025 - 11:50 UTC+2</h2>
-                    <ul>
-                        <li>Corrección de la cabecera en dispositivos móviles en los expedientes de las entidades.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Nuevo logo e icono de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    <h2>31/07/2025 - 11:20 UTC+2</h2>
-                     <ul>
-                        <li>Optimización y corrección general para dispositivos móviles.</li>
-                        <li>Corrección del menú desplegable en dispositivos móviles.</li>
-                        <li>Corrección del texto censurado en la página de <a href="actualizaciones.html" class="main-link">Actualizaciones</a> en dispositivos móviles.</li>
-                        <li>Actualizadas las políticas de derechos de autor y licencia del sitio web. Consulte la página de <a href="copyright-y-licencia" class="main-link">Copyright y Licencia</a> para más información.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Nuevo logo e icono de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    <h2>30/07/2025 - 01:17 UTC+2</h2>
-                    <ul>
-                        <li>Se ha implementado el expediente de la entidad <a href="entidades/eaz000-1.html" class="main-link">EAZ#000-1</a>.</li>
-                        <li>Se ha actualizado el diseño de la página de expedientes de las entidades.</li>
-                        <li>Se han realizado ajustes menores para mejorar la visualización en dispositivos móviles en los expedientes de las entidades.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Nuevo logo e icono de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    <h2>28/07/2025 - 09:51 UTC+2</h2>
-                    <ul>
-                        <li>Se ha resuelto un error relacionado con el favicon.ico del cliente.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Nuevo logo e icono de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    <h2>28/07/2025 - 09:18 UTC+2</h2>
-                    <ul>
-                        <li>Nuevo diseño de expedientes de entidades implementado.</li>
-                        <li>Información de UPEA Corporation corregida.</li>
-                        <li>El nombre "UPEA Corp." se ha ampliado a "UPEA Corporation" en la cabecera.</li>
-                        <li>Rediseño completo de la web pospuesto indefinidamente.</li>
-                        <li>Se ha recuperado y actualizado el <a href="contenido-desechado.html" class="main-link">Contenido Desechado</a> sobre los origenes del desarrollo web.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Nuevo logo e icono de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    <h2>25/07/2025 - 18:50 UTC+2</h2>
-                    <ul>
-                        <li>Hemos actualizado los Términos y Condiciones relativos al <a href="terminos-y-condiciones-registro-eaz" class="main-link">Registro EAZ</a>, así como el formulario para el registro de entidades.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Ampliación de la información sobre los orígenes de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>25/07/2025 - 16:33 UTC+2</h2>
-                    <ul>
-                        <li>Se ha depurado la base de datos mediante la eliminación de archivos residuales.</li>
-                        <li>Se ha rectificado la ortografía en la página de <a href="entidades.html" class="main-link">Entidades</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Ampliación de la información sobre los orígenes de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>25/07/2025 - 15:48 UTC+2</h2>
-                    <ul>
-                        <li>Se ha registrado la entidad <a href="entidades/eaz666-1.html" class="main-link">EAZ#666-1</a> y su entrevista ha sido incorporada a la base de datos.</li>
-                        <li>Se ha modificado la información general sobre UPEA Corporation.</li>
-                        <li>Se ha restringido temporalmente el acceso a la información clasificada sobre los orígenes de UPEA Corporation.</li>
-                        <li>No se proporcionará información sobre las capacidades anómalas en los expedientes generales de las entidades EAZ ahora en adelante.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Ampliación de la información sobre los orígenes de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>19/07/2025 - 15:50 UTC+2</h2>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Ampliación de la información sobre los orígenes de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>19/07/2025 - 14:51 UTC+2</h2>
-                    <ul>
-                        <li>Se ha completado la actualización a la versión 22.0.0 de la librería Octokit REST.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Ampliación de la información sobre los orígenes de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>19/07/2025 - 13:43 UTC+2</h2>
-                    <ul>
-                        <li>Se han solucionado los problemas de diseño en la página de error 404 personalizada.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>No hay información disponible.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>16/07/2025 - 12:05 UTC+2</h2>
-                    <ul>
-                        <li>Entrevista <a href="entidades/eaz201.html" class="main-link">EAZ#201</a> añadida.</li>
-                        <li>Base de datos interna de UPEA Corp. actualizada.</li>
-                        <li>Información e imágenes de la entidad <a href="entidades/eaz666.html" class="main-link">EAZ#666</a> y <a href="entidades/eaz201.html" class="main-link">EAZ#201</a> actualizadas.</li>
-                        <span class="censored-text">4C6E776264616A204E7763726D6A6D6E6220577820416E70726263616A6D7862</span>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>No hay información disponible.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Rediseño en los expedientes de las entidades.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>13/07/2025 - 16:24 UTC+2</h2>
-                     <ul>
-                        <li>Se ha añadido una nueva entidad a la base de datos: <a href="entidades/eaz201.html" class="main-link">EAZ#201</a>.</li>
-                        <li>Para mejorar la comodidad del usuario, se ha eliminado la burbuja de mensaje directo presente en los expedientes de las entidades.</li>
-                        <li>Se ha actualizado el contenido desechado de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Entrevista de la entidad <a href="entidades/eaz201.html" class="main-link">EAZ#201</a>.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>11/07/2025 - 15:55 UTC+2</h2>
-                     <ul>
-                        <li>Se añadió la página de <a href="contenido-desechado.html" class="main-link">Contenido Desechado</a>.</li>
-                        <li>Se optimizaron las imágenes de la página "Contenido Desechado".</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>No hay información disponible.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de audios informativos.</li>
-                    </ul>
-                    <hr>
-                    <h2>08/07/2025 - 13:20 UTC+2</h2>
-                    <ul>
-                        <li>Se actualizó el menú de las secciones para optimizarlo para dispositivos móviles.</li>
-                        <li>Se eliminó el menú de las secciones en los expedientes de las entidades.</li>
-                        <li>Se arregló una mala respuesta en el acceso a los orígenes de UPEA Corp.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Contenido descartado y registros de contenido desechos.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de audios informativos.</li>
-                    </ul>
-                    <hr>
-                    <h2>03/07/2025 - 13:41 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado la información de la entidad <a href="entidades/eaz666.html" class="main-link">EAZ#666</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Contenido descartado y registros de contenido desechos.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de audios informativos.</li>
-                    </ul>
-                    <hr>
-                    </div>
-                    
-                    <div class="month-content" id="august-content" style="display:none;">
-                        <h2>22/08/2025 - 19:36 UTC+2</h2>
-                    <ul>
-                        <li>Se ha añadido dos nuevos informes y se ha corregido un error de ortografía en un informe del mes de julio.</li>
-                        <li>Se ha corregido un error numérica en la entrevista de la entidad <a href="entidades/eaz201.html" class="main-link">EAZ#201</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Formulario Feedback.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                        <span class="censored-text">4A6C6C6E627820426E6C616E6378</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>17/08/2025 - 15:00 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado la información de la entidad <a href="entidades/eaz201.html" class="main-link">EAZ#201</a> y <a href="entidades/eaz666-1.html" class="main-link">EAZ#666-1</a>.</li>
-                        <li>Nuevo informe en el calendario.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                        <span class="censored-text">4A6C6C6E627820426E6C616E6378</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>14/08/2025 - 18:20 UTC+2</h2>
-                    <ul>
-                        <li>Se ha subsanado un problema de sintaxis en la lista de actualizaciones.</li>
-                        <li>Se han corregido los errores ortográficos presentes en la entrevista de la entidad <a href="entidades/eaz666-1.html" class="main-link">EAZ#666-1</a>.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Re-Implementación de la información sobre los origenes de UPEA Corporation.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>13/08/2025 - 00:13 UTC+2</h2>
-                    <ul>
-                        <li>Se ha optimizado y arreglado problemas de texto en la página de <a href="actualizaciones.html" class="main-link">Actualizaciones</a> en dispositivos móviles.</li>
-                        <li>Se ha arreglado la redirección de <a href="terminos_condiciones_registro-eaz" class="main-link">Términos y Condiciones de Registro EAZ</a> en la página de <a href="formulario-eaz.html" class="main-link">Registrar EAZ</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>ACTUALIZACIONES POSPUESTAS</u></strong></p>
-                    <ul>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>09/08/2025 - 15:00 UTC+2</h2>
-                    <ul>
-                        <li>Se ha compilado la información de las actualizaciones por meses del año.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>05/08/2025 - 21:05 UTC+2</h2>
-                    <ul>
-                        <li>Los archivos han sido migrados satisfactoriamente al repositorio de GitHub de la organización UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Compilación de actualizaciones anuales/mensuales.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>05/08/2025 - 12:05 UTC+2</h2>
-                    <ul>
-                        <li>Se ha corregido problemas de diseño en el pie de página mediante la corrección de los estilos CSS.</li>
-                        <li>Se ha implementado la página de <a href="informes.html" class="main-link">Informes</a>.</li>
-                        <li>Se han resuelto los problemas de integridad de datos en las credenciales de las Entrevistas EAZ, restableciendo la correcta funcionalidad de la base de datos.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                    </ul>
-                    <p><strong><u>> FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Compilación de actualizaciones anuales/mensuales.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Migración de repositorios de GitHub a la organización de UPEA Corporation.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    <h2>04/08/2025 - 16:54 UTC+2</h2>
-                    <ul>
-                        <li>Se ha corregido la información de los metadatos para todas las páginas del sitio.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>> FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Compilación de actualizaciones anuales/mensuales.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    <h2>04/08/2025 - 15:57 UTC+2</h2>
-                    <ul>
-                        <li>Se ha corregido y modificado el formulario de registro EAZ en Jotform.</li>
-                        <li>El logotipo y el icono de UPEA Corporation han sido actualizados.</li>
-                        <li>La redirección de enlaces erróneos ha sido corregida.</li>
-                        <li>Se ha implementado la adición de los metadatos esenciales que estaban ausentes.</li>
-                        <li>Se ha actualizado el enlace del canal de YouTube de UPEA Corporation, utilizando la URL directa del canal.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Reestructuración de la información sobre los orígenes de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Compilación de actualizaciones anuales/mensuales.</li>
-                        <li>Rediseño completo de la página web.</li>
-                    </ul>
-                    <hr>
-                    </div>
-                    
-                    <div class="month-content" id="september-content" style="display:none;">
-                        <h2>29/09/2025 - 13:37 UTC+2</h2>
-                        <ul>
-                            <li>Se ha corregido el problema de diseño de definición de especies únicas en los dispositivos móviles.</li>
-                            <li>Ahora las clasificaciones preliminares serán clasificación normal, especificado por UPEA Corporation.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>29/09/2025 - 12:37 UTC+2</h2>
-                        <ul>
-                            <li>Se ha registrado la entidad <a href="entidades/eaz001.html" class="main-link">EAZ#001</a> en la base de datos de UPEA Corporation.</li>
-                            <li>Se ha actualizado la información de la entidad <a href="entidades/eaz666-1.html" class="main-link">EAZ#666-1</a> con un nombre de especie único.</li>
-                            <li>Las entidades EAZ con nombres de especie únicos tendrán un sistema para ver la definición de la especie.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>25/09/2025 - 14:16 UTC+2</h2>
-                        <ul>
-                            <li>Se ha cambiado el nombre del sector número 4 y un departamento del sector número 4; ya no se incluirá la mención de Contención.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>24/09/2025 - 14:32 UTC+2</h2>
-                        <ul>
-                            <li>Se han actualizado los archivos internos.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        </ul>
-                        <h2>23/09/2025 - 14:29 UTC+2</h2>
-                        <ul>
-                            <li>Se ha optimizado la lista de actualizaciones por años con botones mensuales.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-
-                        <h2>23/09/2025 - 12:13 UTC+2</h2>
-                        <ul>
-                            <li>Se ha solucionado un problema de visualización de las ID's de las entidades en dispositivos móviles.</li>
-                            <li>Se ha optimizado la información de la clasificación de las entidades.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>21/09/2025 - 11:34 UTC+2</h2>
-                        <ul>
-                            <li>Se ha añadido en el menú de idiomas, el Alemán.</li>
-                            <li>Base de datos de UPEA Corporation actualizada.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>20/09/2025 - 15:44 UTC+2</h2>
-                        <ul>
-                            <li>Se ha implementando las traducciones de idiomas, actualmente disponible en inglés.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>16/09/2025 - 16:21 UTC+2</h2>
-                        <ul>
-                            <li>Se ha aplicado un nuevo diseño para los expedientes del personal.</li>
-                            <li>Se ha actualziado la base de datos de UPEA Corporation.</li>
-                            <li>Se ha eliminado temporalmente el acceso de los Informes.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Re-Implementación de traducciones de idiomas (EN, DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>15/09/2025 - 16:44 UTC+2</h2>
-                        <ul>
-                            <li>Se ha completado con éxito toda la configuración PWA (Progressive Web App) en la página web de UPEA Corporation, según las estadísticas de la extensión LightHouse.</li>
-                            <li>Se añadió archivos internos para el funcionamiento del PWA como <u>manifest.json</u> y <u>service-worker.js</u></li>
-                            <li>Se ha añadido keywords del meta datos en todas las páginas.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                            <li>Re-Implementación de traducciones de idiomas (EN, DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>15/09/2025 - 13:01 UTC+2</h2>
-                        <ul>
-                            <li>Se ha arreglado el problema de proceso de codificaciones de UPEA Codex.</li>
-                            <li>Se ha actualizado el archivo <u>package.json</u> y el archivo interno <u>LICENSE</u> del repositorio GitHub.</li>
-                            <li>Se ha actualizado los <a href="terminos-y-condiciones.html" class="main-link">Términos y Condiciones</a> y <a href="copyright-y-licencia.html" class="main-link">Copyright y Licencia</a> de la pagina web UPEA Corporation.</li>
-                            <li>Se cambio el metodo de codificación Alpha y se ha reemplazado con exito la información codificado Alpha anterior al actual.</li>
-                            <li>Se ha arreglado las direcciones de pie de pagina en todas las paginas.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                            <li>Re-Implementación de traducciones de idiomas (EN, DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                        <hr>
-
-                        <h2>12/09/2025 - 18:42 UTC+2</h2>
-                        <ul>
-                            <li>Se ha corregido un problema que bloqueaba el interfaz en UPEA Codex.</li>
-                            <li>Se ha actualizado los archivos internos <u>package.json</u> y <u>netlifly.toml</u></li>
-                            <li>La pagina de ERROR404 ahora estará en inglés de forma permanente para mayor accesibilidad en el futuro.</li>
-                            <li>Se ha corregido el subespecie de la entidad <a href="entidades/eaz666.html" class="main-link">EAZ#666</a>.</li>
-                            <li>Se ha especificado hoy los idiomas que se implementarán.</li>
-                            <li>Se ha cambiado el titulo de la pagina de <a href="entidades.html" class="main-link">Entidades</a>.</li>
-                        </ul>
-                        <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                            <li>Re-Implementación de traducciones de idiomas (EN, DE, PT-BR, JP & KO).</li>
-                            <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                        </ul>
-                        <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                        <ul>
-                            <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                            <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                            <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                        </ul>
-                    <hr>
-
-                    <h2>11/09/2025 - 21:11 UTC+2</h2>
-                    <ul>
-                        <li>Se ha implementado nuevas opciones de subespecie de tu entidad EAZ en el formulario de registro EAZ.</li>
-                        <li>Se ha añadido nueva información de la entidad <a href="entidades/eaz005.html" class="main-link">EAZ#005</a> con información veridica del propietario.</li>
-                        <li>Se ha implementado información sobre el proyecto Web de UPEA Corporation en la página <a href="informacion.html" class="main-link">Información</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>11/09/2025 - 19:44 UTC+2</h2>
-                    <ul>
-                        <li>Se ha modificado la información del expediente de la entidad <a href="entidades/eaz005.html" class="main-link">EAZ#005</a> con información reciente registrada.</li>
-                        <li>Se ha implementado 2 nuevos sistemas de codificación Codex.</li>
-                        <li>Se ha creado correctamente la codificación exclusiva para el retido de contenido de los expedientes de empleados.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>11/09/2025 - 14:06 UTC+2</h2>
-                    <ul>
-                        <li>Se ha añadido una nueva entidad EAZ en la base de datos de UPEA Corporation, <a href="entidades/eaz005.html" class="main-link">EAZ#005</a>.</li>
-                        <li>Todas las notas de los expedientes de las entidades EAZ, ahora estarán centradas.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>09/09/2025 - 18:00 UTC+2</h2>
-                    <ul>
-                        <li>Se ha arreglado los problemas de redirección del pie de página de las entrevistas, entidad y expedientes.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>09/09/2025 - 17:42 UTC+2</h2>
-                    <ul>
-                        <li>Cambio de orden en el menú de navegación.</li>
-                        <li>Reglas de redirección de URL añadidos en el archivo <u>netlify.toml</u></li>
-                        <li>Se ha solucionado un problema de visualización desde dispositivos de escritorio de los textos censurados/redactados.</li>
-                        <li>Se ha completado la actualización a la versión 8.1.0 de la librería Octokit AUTH-APP.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>07/09/2025 - 13:42 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado el formulario de registro de empleado para añadir información crucial que no se había implementado.</li>
-                        <li>Se ha añadido la visualización del CaDMT en la página de <a href="registrate.html" class="main-link">Registrate</a> de quien se encarga la gestión de los datos.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>06/09/2025 - 17:02 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado la <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a> para corregir un ligero cambio de formato de texto.</li>
-                        <li>Se ha actualizado el <a href="terminos-y-condiciones-registro-eaz" class="main-link">Términos y Condiciones de Registro EAZ</a> y <a href="terminos-y-condiciones-feedback" class="main-link">Términos y Condiciones de Registro Feedback</a> para corregir el formato de texto.</li>
-                        <li>Se ha añadido nuevo contenido en <a href="contenido-desechado.html" class="main-link">Contenido Desechado</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <span class="censored-text">586172706E776E6220682057646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>06/09/2025 - 16:35 UTC+2</h2>
-                    <ul>
-                        <li>Se han implementado nuevos formularios de registro y se ha completado la migración de estos a Google Forms. También se han actualizado los términos y condiciones relacionados con los formularios.</li>
-                        <li>Se han agregado dos nuevos formularios; Empleado y Feedback</li>
-                        <li>Se ha revisado y actualizado la información general añadiendo el contacto email del equipo de UPEA Corporation.</li>
-                        <li>Se ha actualizado la <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a>.</li>
-                        <li>Se ha modificado el archivo interno <u>package.json</u></li>
-                        <li>Se ha descartado el redseño completo de la página web.</li>
-                        <li>Se ha actualizado la <a href="politica-de-cookies" class="main-link">Política de Cookies</a>.</li>
-                        <li>Se ha actualizado los <a href="terminos-y-condiciones" class="main-link">Términos y Condiciones</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                    </ul>
-                    <p><strong><u>>FUTURAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Selección del entrevistador en el formulario de registro EAZ.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>05/09/2025 - 09:47 UTC+2</h2>
-                    <ul>
-                        <li>Se ha corregido los problemas de redirección de página.</li>
-                        <li>Se ha cambiado algunos nombres de las direcciones de página.</li>
-                        <li>Se ha cambiado el metodo de ver la información de los origenes de UPEA Corporation.</li>
-                    </ul>
-                    <p><strong>>PRÓXIMAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Formulario Feedback.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>03/09/2025 - 15:54 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado la base de datos de UPEA Corporation.</li>
-                        <li>Términos y Condiciones sobre el <a href="terminos-y-condiciones-registro-de-empleado" class="main-link">Registro de Empleado</a> implementado.</li>
-                        <span class="censored-text">52776F7861766A6C72F377206D6E20756A6220527762636A756A6C7278776E622044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>PRÓXIMAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Formulario Feedback.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>02/09/2025 - 15:30 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado la base de datos de UPEA Corporation.</li>
-                        <li>Las actualizaciones que se pospusieron ahora se han integrado en la sección de "Futuras Actualizaciones" para optimizar el contenido.</li>
-                        <li>Se ha incorporado nuevo contenido a la página de <a href="contenido-desechado.html" class="main-link">Contenido Desechado</a>.</li>
-                        <span class="censored-text">4A6C6C6E627820426E6C616E6378</span>
-                    </ul>
-                    <p><strong>>PRÓXIMAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Formulario Feedback.</li>
-                        <li>Registro de empleados y proceso de entrevista.</li>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Implementación de nuevo diseño en expedientes de personal.</li>
-                        <li>Selección del entrevistador en el formulario de registro EAZ en Jotform.</li>
-                        <li>Informe de jornadas laborales del personal de UPEA Corporation.</li>
-                        <li>Re-Implementación de traducciones de idiomas.</li>
-                        <li>Rediseño completo de la página web.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                </div>
-
-                <div class="month-content" id="october-content" style="display: none;">
-                    <h2>25/10/2025 - 13:49 UTC+2</h2>
-                    <ul>
-                        <li>Se ha registrado la entrevista de la entidad <a href="entities/zae666-2.html" class="main-link">EAZ#666-2</a>.</li>
-                        <li>Se han corregido algunas clasificaciones de algunas entidades según la revisión de la información de la base de datos.</li>
-                        <li>Se han corregido las conclusiones de las entrevistas de cada entidad EAZ.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Pasar la lista de actualizaciones a calendario.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>25/10/2025 - 11:22 UTC+2</h2>
-                    <ul>
-                        <li>Se ha corregido la clasificación de las entidades EAZ.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Pasar la lista de actualizaciones a calendario.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    
-                    <h2>19/10/2025 - 14:32 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado los <a href="terminos-y-condiciones-de-registros" class="main-link">Términos y Condiciones de Registro</a>.</li>
-                        <li>Se ha actualizado la <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a>.</li>
-                        <li>Se ha reorganizado el registro de Empleados y Feedback.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Pasar la lista de actualizaciones a calendario.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>18/10/2025 - 15:26 UTC+2</h2>
-                    <ul>
-                        <li>Se han corregido errores ortográficos en la página <a href="informacion.html" class="main-link">Información</a> y se ha aplicado una nueva jerarquía de la corporación.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro de Empleado y posiblemente del Feedback.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>17/10/2025 - 20:08 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado los <a href="terminos-y-condiciones-de-registros" class="main-link">Términos y Condiciones de Registro</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro de Empleado y posiblemente del Feedback.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>14/10/2025 - 16:35 UTC+2</h2>
-                    <ul>
-                        <li>Se ha actualizado la información general sobre la página web; ahora ya no es un Proyecto ARG Web, sino un Proyecto Wiki Comunitario.</li>
-                        <li>Archivos internos han sido actualizados.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro de Empleado y posiblemente del Feedback.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>12/10/2025 - 15:57 UTC+2</h2>
-                    <ul>
-                        <li>Se han actualizado los <a href="terminos-y-condiciones" class="main-link">Términos y Condiciones de Uso</a>, la <a href="politica-de-cookies" class="main-link">Política de Cookies</a> y la <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a>.</li>
-                        <li>Ahora la página de Copyright y Licencia se denominará <a href="copyright" class="main-link">Copyright</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro de Empleado y posiblemente del Feedback.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>09/10/2025 - 19:14 UTC+2</h2>
-                    <ul>
-                        <li>Se ha añadido una nueva entidad en la base de datos, <a href="entidades/eaz666-2.html" class="main-link">EAZ#666-2</a>.</li>
-                        <li>Se ha cambiado la definición de género de las entidades, de varón a masculino.</li>
-                        <li>Se ha solucionado un error visual del enlace de direccion hacia los <a href="terminos-y-condiciones-de-registros" class="main-link">Términos y Condiciones de Registros</a>.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro de Empleado y posiblemente del Feedback.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>07/10/2025 - 18:09 UTC+2</h2>
-                    <ul>
-                        <li>Se han actualizado los <a href="terminos-y-condiciones-de-registros" class="main-link">Términos y Condiciones de Registros</a>.</li>
-                        <li>Se ha actualizado la <a href="politica-de-seguridad-y-privacidad" class="main-link">Política de Seguridad y Privacidad</a>.</li>
-                        <li>Se ha reorganizado el formulario de registro de Entidades EAZ para mejorar la experiencia del usuario.</li>
-                        <li>Se ha actualizado la página de <a href="informacion.html" class="main-link">Información</a> en la parte inicial.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro de Empleado y posiblemente del Feedback.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-
-                    <h2>05/10/2025 - 00:22 UTC+2</h2>
-                    <ul>
-                        <li>Se ha modificado los <a href="terminos-y-condiciones-de-registros" class="main-link">Términos y Condiciones de Registros</a> para rectificación sobre le Registro EAZ y Empleado.</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro EAZ.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                    
-                    <h2>04/10/2025 - 16:46 UTC+2</h2>
-                    <ul>
-                        <li>Se ha solucionado un problema de visualización de la burbuja de texto de las definiciones de la especie única.</li>
-                        <li>Se ha eliminado la información duplicada del mes de septiembre de 2025.</li>
-                        <li>Se han unificado los Términos y Condiciones sobre los registros en una sola página en <a href="terminos-y-condiciones-de-registros" class="main-link">Términos y Condiciones de Registros</a>.</li>
-                        <li>Se añadió en la lista de idiomas de las páginas del pie de página el alemán, que no se había añadido accidentalmente.</li>
-                        <li>Se han eliminado los Términos y Condiciones de Registro de Entidades, Empleados y Feedback, al estar todo unificado.</li>
-                        <li>Se ha corregido en las entidades <a href="entidades/eaz666-1.html" class="main-link">EAZ#666-1</a> y <a href="entidades/eaz666.html" class="main-link">EAZ#666</a>; en vez de estar puesto «Fecha de Registro», ahora figura «Fecha de Nacimiento».</li>
-                    </ul>
-                    <p><strong><u>>PRÓXIMAS ACTUALIZACIONES</u></strong></p>
-                    <ul>
-                        <li>Implementación de traducciones de idiomas (DE, PT-BR, JP & KO).</li>
-                        <span class="censored-text">57646E656A6220527762636A756A6C7278776E62206D6E2044594E4A204C78617978616A637278772E</span>
-                    </ul>
-                    <p><strong>>FUTURAS ACTUALIZACIONES</strong></p>
-                    <ul>
-                        <li>Reorganización del Registro EAZ.</li>
-                        <li>Página web de Centro de Investigación y Laboratorios de UPEA Corp.</li>
-                    </ul>
-                    <hr>
-                </div>
-            </div>
-        </div>
-
+        <h2>📅 Calendario de Actualizaciones de UPEA Corp.</h2>
+        <p>Todas las actualizaciones se registran localmente antes de su publicación desde el 26 de mayo de 2025. Selecciona un día resaltado para ver los detalles.</p>
+        <p>Debido a la gestión multilingüe, las actualizaciones se publicarán de manera simultánea tras una revisión. En consecuencia, las marcas temporales de los cambios no coincidirán con la hora efectiva de publicación; estas reflejan el momento exacto en que se finalizó cada ajuste previo a su lanzamiento definitivo.</p>
+        
+        <!-- El calendario se inyectará aquí -->
+        <div id="calendar-app" class="calendar-container"></div>
     </main>
 
     <footer class="footer">
         <p>© 2026 UPEA Corporation - Todos los derechos reservados.
-            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw">
-                <img src="image/rrss/YouTube-Icon.svg" alt="Cuenta Oficial de YouTube de UPEA Corp." class="icon-link">
-            </a>
-            <a href="https://x.com/UPEA_Corp">
-                <img src="image/rrss/Twitter-Icon.svg" alt="Cuenta Oficial de Twitter/X de UPEA Corp." class="icon-link">
-            </a>
-            <a href="https://bsky.app/profile/upea-corp.netlify.app">
-                <img src="image/rrss/Bluesky-Icon.svg" alt="Cuenta Oficial de BlueSky de UPEA Corp." class="icon-link"> 
-            </a>
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw"><img src="image/rrss/YouTube-Icon.svg" alt="YouTube" class="icon-link"></a>
+            <a href="https://x.com/UPEA_Corp"><img src="image/rrss/Twitter-Icon.svg" alt="Twitter/X" class="icon-link"></a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app"><img src="image/rrss/Bluesky-Icon.svg" alt="BlueSky" class="icon-link"></a>
             <br> 
-                <a href="extensiones-de-netlify" class="footer-link">Extensiones de Netlify</a> | 
-                <a href="politica-de-cookies" class="footer-link">Política de Cookies</a> |
-                <a href="terminos-y-condiciones" class="footer-link">Términos y Condiciones de Uso</a> |
-                <a href="politica-de-seguridad-y-privacidad" class="footer-link">Política de Seguridad y Privacidad</a> |
-                <a href="copyright" class="footer-link">Copyright</a> |
-                <a href="terminos-y-condiciones-de-registros" class="footer-link">Términos y Condiciones de Registros</a>
+            <a href="extensiones-de-netlify" class="footer-link">Extensiones de Netlify</a> | 
+            <a href="politica-de-cookies" class="footer-link">Política de Cookies</a> |
+            <a href="terminos-y-condiciones" class="footer-link">Términos y Condiciones de Uso</a> |
+            <a href="politica-de-seguridad-y-privacidad" class="footer-link">Política de Seguridad y Privacidad</a> |
+            <a href="copyright" class="footer-link">Copyright</a> |
+            <a href="terminos-y-condiciones-de-registros" class="footer-link">Términos y Condiciones de Registros</a>
         </p>
     </footer>
 
-<style>
-  .icon-link {
-    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
-    height: 24px; /* Asegura que el icono sea cuadrado */
-    vertical-align: middle; /* Alinea el icono con el texto */
-    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
-  }
-</style>
+    <style>
+        .icon-link { width: 24px; height: 24px; vertical-align: middle; margin-left: 5px; }
+    </style>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Manejo del acordeón
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            
-            // Función para cerrar completamente el acordeón
-            function closeAccordion(header) {
-                header.classList.remove('active');
-                const content = header.nextElementSibling;
-                content.style.maxHeight = null;
-                
-                // Ocultar todos los contenidos de mes
-                document.querySelectorAll('.month-content').forEach(monthContent => {
-                    monthContent.style.display = 'none';
-                });
-                
-                // Quitar la clase active de todos los botones de mes
-                document.querySelectorAll('.month-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                // Cambiar el ícono de flecha a la derecha (cerrado)
-                const arrow = header.querySelector('.arrow');
-                if (arrow) {
-                    arrow.innerHTML = '&#9658;'; // Flecha hacia la derecha cuando está cerrado
-                }
-            }
-            
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const isOpen = content.style.maxHeight;
-                    
-                    // Si está abierto, cerrarlo completamente
-                    if (isOpen) {
-                        closeAccordion(this);
-                    } else {
-                        // Cerrar todos los demás acordeones primero
-                        accordionHeaders.forEach(otherHeader => {
-                            if (otherHeader !== this) {
-                                closeAccordion(otherHeader);
-                            }
-                        });
-                        
-                        // Abrir este acordeón
-                        this.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        
-                        // Cambiar el ícono de flecha a abajo (abierto)
-                        const arrow = this.querySelector('.arrow');
-                        if (arrow) {
-                            arrow.innerHTML = '&#9659;'; // Flecha hacia abajo cuando está abierto
-                        }
-                    }
-                });
-            });
-
-            // Manejo de los botones de mes
-            const monthButtons = document.querySelectorAll('.month-btn');
-            monthButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const month = this.getAttribute('data-month');
-                    
-                    // Ocultar todos los contenidos de mes
-                    document.querySelectorAll('.month-content').forEach(content => {
-                        content.style.display = 'none';
-                    });
-                    
-                    // Quitar la clase active de todos los botones
-                    document.querySelectorAll('.month-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Añadir la clase active al botón seleccionado
-                    this.classList.add('active');
-                    
-                    // Mostrar el contenido del mes seleccionado
-                    const selectedContent = document.getElementById(month + '-content');
-                    if (selectedContent) {
-                        selectedContent.style.display = 'block';
-                        
-                        // Actualizar la altura del acordeón
-                        const accordionContent = this.closest('.accordion-content');
-                        if (accordionContent) {
-                            accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
-    <!-- Script para el menú móvil -->
+    <!-- Scripts -->
     <script src="scripts/mobile-menu.js"></script>
     <script src="scripts/language-menu.js"></script>
-
+    
+    <!-- Datos de actualizaciones (archivo externo) -->
+    <script src="scripts/updates-data.js"></script>
+    
+    <!-- Lógica del calendario -->
+    <script src="scripts/calendar-updates.js"></script>
 </body>
 </html>
