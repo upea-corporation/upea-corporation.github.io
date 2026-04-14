@@ -1,6 +1,6 @@
 {
   "name": "upea-web-client",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Sitio Web Wiki del Cliente para UPEA Corporation",
   "main": "index.html",
   "scripts": {
@@ -37,11 +37,12 @@
     "English",
     "Inglés"
   ],
-  "author": "KaineoWolf, IrdurDev & UPEA Corp. Team",
+  "author": "KaineoWolf, IrdurDev, UPEA Corp. Team",
   "license": "ISC",
   "dependencies": {
     "@octokit/rest": "22.0.0",
-    "@octokit/auth-app": "8.1.0"
+    "@octokit/auth-app": "8.1.0",
+    "@netlify/blobs": "^7.0.0"
   },
   "devDependencies": {
     "@netlify/plugin-lighthouse": "6.0.1"
