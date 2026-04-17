@@ -80,7 +80,7 @@ window.updatesData = [
     // ========== JUNIO 2025 ==========
     {
       isoDate: "2025-06-22",
-      time: "21:63",
+      time: "21:36",
       items: [
         "Se ha actualizado la base de datos de UPEA Corp.",
         "Se incorporó el primer expediente del personal de UPEA Corp."
@@ -685,6 +685,13 @@ window.updatesData = [
         time: "14:24",
         items: [
           "Se ha corregido la inconsistencia en el encabezado del banner, derivada de una transferencia errónea de archivos desde el entorno de desarrollo."
+        ],
+      },
+      {
+        isoDate: "2026-04-17",
+        time: "14:53",
+        items: [
+          "Se ha corregido la lógica de detección del horario de verano en los registros de actualizaciones."
         ],
       }
     ];

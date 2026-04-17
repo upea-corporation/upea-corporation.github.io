@@ -80,7 +80,7 @@ window.updatesData = [
     // ========== JUNE 2025 ==========
     {
       isoDate: "2025-06-22",
-      time: "21:63",
+      time: "21:36",
       items: [
         "Updated UPEA Corp. database.",
         "Added the first UPEA Corp. personnel file."
