@@ -679,5 +679,21 @@ window.updatesData = [
         items: [
           "Se ha actualizado el diseño del menú desplegable para la elección de idioma, mejorando su estética y facilitando la navegación del usuario."
         ],
+      },
+      {
+        isoDate: "2026-04-17",
+        time: "14:24",
+        items: [
+          "Se ha corregido la inconsistencia en el encabezado del banner, derivada de una transferencia errónea de archivos desde el entorno de desarrollo."
+        ],
       }
     ];
+
+  // Ejemplo añadir update nuevo sin romper el codigo
+  //  {
+  //    isoDate: "",
+  //    time: "",
+  //    items: [
+  //      ""
+  //    ],
+  //  }

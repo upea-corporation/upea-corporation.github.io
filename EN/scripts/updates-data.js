@@ -679,5 +679,12 @@ window.updatesData = [
             "Modified the <strong><u>Note</u></strong> section located at the bottom of the file, after the <strong><u>Observations and Behaviors</u></strong> fields.",
             "Corrections to translations that were not translated correctly into English."
         ],
+      },
+      {
+        isoDate: "2026-04-17",
+        time: "14:24",
+        items: [
+          "The inconsistency in the banner header, resulting from an incorrect file transfer from the development environment, has been corrected."
+        ],
       }
 ];
