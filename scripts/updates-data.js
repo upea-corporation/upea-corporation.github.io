@@ -699,8 +699,8 @@ window.updatesData = [
         time: "12:59",
         items: [
           "Se han optimizado los archivos CSS correspondientes a los estilos de diseño.",
-          "Se ha implementado un nuevo diseño en los expedientes de las entidades, específicamente en la sección “Observaciones y Comportamiento”.",
-          "Se ha modificado la denominación de la sección “Resumen General” en los expedientes de las entidades, pasando a llamarse “Información”.",
+          "Se ha implementado un nuevo diseño en los expedientes de las entidades, específicamente en la sección <strong><u>Observaciones y Comportamiento</u></strong>.",
+          "Se ha modificado la denominación de la sección <strong><u>Resumen General</strong></u> en los expedientes de las entidades, pasando a llamarse <strong><u>Información</u></strong>.",
           "Se han corregido las rutas de las imágenes de las entidades en las páginas traducidas al inglés."
         ],
       },

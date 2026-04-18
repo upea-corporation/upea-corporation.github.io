@@ -699,8 +699,8 @@ window.updatesData = [
         time: "12:59",
         items: [
           "The CSS files corresponding to the design styles have been optimized.",
-          "A new design has been implemented in the entity files, specifically in the “Observations and Behavior” section.",
-          "The name of the “General Summary” section in the entity files has been changed to “Information”.",
+          "A new design has been implemented in the entity files, specifically in the <strong><u>Observations and Behavior</u></strong> section.",
+          "The name of the <strong><u>General Summary</u></strong> section in the entity files has been changed to <strong><u>Information</u></strong>.",
           "The image paths of the entities have been corrected."
         ],
       },
