@@ -1,337 +1,155 @@
+/*
+ * entidades.css — Estilos completos y autónomos para páginas de Entidades (EAZ)
+ * No depende de main.css.
+ *
+ * v5 — Cambios:
+ *   - Layout cabecera: imagen centrada arriba, caja de datos debajo (columna)
+ *   - Observaciones: sin emojis, estilo corporativo con línea lateral de color
+ *   - Texto en observaciones: izquierda, normal, sin nada especial
+ *   - Franja lateral por categoría: solo color sólido, sin iconos
+ *   - Indicador de categoría: etiqueta de texto en mayúsculas con color
+ */
+
 /* ==========================================================================
-   2. Estilos del Encabezado (Header)
+   1. Reset y Base
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. Header / Banner
    ========================================================================== */
 
 .header {
-    background-color: #161b22; /* Fondo ligeramente más claro que el body */
+    background-color: #161b22;
     color: #c9d1d9;
     text-align: center;
     padding: 1em 0;
-    flex-shrink: 0; /* Evita que el header se encoja si el contenido es mucho */
+    flex-shrink: 0;
 }
 
-/* Estilos para el título principal (h1) dentro del header, que contiene la imagen */
 .header h1 {
-    display: flex; /* Permite alinear la imagen y el texto en línea */
-    align-items: center; /* Centra verticalmente los elementos (imagen y texto) */
-    justify-content: center; /* Centra horizontalmente el contenido del h1 */
-    gap: 10px; /* Espacio entre la imagen y el texto */
-    border-bottom: none; /* Elimina el borde inferior si lo hereda de otros h1 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: none;
     padding-bottom: 0;
-    margin-bottom: 0.5em; /* Ajusta el margen inferior */
-    color: #58a6ff; /* Color del texto del título (azul brillante) */
+    margin-bottom: 0.5em;
+    color: #58a6ff;
+    flex-wrap: wrap;
+    font-size: 1.8em;
+    padding: 0 1em;
 }
 
-/* Estilos para la imagen del icono dentro del título principal */
 .header h1 img {
-    height: 100px; /* Altura del icono */
-    width: auto; /* Ancho automático para mantener la proporción */
-    vertical-align: middle; /* Alineación vertical */
+    height: 100px;
+    width: auto;
+    vertical-align: middle;
+    flex-shrink: 0;
 }
 
-/* Estilos para el eslogan debajo del título */
 .slogan {
     font-style: italic;
     font-size: 1.2em;
     text-align: center;
     margin-bottom: 2em;
-    color: #8b949e; /* Un gris más oscuro para el eslogan */
-}
-
-/* --- Estilos para Páginas de Entidades Individuales (entity-profile) --- */
-
-.entity-profile {
-    background-color: #161b22; /* Fondo oscuro del marco, similar al de las listas de entidades */
-    padding: 2em; /* Reducido para móviles */
-    /* Eliminado: padding-top: 5em; - se manejará el espacio con la imagen directamente */
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra sutil para darle profundidad */
-    margin-top: 2em;
-    max-width: 900px; /* Ancho máximo para el marco de la entidad */
-    width: 90%; /* Ancho responsivo */
-    margin-left: auto;
-    margin-right: auto;
-    color: #c9d1d9; /* Color de texto claro general para el contenido */
-    line-height: 1.6; /* Mejor legibilidad */
-}
-
-.entity-profile h2 {
-    text-align: center;
-    color: #58a6ff; /* Azul para títulos principales */
-    border-bottom: 2px solid #30363d; /* Línea separadora */
-    padding-bottom: 0.8em;
-    margin-bottom: 2em; /* Suficiente margen para que la imagen no lo tape en móvil */
-    font-size: 1.8em; /* Ajustado para móviles */
-}
-
-.profile-header {
-    display: flex; /* Permite que la imagen y los detalles estén lado a lado */
-    flex-direction: column; /* Por defecto apilados en móvil */
-    align-items: center; /* Centra los ítems verticalmente en móvil */
-    gap: 2em; /* Espacio entre la imagen y los detalles */
-    margin-bottom: 2.5em;
-    padding-bottom: 2em;
-    border-bottom: 1px dashed #30363d; /* Separador sutil */
-}
-
-.entity-image {
-    flex-shrink: 0; /* Evita que la imagen se encoja */
-    width: 150px; /* Ancho fijo para la imagen de perfil en móvil */
-    height: 150px; /* Altura fija para la imagen de perfil en móvil */
-    border-radius: 50%; /* Opcional: imagen redonda. Quitar para cuadrada. */
-    overflow: hidden; /* Recorta la imagen si es redonda */
-    border: 3px solid #58a6ff; /* Borde alrededor de la imagen */
-    box-shadow: 0 0 15px rgba(88, 166, 255, 0.6); /* Resplandor azul alrededor de la imagen */
-    margin-top: 0; /* Ajustado: Sin margen negativo por defecto (para móviles) */
-}
-
-.entity-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-    display: block;
-}
-
-.entity-details {
-    flex-grow: 1; /* Permite que los detalles ocupen el espacio restante */
-    text-align: center; /* Centra el texto en móviles */
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-}
-
-/* Media query para optimizar la visualización en dispositivos móviles */
-@media (max-width: 768px) {
-    .entity-profile {
-        padding: 1.5em;
-        width: 95%;
-        margin-top: 1em;
-    }
-    
-    .entity-profile h2 {
-        font-size: 1.5em;
-        padding-bottom: 0.5em;
-        margin-bottom: 1.5em;
-    }
-    
-    .profile-header {
-        gap: 1.5em;
-        margin-bottom: 1.5em;
-        padding-bottom: 1.5em;
-    }
-    
-    .entity-image {
-        width: 120px;
-        height: 120px;
-    }
-    
-    /* Ajustes para la lista de entidades en móviles */
-    .lista-entidades {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .lista-entidades h3 {
-        font-size: 1.4em;
-        text-align: center;
-        margin-bottom: 1.2em;
-    }
-    
-    .lista-entidades li {
-        margin-bottom: 0.8em;
-    }
-    
-    .lista-entidades a {
-        padding: 0.8em;
-        font-size: 1.1em;
-    }
-    .container {
-        width: 90%;
-        padding-right: 1.5em;
-        margin: 0.1em auto;
-    }
-    /* Mejoras para el header en móviles */
-    .header h1 {
-        font-size: 1.5em;
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .header h1 img {
-        height: 70px; /* Reducir tamaño de imagen en móviles */
-    }
-    
-    .slogan {
-        font-size: 1em;
-        margin-bottom: 1em;
-    }
-}
-
-/* NEW: Styles for the new detail boxes */
-.entity-details-box,
-.entity-physical-details-box {
-    background-color: #21262d; /* Darker background for the boxes */
-    border: 1px solid #30363d; /* Subtle border */
-    border-radius: 8px;
-    padding: 1em; /* Reducido para móviles */
-    margin-bottom: 1.5em; /* Space between boxes and other content */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.entity-details-box p,
-.entity-physical-details-box p {
-    margin: 0.5em 0; /* Reducido para móviles */
-    font-size: 1em; /* Ajustado para móviles */
-    color: #c9d1d9;
-}
-
-.entity-details-box p strong,
-.entity-physical-details-box p strong {
-    color: #58a6ff; /* Color for titles within the boxes */
-    font-weight: bold;
-    margin-right: 0.5em;
-}
-
-
-.entity-details p {
-    margin: 0.8em 0;
-    font-size: 1.1em;
-    color: #c9d1d9;
-}
-
-.entity-details p strong {
-    color: #58a6ff; /* Color para los títulos de los detalles (Nombre, ID, etc.) */
-    font-weight: bold;
-    margin-right: 0.5em;
-}
-
-.entity-info {
-    margin-top: 2em;
-    padding-top: 0.00001em;
-}
-
-.entity-info h3 {
-    color: #79c0ff; /* Azul más claro para subtítulos */
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 0.5em;
-    margin-bottom: 1.5em;
-    font-size: 1.3em; /* Ajustado para móviles */
-}
-
-.entity-info p {
-    margin-bottom: 1.5em;
-    text-align: justify; /* Justifica el texto para una apariencia más formal */
-    font-size: 0.95em; /* Ajustado para móviles */
-}
-
-.entity-info ul {
-    list-style: disc; /* Puntos para la lista */
-    padding-left: 1.5em; /* Sangría reducida para móviles */
-    margin-bottom: 1.5em;
-}
-
-.entity-info ul li {
-    margin-bottom: 0.5em;
-    color: #c9d1d9;
-    font-size: 0.9em; /* Ajustado para móviles */
-}
-
-.entity-info ul li strong {
-    color: #79c0ff; /* Color para los títulos de los ítems de la lista */
-}
-
-
-/* Media Queries para responsividad */
-@media (min-width: 768px) {
-    .entity-profile {
-        padding: 3.5em; /* Restaurar padding para escritorio */
-        /* Eliminado: padding-top: 3.5em; - ya no es necesario aquí */
-    }
-
-    .entity-profile h2 {
-        font-size: 2em; /* Restaurar tamaño de fuente para escritorio */
-    }
-
-    .profile-header {
-        flex-direction: row; /* En pantallas más grandes, la imagen y detalles van en fila */
-        text-align: left; /* Alinea el texto a la izquierda en escritorio */
-        align-items: center; /* Vertically aligns image and details block */
-        gap: 3em; /* Restaurar espacio para escritorio */
-    }
-
-    .entity-image {
-        width: 200px; /* Restaurar ancho para escritorio */
-        height: 200px; /* Restaurar altura para escritorio */
-        margin-top: -100px; /* Restaurar margen negativo para escritorio */
-    }
-
-    .entity-details {
-        text-align: left; /* Alinea el texto a la izquierda en escritorio */
-        width: auto; /* Permite que los detalles ocupen el espacio natural */
-    }
-
-    /* Adjust layout for multiple detail boxes on larger screens */
-    .entity-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center the boxes vertically if needed */
-    }
-
-    .entity-details-box,
-    .entity-physical-details-box {
-        width: auto; /* Allow boxes to take natural width */
-        padding: 1.5em; /* Restaurar padding para escritorio */
-    }
-
-    .entity-details-box p,
-    .entity-physical-details-box p {
-        margin: 0.8em 0; /* Restaurar margen para escritorio */
-        font-size: 1.1em; /* Restaurar tamaño de fuente para escritorio */
-    }
-
-    .entity-info h3 {
-        font-size: 1.5em; /* Restaurar tamaño de fuente para escritorio */
-    }
-
-    .entity-info p {
-        font-size: 1em; /* Restaurar tamaño de fuente para escritorio */
-    }
-
-    .entity-info ul {
-        padding-left: 2em; /* Restaurar sangría para escritorio */
-    }
-
-    .entity-info ul li {
-        font-size: 1em; /* Restaurar tamaño de fuente para escritorio */
-    }
+    color: #8b949e;
+    padding: 0 1em;
 }
 
 /* ==========================================================================
-    Estilos del Pie de Página (Footer)
+   3. Contenido principal
+   ========================================================================== */
+
+main {
+    flex-grow: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+h2, h3 {
+    color: #58a6ff;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+strong {
+    color: #c9d1d9;
+}
+
+/* ==========================================================================
+   4. Footer
    ========================================================================== */
 
 .footer {
-    background-color: #161b22; /* Fondo del pie de página */
+    background-color: #161b22;
     color: #c9d1d9;
     text-align: center;
-    padding: 1em 0;
-    margin-top: 2em; /* Margen superior para separarlo del contenido si es corto */
-    flex-shrink: 0; /* Evita que el footer se encoja */
+    padding: 1em 1em;
+    border-top: 1px solid #30363d;
+    margin-top: auto;
+    flex-shrink: 0;
+    word-break: break-word;
 }
 
-/* ==========================================================================
-   Estilos para Los Enlaces de Pie de Pagina
-   ========================================================================= */
+.footer p {
+    margin: 0;
+    line-height: 2;
+}
 
-.footer-link { /* Estilos para los nuevos enlaces en el footer */
-    color: #ffffff; /* Cian para enlaces en el pie de página de origenes.css */
+.footer-link {
+    color: #ffffff;
     text-decoration: none;
-    margin: 0 5px; /* Espacio entre los enlaces del footer */
-    white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+    margin: 0 4px;
+    white-space: nowrap;
+    font-size: 0.9em;
 }
 
 .footer-link:hover {
     text-decoration: underline;
-    color: #ffffff; /* Color al pasar el ratón */
+    color: #ffffff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
@@ -344,144 +162,597 @@
 }
 
 /* ==========================================================================
-    Estilos para Los Enlaces Visual
+   5. Enlaces
    ========================================================================== */
 
 .main-link {
     text-decoration: none;
-    color: #ffffff; /* Color al pasar el ratón */
+    color: #ffffff;
 }
 
 .main-link:hover {
     text-decoration: underline;
-    color: #ffffff; /* Color al pasar el ratón */
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    color: #ffffff;
 }
 
 /* ==========================================================================
-    Estilos para Texto Censurado
+   6. Texto Censurado
+   Negro sólido. Solo visible en código fuente. No reacciona a ninguna acción.
    ========================================================================== */
 
-/* Opción 1: Bloque negro simple */
 .censored-text {
-    background-color: #000; /* Fondo negro */
-    color: #000; /* Texto también negro, haciéndolo ilegible */
-    padding: 0 0.5em; /* Espacio alrededor del texto censurado */
-    border-radius: 3px;
-    /* Opcional: para evitar que la selección de texto lo revele */
-    user-select: none; /* Deshabilita la selección de texto */
+    background-color: #000000;
+    color: #000000;
+    padding: 0 0.3em;
+    border-radius: 2px;
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    pointer-events: none;
+    cursor: default;
+    display: inline;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
- /* NEW: Basic styles for the accordion */
-.accordion-item {
-    background-color: #21262d; /* Matches existing update-post background */
-    margin-bottom: 1em;
+/* ==========================================================================
+   7. Perfil de Entidad
+   ========================================================================== */
+
+.entity-profile {
+    background-color: #161b22;
+    width: calc(100% - 2em);
+    max-width: 900px;
+    margin: 1.5em auto 2em auto;
+    padding: 2em;
     border-radius: 8px;
-    overflow: hidden; /* Ensures content doesn't spill out of rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Matches existing update-post shadow */
-}
-
-.accordion-header {
-    background-color: #30363d; /* Slightly darker than item background */
-    color: #58a6ff;
-    padding: 1em 1.5em;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    border-bottom: 1px solid #30363d; /* Border to separate header from content */
-    transition: background-color 0.3s ease;
-}
-
-.accordion-header:hover {
-    background-color: #40464d;
-}
-
-.accordion-header h3 {
-    margin: 0; /* Remove default margin from h3 */
-    color: inherit; /* Inherit color from parent */
-    border-bottom: none; /* Remove border from h3 */
-    padding-bottom: 0;
-    font-size: 1.2em; /* Adjust font size for header title */
-}
-
-.accordion-header .arrow {
-    font-size: 1.5em;
-    transition: transform 0.3s ease;
-}
-
-.accordion-header.active .arrow {
-    transform: rotate(90deg); /* Rotate arrow when active */
-}
-
-.accordion-content {
-    padding: 0 1.5em;
-    max-height: 0; /* Initially hidden */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    color: #c9d1d9;
+    line-height: 1.6;
     overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-    box-sizing: border-box; /* Include padding in max-height calculation */
 }
 
-.accordion-content.show {
-    max-height: 500px; /* Adjust as needed; should be larger than content height */
-    padding: 0.5em 1.5em;
+/* ── Cabecera: imagen centrada arriba, datos debajo ── */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    margin-bottom: 2em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid #30363d;
 }
 
-/* Styles for the content within the accordion, using existing .update-post child styles */
-.accordion-content .update-date {
-    font-style: italic;
-    color: #8b949e;
-    margin-top: 0.5em;
+/* Imagen circular centrada */
+.entity-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #58a6ff;
+    box-shadow: 0 0 18px rgba(88, 166, 255, 0.45);
+    flex-shrink: 0;
+}
+
+.entity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
-.accordion-content p {
-    margin-bottom: 2em;
+/* Columna de detalles: ocupa todo el ancho debajo de la imagen */
+.entity-details {
+    width: 100%;
+    text-align: left;
+}
+
+/* Caja de datos principal */
+.entity-details-box,
+.entity-physical-details-box {
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 1em 1.2em;
+    margin-bottom: 0.8em;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.entity-details-box p,
+.entity-physical-details-box p {
+    margin: 0.4em 0;
+    font-size: 0.95em;
     color: #c9d1d9;
-    text-align: justify; /* Ensure justified text within accordion content */
 }
 
-.accordion-content ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    margin-bottom: 2em;
+.entity-details-box p strong,
+.entity-physical-details-box p strong {
+    color: #58a6ff;
+    font-weight: bold;
+    margin-right: 0.4em;
 }
 
-.accordion-content li {
+/* ── Sección narrativa (Información, etc.) ── */
+.entity-info {
+    margin-top: 1.5em;
+}
+
+.entity-info h3 {
+    color: #79c0ff;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.4em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-size: 1.2em;
+}
+
+/* Párrafos narrativos: justificados */
+.entity-info > p {
+    margin-bottom: 1.2em;
+    text-align: justify;
+    font-size: 0.95em;
+    line-height: 1.7;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.entity-info ul {
+    list-style: disc;
+    padding-left: 1.5em;
+    margin-bottom: 1.2em;
+}
+
+.entity-info ul li {
     margin-bottom: 0.5em;
     color: #c9d1d9;
+    font-size: 0.92em;
 }
 
-.accordion-content ul:last-child {
-    margin-bottom: 40px; /* Ajusta el valor según tus necesidades */
+.entity-info ul li strong {
+    color: #79c0ff;
 }
 
-.opaco {
-    opacity: 0.01; /* Un valor muy bajo para que apenas se vea */
+.entity-info ul p {
     text-align: center;
-    /* ... otras propiedades de estilo ... */
+    font-size: 0.85em;
+    color: #8b949e;
+    margin: 0;
 }
 
-/* Asegura que html y body ocupen el 100% de la altura de la ventana
-   para permitir que el pie de página se ancle correctamente. */
-html, body {
-    height: 100%;
+/* ==========================================================================
+   8. Sección "Observaciones y Comportamiento" — Estilo corporativo
+      Sin emojis. Franja lateral de color por categoría.
+      Texto del contenido: normal, izquierda, sin justificar.
+   ========================================================================== */
+
+.obs-section {
+    margin-top: 1.5em;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
+/* Cabecera de la sección */
+.obs-section-header {
+    background-color: #1c2128;
+    border-bottom: 1px solid #30363d;
+    padding: 0.65em 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.obs-section-header h3 {
     margin: 0;
     padding: 0;
-    background-color: #0d1117; /* Fondo oscuro (similar a GitHub dark theme) */
-    color: #c9d1d9; /* Color de texto principal (gris claro) */
+    border: none;
+    color: #c9d1d9;
+    font-size: 0.9em;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
 
-    /* Configuración de Flexbox para el "Sticky Footer" */
-    display: flex; /* Habilita flexbox para organizar los hijos */
-    flex-direction: column; /* Organiza los hijos en una columna (header, nav, main, footer) */
-    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+.obs-badge {
+    font-size: 0.7em;
+    color: #8b949e;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.obs-item {
+    border-bottom: 1px solid #21262d;
+}
+
+.obs-item:last-child {
+    border-bottom: none;
+}
+
+/* Botón de cada fila */
+.obs-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: stretch;
+}
+
+.obs-trigger:focus-visible {
+    outline: 2px solid #58a6ff;
+    outline-offset: -2px;
+}
+
+/* Franja lateral — color por categoría, sin emojis */
+.obs-cat-bar {
+    width: 3px;
+    flex-shrink: 0;
+    background-color: #30363d;
+}
+
+.obs-item[data-cat="actividad"]   .obs-cat-bar { background-color: #58a6ff; }
+.obs-item[data-cat="dieta"]       .obs-cat-bar { background-color: #3fb950; }
+.obs-item[data-cat="vocal"]       .obs-cat-bar { background-color: #a371f7; }
+.obs-item[data-cat="interaccion"] .obs-cat-bar { background-color: #e3b341; }
+.obs-item[data-cat="capacidades"] .obs-cat-bar { background-color: #f85149; }
+
+/* Interior del botón */
+.obs-trigger-inner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6em 1em;
+    gap: 1em;
+    background-color: #161b22;
+    transition: background-color 0.2s;
+}
+
+.obs-trigger:hover .obs-trigger-inner,
+.obs-item.open .obs-trigger-inner {
+    background-color: #1c2128;
+}
+
+/* Título de la fila */
+.obs-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    min-width: 0;
+}
+
+/* Etiqueta de categoría — reemplaza el emoji con texto en color */
+.obs-cat-label {
+    display: inline-block;
+    font-size: 0.62em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.1em 0.5em;
+    border-radius: 3px;
+    flex-shrink: 0;
+    /* color y fondo por defecto */
+    color: #8b949e;
+    background-color: #21262d;
+    border: 1px solid #30363d;
+}
+
+/* Colores de la etiqueta según categoría */
+.obs-item[data-cat="actividad"]   .obs-cat-label {
+    color: #58a6ff; background-color: #0d2137; border-color: #1f4d7a;
+}
+.obs-item[data-cat="dieta"]       .obs-cat-label {
+    color: #3fb950; background-color: #0d2b14; border-color: #1a5226;
+}
+.obs-item[data-cat="vocal"]       .obs-cat-label {
+    color: #a371f7; background-color: #1a1035; border-color: #3d1f7a;
+}
+.obs-item[data-cat="interaccion"] .obs-cat-label {
+    color: #e3b341; background-color: #2b2000; border-color: #5a4200;
+}
+.obs-item[data-cat="capacidades"] .obs-cat-label {
+    color: #f85149; background-color: #2d0d0c; border-color: #6b1a18;
+}
+
+.obs-title {
+    font-size: 0.88em;
+    font-weight: 600;
+    color: #c9d1d9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.obs-item.open .obs-title {
+    color: #79c0ff;
+}
+
+/* Grupo derecho: estado + flecha */
+.obs-status-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    flex-shrink: 0;
+}
+
+.obs-status-tag {
+    font-size: 0.65em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15em 0.55em;
+    border-radius: 3px;
+    background-color: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+}
+
+.obs-item.has-data .obs-status-tag {
+    background-color: #0d2137;
+    color: #58a6ff;
+    border-color: #1f4d7a;
+}
+
+.obs-arrow {
+    font-size: 0.7em;
+    color: #8b949e;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    /* flecha en texto puro, sin emoji */
+    font-style: normal;
+}
+
+.obs-item.open .obs-arrow {
+    transform: rotate(90deg);
+    color: #58a6ff;
+}
+
+/* Contenido expandible */
+.obs-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #161b22;
+    border-left: 3px solid #30363d;
+}
+
+.obs-item[data-cat="actividad"]   .obs-content { border-left-color: #58a6ff; }
+.obs-item[data-cat="dieta"]       .obs-content { border-left-color: #3fb950; }
+.obs-item[data-cat="vocal"]       .obs-content { border-left-color: #a371f7; }
+.obs-item[data-cat="interaccion"] .obs-content { border-left-color: #e3b341; }
+.obs-item[data-cat="capacidades"] .obs-content { border-left-color: #f85149; }
+
+.obs-item.open .obs-content {
+    max-height: 1200px;
+}
+
+.obs-content-inner {
+    padding: 0.9em 1.1em 1em 1.1em;
+    border-top: 1px solid #21262d;
+}
+
+/* Texto del contenido: normal, izquierda, sin justificar */
+.obs-content-inner p {
+    margin: 0 0 0.65em 0;
+    font-size: 0.92em;
+    color: #c9d1d9;
+    text-align: justify;
+    line-height: 1.65;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.obs-content-inner p:last-child {
+    margin-bottom: 0;
+}
+
+.obs-content-inner ul {
+    list-style: disc;
+    padding-left: 1.2em;
+    margin: 0.3em 0 0.65em 0;
+}
+
+.obs-content-inner li {
+    font-size: 0.92em;
+    color: #c9d1d9;
+    margin-bottom: 0.3em;
+    line-height: 1.55;
+    text-align: left;
+}
+
+.obs-empty {
+    font-style: italic;
+    color: #8b949e !important;
+    font-size: 0.88em !important;
+}
+
+/* Nota al pie de la sección */
+.obs-footnote {
+    background-color: #1c2128;
+    border-top: 1px solid #30363d;
+    padding: 0.6em 1.1em;
+    font-size: 0.78em;
+    color: #8b949e;
+    text-align: justify;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ==========================================================================
+   9. Lista de entidades (entidades.html)
+   ========================================================================== */
+
+.lista-entidades ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1em 0;
+}
+
+.lista-entidades li {
+    background-color: #21262d;
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.lista-entidades li:hover {
+    background-color: #30363d;
+}
+
+.lista-entidades a {
+    display: block;
+    padding: 0.85em 1em;
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+.lista-entidades a:hover {
+    color: #c9d1d9;
+}
+
+/* ==========================================================================
+   10. Media Queries — Móvil (max-width: 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.3em;
+        flex-direction: column;
+        gap: 4px;
+        padding: 0 0.8em;
+    }
+
+    .header h1 img {
+        height: 60px;
+    }
+
+    .slogan {
+        font-size: 0.95em;
+        margin-bottom: 1em;
+        padding: 0 0.8em;
+    }
+
+    .entity-profile {
+        width: calc(100% - 1em);
+        margin: 0.8em auto 1.5em auto;
+        padding: 1.2em 1em;
+        border-radius: 6px;
+    }
+
+    .entity-image {
+        width: 110px;
+        height: 110px;
+    }
+
+    .entity-details-box p,
+    .entity-physical-details-box p {
+        font-size: 0.9em;
+    }
+
+    .entity-info h3 {
+        font-size: 1.05em;
+    }
+
+    .entity-info > p {
+        font-size: 0.9em;
+        text-align: left;
+    }
+
+    /* Observaciones móvil */
+    .obs-section-header {
+        padding: 0.55em 0.8em;
+        flex-wrap: wrap;
+        gap: 0.3em;
+    }
+
+    .obs-section-header h3 {
+        font-size: 0.8em;
+    }
+
+    .obs-badge {
+        display: none;
+    }
+
+    .obs-trigger-inner {
+        padding: 0.55em 0.8em;
+    }
+
+    .obs-cat-label {
+        display: none; /* en móvil solo se ve el título + flecha */
+    }
+
+    .obs-title {
+        font-size: 0.84em;
+    }
+
+    .obs-status-tag {
+        display: none;
+    }
+
+    .obs-content-inner {
+        padding: 0.7em 0.8em 0.8em 0.8em;
+    }
+
+    .obs-content-inner p,
+    .obs-content-inner li {
+        font-size: 0.88em;
+    }
+
+    .obs-footnote {
+        font-size: 0.73em;
+        padding: 0.5em 0.8em;
+    }
+
+    .footer {
+        padding: 1em 0.8em;
+        font-size: 0.85em;
+    }
+
+    .footer-link {
+        white-space: normal;
+        display: inline;
+    }
+
+    .lista-entidades {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .lista-entidades a {
+        padding: 0.75em 0.8em;
+        font-size: 1em;
+    }
+}
+
+/* ==========================================================================
+   11. Media Queries — Escritorio (min-width: 769px)
+   ========================================================================== */
+
+@media (min-width: 769px) {
+    .entity-profile {
+        padding: 2.5em 3em;
+        margin-top: 2em;
+    }
+
+    /* En escritorio la imagen sigue centrada arriba (columna),
+       pero si hay espacio se puede hacer más grande */
+    .entity-image {
+        width: 170px;
+        height: 170px;
+    }
+
+    .entity-info > p {
+        font-size: 0.97em;
+    }
+
+    .entity-info h3 {
+        font-size: 1.25em;
+    }
 }

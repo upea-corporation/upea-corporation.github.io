@@ -693,6 +693,23 @@ window.updatesData = [
         items: [
           "Se ha corregido la lógica de detección del horario de verano en los registros de actualizaciones."
         ],
+      },
+      {
+        isoDate: "2026-04-18",
+        time: "12:59",
+        items: [
+          "Se han optimizado los archivos CSS correspondientes a los estilos de diseño.",
+          "Se ha implementado un nuevo diseño en los expedientes de las entidades, específicamente en la sección “Observaciones y Comportamiento”.",
+          "Se ha modificado la denominación de la sección “Resumen General” en los expedientes de las entidades, pasando a llamarse “Información”.",
+          "Se han corregido las rutas de las imágenes de las entidades en las páginas traducidas al inglés."
+        ],
+      },
+      {
+        isoDate: "2026-04-18",
+        time: "13:28",
+        items: [
+          "Se han corregido las direcciones del pie de página en las páginas traducidas al inglés."
+        ],
       }
     ];
 

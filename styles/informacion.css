@@ -1,0 +1,32 @@
+/* Estilos específicos para la página de Información (desplegables) */
+/* Estilos básicos para los desplegables */
+details {
+    background-color: #1a1a1a; /* Fondo más oscuro para la sección desplegada */
+    border: 1px solid #0a0a0a; /* Un borde azul oscuro para contraste */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #f0f0f0; /* Color de texto claro para el contenido */
+}
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    background-color: #2e3a42; /* Mantiene el color actual, que ya es oscuro */
+    border-radius: 3px;
+    color: #ffffff; /* Color de texto blanco para el título del desplegable */
+}
+summary:hover {
+    background-color: #3a4750; /* Un tono ligeramente más claro al pasar el ratón */
+}
+details[open] summary {
+    border-bottom: 1px solid #ffffff; /* Borde azul oscuro cuando está abierto */
+    margin-bottom: 10px;
+}
+.details-content ul {
+    margin-top: 10px;
+    padding-left: 20px; /* Para indentar un poco el contenido */
+}
+.details-content ul li {
+    color: #d0d0d0; /* Color de texto ligeramente más tenue para los ítems de la lista */
+}

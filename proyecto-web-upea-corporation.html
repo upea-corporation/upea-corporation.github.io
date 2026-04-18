@@ -116,52 +116,6 @@
         </p>
     </footer>
 
-    <style>
-  .icon-link {
-    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
-    height: 24px; /* Asegura que el icono sea cuadrado */
-    vertical-align: middle; /* Alinea el icono con el texto */
-    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
-  }
-</style>
-
-    <script>
-        // NEW: JavaScript for the accordion functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const accordionItem = this.closest('.accordion-item');
-                    const accordionContent = accordionItem.querySelector('.accordion-content');
-
-                    // Toggle the 'active' class on the header
-                    this.classList.toggle('active');
-
-                    // Toggle the 'show' class on the content
-                    if (accordionContent.classList.contains('show')) {
-                        accordionContent.classList.remove('show');
-                        accordionContent.style.maxHeight = null; // Reset max-height
-                    } else {
-                        accordionContent.classList.add('show');
-                        // Set max-height to scrollHeight to allow for smooth transition
-                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                    }
-
-                    // Optional: Close other open accordion items
-                    accordionHeaders.forEach(otherHeader => {
-                        if (otherHeader !== this) {
-                            otherHeader.classList.remove('active');
-                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
-                            otherContent.classList.remove('show');
-                            otherContent.style.maxHeight = null;
-                        }
-                    });
-                });
-            });
-        });
-    </script>
-
     <!-- Script para el menú móvil -->
     <script src="scripts/mobile-menu.js"></script>
     <script src="scripts/language-menu.js"></script>

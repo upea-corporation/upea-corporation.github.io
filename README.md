@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b2adda84-a0a4-4cff-91d0-2fe369d9a174/deploy-status)](https://app.netlify.com/projects/upea-corp/deploys)
+![Badge Hostinger](https://img.shields.io/badge/Host-Netlify-brightgreen)
 ![Badge OctoKit](https://img.shields.io/badge/OctoKit_Rest-22.0.0-lightgrey)
 ![Badge OctoKit](https://img.shields.io/badge/OctoKit_Auth--App-8.1.0-lightgrey)
 

@@ -1,0 +1,43 @@
+/* Estilos específicos para eaz001.html y eaz666-1.html — Tooltip de especie */
+
+#infoContainer {
+    position: relative;
+    cursor: pointer;
+    display: inline;
+}
+
+#infoTooltip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: #2d333b;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    line-height: 1.5;
+    white-space: normal;
+    text-align: left;
+    width: 280px;
+    max-width: 90vw; /* Nunca más ancho que la pantalla */
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    #infoTooltip {
+        /* En móvil: anclado a la izquierda del viewport relativo al contenedor */
+        left: 0;
+        transform: none;
+        width: min(280px, calc(100vw - 2em));
+        font-size: 0.82em;
+    }
+}

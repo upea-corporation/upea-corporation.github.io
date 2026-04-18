@@ -17,78 +17,18 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UPEA Corporation - Entidad EAZ#001">
     <meta name="twitter:description" content="Explora la entidad EAZ#001 (Arturus Nocthar). Descubre la primera entidad de la especie Pseudo Híbrido, tiene más años de lo que puedes imaginar.">
-
-<style>
-#infoContainer {
-    position: relative;
-    cursor: pointer;
-}
-
-#infoTooltip {
-    /* ESTILO PREDETERMINADO: PC y Tabletas grandes (500px - 850px) */
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%); 
-    
-    /* Apariencia */
-    background: #333;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: normal;
-    text-align: center;
-    min-width: 300px;
-    max-width: 850px;
-    cursor: default; 
-
-    /* OCULTACIÓN Y TRANSICIÓN */
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 100;
-}
-
-/* ---------------------------------------------------------------------- */
-/* OPTIMIZACIÓN ESTÁNDAR PARA MÓVILES PEQUEÑOS (480px y menos) */
-/* ---------------------------------------------------------------------- */
-@media (max-width: 480px) {
-    #infoTooltip {
-        /* Se mueve con el contenido del scroll */
-        position: absolute; 
-        
-        /* Centrado Horizontal - La técnica más fiable */
-        left: 50%; 
-        transform: translateX(-100%); 
-        
-        /* Posición Vertical (Encima del símbolo) */
-        bottom: 110%; 
-        top: auto;
-        
-        /* CONTROL DE CONTENIdentificaciónO (Clave para que no desborde) */
-        max-width: 120vw; /* Limita el ancho al 120% del viewport */
-        min-width: 120px;
-        
-        /* Estética y Limpieza */
-        font-size: 13px;
-        text-align: center; 
-        right: auto;
-        margin: 0;
-    }
-}
-</style>
+    <link rel="stylesheet" href="../styles/eaz001.css">
 </head>
 
 <body>
     <header class="header">
         <h1>
-            <img src="../image/upea-corp-logo.webp" alt="Icono UPEA"> UPEA Corporation 
+            <img src="../image/upea-corp-logo.webp" alt="Icono UPEA"> UPEA Corporation
         </h1>
         <p class="slogan"><u>Unidad de Protección Especial Antropoide</u></p>
     </header>
 
-    <main class="container">
+    <main>
         <section class="entity-profile">
 
             <div class="profile-header">
@@ -110,7 +50,7 @@
                 </div>
             </div>
             <div class="entity-info">
-                <h3>Resumen General</h3>
+                <h3>Información</h3>
                 <p>
                     La entidad EAZ#001, más conocida bajo el nombre de Arturus Nocthar (Arturo), es descrita como un pseudo-híbrido con anatomía predominantemente humana, aunque en su morfología se distinguen rasgos lobunos y una evidente carga genética demoníaca. Su mera existencia representa una anomalía biológica y sobrenatural sin precedentes, constituyéndose en la primera entidad de este tipo registrada en los archivos de UPEA Corporation. 
                 </p>
@@ -130,59 +70,113 @@
                     El nivel de peligrosidad de EAZ#001 no puede determinarse con precisión en esta etapa de investigación. Resulta evidente que su potencial supera los límites humanos y que su origen permanece envuelto en incógnitas que cuestionan tanto la biología como la naturaleza espiritual. Su sola existencia exige extrema cautela, al tiempo que abre un abanico de posibilidades y temores que la ciencia actual no está en condiciones de explicar.
                 </p>
 
-                <h3>Observaciones y Comportamiento</h3>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Patrones de Actividad</h3>
-                        <span class="arrow">&gt;</span>
+                                <div class="obs-section">
+                    <div class="obs-section-header">
+                        <h3>Observaciones y Comportamiento</h3>
+                        <span class="obs-badge">UPEA Corp. — Expediente</span>
                     </div>
-                    <div class="accordion-content">
-                        <p>N/A</p>
+                <li class="obs-item" data-cat="actividad">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Actividad</span>
+                                <span class="obs-title">Patrones de Actividad</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">N/A</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p class="obs-empty">Sin datos registrados actualmente.</p>
+                        </div>
                     </div>
+                </li>
+                <li class="obs-item" data-cat="dieta">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Dieta</span>
+                                <span class="obs-title">Dieta</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">N/A</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p class="obs-empty">Sin datos registrados actualmente.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="obs-item has-data" data-cat="vocal">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Vocal.</span>
+                                <span class="obs-title">Vocalización</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">DATOS</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p>La vocalización se caracteriza por una tesitura masculina juvenil con un tono neutro. El sujeto exhibe una notable contención emocional, lo que hace que su estado de ánimo o disposición sean consistentemente indescifrables.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="obs-item has-data" data-cat="interaccion">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Social</span>
+                                <span class="obs-title">Interacción Social</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">DATOS</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p>La agresión solo se manifiesta como una respuesta reactiva a provocaciones o perturbaciones percibidas que alcancen un umbral de impacto significativo para la entidad.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="obs-item has-data" data-cat="capacidades">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Anómalo</span>
+                                <span class="obs-title">Capacidades Anómalas</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">DATOS</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p>La entidad demuestra capacidades que trascienden las leyes físicas conocidas, incluyendo la <span class="censored-text">z1711921By17q19YA1 m 241Am18qq19YA1 r18 181184tY917 Y9t11817 r18 117h1B417y18n17 171YAz17y17 (21941A31B191185195 191s184117y) m 1B117 y18i19h17q19YA1 y19z19h17r17, 2184z19h19Y81r1Ay18 sy1Ah174 1A r1852y17n174518 5191 51A21A4h18 17 r195h171q19175 q1A4h175 r18y 51B18y1A.</span> Adicionalmente, la mera presencia del sujeto induce una respuesta emocional pasiva, manifestada como sensaciones de intensa incomodidad y temor.</p>
+                        </div>
+                    </div>
+                </li>
+                    <p class="obs-footnote">La información registrada en Observaciones y Comportamiento puede ser modificada para actualizar los datos necesarios, proporcionados por la propia entidad EAZ o derivados de los estudios e investigaciones realizados por UPEA Corporation.</p>
                 </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Dieta</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>N/A</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Vocalización</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>La vocalización se caracteriza por una tesitura masculina juvenil con un tono neutro. El sujeto exhibe una notable contención emocional, lo que hace que su estado de ánimo o disposición sean consistentemente indescifrables.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Interacción</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>La agresión solo se manifiesta como una respuesta reactiva a provocaciones o perturbaciones percibidas que alcancen un umbral de impacto significativo para la entidad.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Capacidades Anómalas</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>La entidad demuestra capacidades que trascienden las leyes físicas conocidas, incluyendo la <span class="censored-text">z1711921By17q19YA1 m 241Am18qq19YA1 r18 181184tY917 Y9t11817 r18 117h1B417y18n17 171YAz17y17 (21941A31B191185195 191s184117y) m 1B117 y18i19h17q19YA1 y19z19h17r17, 2184z19h19Y81r1Ay18 sy1Ah174 1A r1852y17n174518 5191 51A21A4h18 17 r195h171q19175 q1A4h175 r18y 51B18y1A.</span> Adicionalmente, la mera presencia del sujeto induce una respuesta emocional pasiva, manifestada como sensaciones de intensa incomodidad y temor.</p>
-                    </div>
-                </div>
-                <ul>
-                    <p style="text-align: center;"><strong>NOTA:</strong> La información registrada en Observaciones y Comportamiento puede ser modificada para actualizar los datos necesarios, proporcionados por la propia entidad EAZ o derivados de los estudios e investigaciones realizados por UPEA Corporation.</p>
-                </ul>
             </div>
         </section>
     </main>
@@ -207,52 +201,6 @@
                 <a href="/terminos-y-condiciones-de-registros" class="footer-link">Términos y Condiciones de Registros</a>
         </p>
     </footer>
-
-<style>
-  .icon-link {
-    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
-    height: 24px; /* Asegura que el icono sea cuadrado */
-    vertical-align: middle; /* Alinea el icono con el texto */
-    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
-  }
-</style>
-
-    <script>
-        // NEW: JavaScript for the accordion functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const accordionItem = this.closest('.accordion-item');
-                    const accordionContent = accordionItem.querySelector('.accordion-content');
-
-                    // Toggle the 'active' class on the header
-                    this.classList.toggle('active');
-
-                    // Toggle the 'show' class on the content
-                    if (accordionContent.classList.contains('show')) {
-                        accordionContent.classList.remove('show');
-                        accordionContent.style.maxHeight = null; // Reset max-height
-                    } else {
-                        accordionContent.classList.add('show');
-                        // Set max-height to scrollHeight to allow for smooth transition
-                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                    }
-
-                    // Optional: Close other open accordion items
-                    accordionHeaders.forEach(otherHeader => {
-                        if (otherHeader !== this) {
-                            otherHeader.classList.remove('active');
-                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
-                            otherContent.classList.remove('show');
-                            otherContent.style.maxHeight = null;
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -296,5 +244,6 @@
     });
 </script>
 
+    <script src="../scripts/accordion.js"></script>
 </body>
 </html>

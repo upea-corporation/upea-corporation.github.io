@@ -1,0 +1,15 @@
+/* Estilos específicos para registrate.html */
+body {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 20px;
+                            flex-wrap: wrap;
+                            margin: 20px;
+                        }
+                        img {
+                            max-width: 45%;
+                            height: auto;
+                            border: 2px solid #333;
+                            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+                        }

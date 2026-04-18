@@ -80,7 +80,7 @@ window.updatesData = [
     // ========== JUNE 2025 ==========
     {
       isoDate: "2025-06-22",
-      time: "21:36",
+      time: "21:63",
       items: [
         "Updated UPEA Corp. database.",
         "Added the first UPEA Corp. personnel file."
@@ -685,6 +685,30 @@ window.updatesData = [
         time: "14:24",
         items: [
           "The inconsistency in the banner header, resulting from an incorrect file transfer from the development environment, has been corrected."
+        ],
+      },
+      {
+        isoDate: "2026-04-17",
+        time: "14:53",
+        items: [
+          "The logic for detecting European summer time in update logs has been corrected."
+        ],
+      },
+      {
+        isoDate: "2026-04-18",
+        time: "12:59",
+        items: [
+          "The CSS files corresponding to the design styles have been optimized.",
+          "A new design has been implemented in the entity files, specifically in the “Observations and Behavior” section.",
+          "The name of the “General Summary” section in the entity files has been changed to “Information”.",
+          "The image paths of the entities have been corrected."
+        ],
+      },
+      {
+        isoDate: "2026-04-18",
+        time: "13:28",
+        items: [
+          "The footer addresses have been corrected."
         ],
       }
 ];

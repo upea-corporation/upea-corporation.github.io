@@ -20,40 +20,7 @@
     <meta name="twitter:description" content="Explora la misión y la estructura de UPEA Corp. Descubre cómo la investigación, la protección y la coexistencia se entrelazan.">
 
     <script src="scripts/floating-dot.js" defer></script>
-    
-    <style>
-        /* Estilos básicos para los desplegables */
-details {
-    background-color: #1a1a1a; /* Fondo más oscuro para la sección desplegada */
-    border: 1px solid #0a0a0a; /* Un borde azul oscuro para contraste */
-    border-radius: 4px;
-    margin-bottom: 10px;
-    padding: 10px;
-    color: #f0f0f0; /* Color de texto claro para el contenido */
-}
-summary {
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px;
-    background-color: #2e3a42; /* Mantiene el color actual, que ya es oscuro */
-    border-radius: 3px;
-    color: #ffffff; /* Color de texto blanco para el título del desplegable */
-}
-summary:hover {
-    background-color: #3a4750; /* Un tono ligeramente más claro al pasar el ratón */
-}
-details[open] summary {
-    border-bottom: 1px solid #ffffff; /* Borde azul oscuro cuando está abierto */
-    margin-bottom: 10px;
-}
-.details-content ul {
-    margin-top: 10px;
-    padding-left: 20px; /* Para indentar un poco el contenido */
-}
-.details-content ul li {
-    color: #d0d0d0; /* Color de texto ligeramente más tenue para los ítems de la lista */
-}
-    </style>
+    <link rel="stylesheet" href="styles/informacion.css">
 </head>
 <body>
     <header class="header">
@@ -288,52 +255,6 @@ details[open] summary {
                 <a href="terminos-y-condiciones-de-registros" class="footer-link">Términos y Condiciones de Registros</a>
         </p>
     </footer>
-
-<style>
-  .icon-link {
-    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
-    height: 24px; /* Asegura que el icono sea cuadrado */
-    vertical-align: middle; /* Alinea el icono con el texto */
-    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
-  }
-</style>
-
-    <script>
-        // NEW: JavaScript for the accordion functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const accordionItem = this.closest('.accordion-item');
-                    const accordionContent = accordionItem.querySelector('.accordion-content');
-
-                    // Toggle the 'active' class on the header
-                    this.classList.toggle('active');
-
-                    // Toggle the 'show' class on the content
-                    if (accordionContent.classList.contains('show')) {
-                        accordionContent.classList.remove('show');
-                        accordionContent.style.maxHeight = null; // Reset max-height
-                    } else {
-                        accordionContent.classList.add('show');
-                        // Set max-height to scrollHeight to allow for smooth transition
-                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                    }
-
-                    // Optional: Close other open accordion items
-                    accordionHeaders.forEach(otherHeader => {
-                        if (otherHeader !== this) {
-                            otherHeader.classList.remove('active');
-                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
-                            otherContent.classList.remove('show');
-                            otherContent.style.maxHeight = null;
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 
     <!-- Script para el menú móvil -->
     <script src="scripts/mobile-menu.js"></script>

@@ -17,78 +17,18 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UPEA Corporation - Entidad EAZ#666-1">
     <meta name="twitter:description" content="Explora la entidad EAZ#666-1 (Toxer). Descubre los detalles de su primera aparición, y evalúa el alcance de su potencial y peligrosidad.">
-
-<style>
-#infoContainer {
-    position: relative;
-    cursor: pointer;
-}
-
-#infoTooltip {
-    /* ESTILO PREDETERMINADO: PC y Tabletas grandes (500px - 850px) */
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%); 
-    
-    /* Apariencia */
-    background: #333;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: normal;
-    text-align: center;
-    min-width: 300px;
-    max-width: 850px;
-    cursor: default; 
-
-    /* OCULTACIÓN Y TRANSICIÓN */
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 100;
-}
-
-/* ---------------------------------------------------------------------- */
-/* OPTIMIZACIÓN ESTÁNDAR PARA MÓVILES PEQUEÑOS (480px y menos) */
-/* ---------------------------------------------------------------------- */
-@media (max-width: 480px) {
-    #infoTooltip {
-        /* Se mueve con el contenido del scroll */
-        position: absolute; 
-        
-        /* Centrado Horizontal - La técnica más fiable */
-        left: 50%; 
-        transform: translateX(-100%); 
-        
-        /* Posición Vertical (Encima del símbolo) */
-        bottom: 110%; 
-        top: auto;
-        
-        /* CONTROL DE CONTENIdentificaciónO (Clave para que no desborde) */
-        max-width: 120vw; /* Limita el ancho al 120% del viewport */
-        min-width: 120px;
-        
-        /* Estética y Limpieza */
-        font-size: 13px;
-        text-align: center; 
-        right: auto;
-        margin: 0;
-    }
-}
-</style>
+    <link rel="stylesheet" href="../styles/eaz666-1.css">
 </head>
 
 <body>
     <header class="header">
         <h1>
-            <img src="../image/upea-corp-logo.webp" alt="Icono UPEA"> UPEA Corporation 
+            <img src="../image/upea-corp-logo.webp" alt="Icono UPEA"> UPEA Corporation
         </h1>
         <p class="slogan"><u>Unidad de Protección Especial Antropoide</u></p>
     </header>
 
-    <main class="container">
+    <main>
         <section class="entity-profile">
 
             <div class="profile-header">
@@ -110,7 +50,7 @@
                 </div>
             </div>
             <div class="entity-info">
-                <h3>Resumen General</h3>
+                <h3>Información</h3>
                 <p>
                     Toxer es un protogen colosal con una apariencia imponente y biotecnología avanzada, descrito como una <span class="censored-text">z18nqy17 r18 q41917h1B417 r19t19h17y, 17119z17y 517yi17w18 m 174z17 i19i19181h18.</span> Posee una altura de 3.65 metros y un peso de 1.400 kg. Su constitución es extremadamente corpulenta y musculosa, con una estructura robusta similar a la de un tanque, optimizada para combate pesado y resistencia extrema.
                 </p>
@@ -130,49 +70,93 @@
                     Según los datos estadísticos, la entidad presenta una estatura de 3.65 metros y un peso total de 1400 kilogramos. Se hipotetiza que el elevado peso corporal se atribuye a la mecanización de su cuerpo o a la presencia de componentes metálicos pesados integrados en diversas partes del mismo.
                 </p>
 
-                <h3>Observaciones y Comportamiento</h3>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Patrones de Actividad</h3>
-                        <span class="arrow">&gt;</span>
+                                <div class="obs-section">
+                    <div class="obs-section-header">
+                        <h3>Observaciones y Comportamiento</h3>
+                        <span class="obs-badge">UPEA Corp. — Expediente</span>
                     </div>
-                    <div class="accordion-content">
-                        <p>N/A</p>
+                <li class="obs-item" data-cat="actividad">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Actividad</span>
+                                <span class="obs-title">Patrones de Actividad</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">N/A</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p class="obs-empty">Sin datos registrados actualmente.</p>
+                        </div>
                     </div>
+                </li>
+                <li class="obs-item has-data" data-cat="dieta">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Dieta</span>
+                                <span class="obs-title">Dieta</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">DATOS</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p>Se ha documentado que la entidad muestra una marcada preferencia por el consumo de carroña proveniente de fauna salvaje.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="obs-item has-data" data-cat="vocal">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Vocal.</span>
+                                <span class="obs-title">Vocalización</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">DATOS</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p>Extremadamente autoritario, exhibiendo un alto grado de ingenio y sarcasmo.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="obs-item has-data" data-cat="interaccion">
+                    <button class="obs-trigger" aria-expanded="false">
+                        <span class="obs-cat-bar"></span>
+                        <span class="obs-trigger-inner">
+                            <span class="obs-title-group">
+                                <span class="obs-cat-label">Social</span>
+                                <span class="obs-title">Interacción Social</span>
+                            </span>
+                            <span class="obs-status-group">
+                                <span class="obs-status-tag">DATOS</span>
+                                <span class="obs-arrow">&#9654;</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="obs-content">
+                        <div class="obs-content-inner">
+                            <p>Manifiesta una marcada actitud de superioridad, considerando a otros como razas inferiores. No obstante, se ha observado un respeto incondicional hacia <a href="../entidades/eaz666.html" class="main-link">EAZ#666</a>.</p>
+                        </div>
+                    </div>
+                </li>
+                    <p class="obs-footnote">La información registrada en Observaciones y Comportamiento puede ser modificada para actualizar los datos necesarios, proporcionados por la propia entidad EAZ o derivados de los estudios e investigaciones realizados por UPEA Corporation.</p>
                 </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Dieta</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Se ha documentado que la entidad muestra una marcada preferencia por el consumo de carroña proveniente de fauna salvaje.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Vocalización</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Extremadamente autoritario, exhibiendo un alto grado de ingenio y sarcasmo.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Interacción</h3>
-                        <span class="arrow">&gt;</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Manifiesta una marcada actitud de superioridad, considerando a otros como razas inferiores. No obstante, se ha observado un respeto incondicional hacia <a href="../entidades/eaz666.html" class="main-link">EAZ#666</a>.</p>
-                    </div>
-                </div>
-                <ul>
-                    <p style="text-align: center;"><strong>NOTA:</strong> La información registrada en Observaciones y Comportamiento puede ser modificada para actualizar los datos necesarios, proporcionados por la propia entidad EAZ o derivados de los estudios e investigaciones realizados por UPEA Corporation.</p>
-                </ul>
                 </div>
         </section>
     </main>
@@ -197,52 +181,6 @@
                 <a href="/terminos-y-condiciones-de-registros" class="footer-link">Términos y Condiciones de Registros</a>
         </p>
     </footer>
-
-<style>
-  .icon-link {
-    width: 24px; /* Ajusta este valor para cambiar el tamaño del icono */
-    height: 24px; /* Asegura que el icono sea cuadrado */
-    vertical-align: middle; /* Alinea el icono con el texto */
-    margin-left: 5px; /* Añade un pequeño espacio a la izquierda del icono */
-  }
-</style>
-
-    <script>
-        // NEW: JavaScript for the accordion functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const accordionItem = this.closest('.accordion-item');
-                    const accordionContent = accordionItem.querySelector('.accordion-content');
-
-                    // Toggle the 'active' class on the header
-                    this.classList.toggle('active');
-
-                    // Toggle the 'show' class on the content
-                    if (accordionContent.classList.contains('show')) {
-                        accordionContent.classList.remove('show');
-                        accordionContent.style.maxHeight = null; // Reset max-height
-                    } else {
-                        accordionContent.classList.add('show');
-                        // Set max-height to scrollHeight to allow for smooth transition
-                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                    }
-
-                    // Optional: Close other open accordion items
-                    accordionHeaders.forEach(otherHeader => {
-                        if (otherHeader !== this) {
-                            otherHeader.classList.remove('active');
-                            const otherContent = otherHeader.closest('.accordion-item').querySelector('.accordion-content');
-                            otherContent.classList.remove('show');
-                            otherContent.style.maxHeight = null;
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -286,5 +224,6 @@
     });
 </script>
 
+    <script src="../scripts/accordion.js"></script>
 </body>
 </html>

@@ -1,84 +1,106 @@
-/* ======================================================================
-   CONFIGURACIÓN GLOBAL Y BASE
-   ====================================================================== */
+/*
+ * employee_expedient.css — Estilos completos para Expedientes de Empleados
+ * Este archivo es autónomo: incluye los estilos base necesarios (body, header,
+ * footer, censored-text, etc.) para que las páginas de expedientes de empleados
+ * funcionen correctamente sin depender de main.css.
+ */
+
+/* ==========================================================================
+   1. Reset y Base
+   ========================================================================== */
+
 html, body {
-  height: 100%;
-}
-body {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: #0d1117; /* Fondo oscuro */
-  color: #c9d1d9;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    height: 100%;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. Header / Banner
+   ========================================================================== */
+
 .header {
-    background-color: #161b22; /* Fondo ligeramente más claro que el body */
+    background-color: #161b22;
     color: #c9d1d9;
     text-align: center;
     padding: 1em 0;
-    flex-shrink: 0; /* Evita que el header se encoja si el contenido es mucho */
+    flex-shrink: 0;
 }
 
-/* Estilos para el título principal (h1) dentro del header, que contiene la imagen */
 .header h1 {
-    display: flex; /* Permite alinear la imagen y el texto en línea */
-    align-items: center; /* Centra verticalmente los elementos (imagen y texto) */
-    justify-content: center; /* Centra horizontalmente el contenido del h1 */
-    gap: 10px; /* Espacio entre la imagen y el texto */
-    border-bottom: none; /* Elimina el borde inferior si lo hereda de otros h1 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: none;
     padding-bottom: 0;
-    margin-bottom: 0.5em; /* Ajusta el margen inferior */
-    color: #58a6ff; /* Color del texto del título (azul brillante) */
+    margin-bottom: 0.5em;
+    color: #58a6ff;
 }
 
-/* Estilos para la imagen del icono dentro del título principal */
 .header h1 img {
-    height: 100px; /* Altura del icono */
-    width: auto; /* Ancho automático para mantener la proporción */
-    vertical-align: middle; /* Alineación vertical */
+    height: 100px;
+    width: auto;
+    vertical-align: middle;
 }
 
-/* Estilos para el eslogan debajo del título */
 .slogan {
     font-style: italic;
     font-size: 1.2em;
     text-align: center;
     margin-bottom: 2em;
-    color: #8b949e; /* Un gris más oscuro para el eslogan */
+    color: #8b949e;
 }
 
 /* ==========================================================================
-    Estilos del Pie de Página (Footer)
+   3. Contenido principal
+   ========================================================================== */
+
+main {
+    flex-grow: 1;
+}
+
+h2, h3 {
+    color: #58a6ff;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* ==========================================================================
+   4. Footer
    ========================================================================== */
 
 .footer {
-    background-color: #161b22; /* Fondo del pie de página */
+    background-color: #161b22;
     color: #c9d1d9;
     text-align: center;
     padding: 1em 0;
-    margin-top: 2em; /* Margen superior para separarlo del contenido si es corto */
-    flex-shrink: 0; /* Evita que el footer se encoja */
+    border-top: 1px solid #30363d;
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
-/* ==========================================================================
-   Estilos para Los Enlaces de Pie de Pagina
-   ========================================================================= */
-
-.footer-link { /* Estilos para los nuevos enlaces en el footer */
-    color: #ffffff; /* Cian para enlaces en el pie de página de origenes.css */
+.footer-link {
+    color: #ffffff;
     text-decoration: none;
-    margin: 0 5px; /* Espacio entre los enlaces del footer */
-    white-space: nowrap; /* Evita que los enlaces se rompan en varias líneas */
+    margin: 0 5px;
+    white-space: nowrap;
 }
 
 .footer-link:hover {
     text-decoration: underline;
-    color: #ffffff; /* Color al pasar el ratón */
+    color: #ffffff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
@@ -91,213 +113,217 @@ body {
 }
 
 /* ==========================================================================
-    Estilos para Los Enlaces Visual
+   5. Enlace visual
    ========================================================================== */
 
 .main-link {
     text-decoration: none;
-    color: #ffffff; /* Color al pasar el ratón */
+    color: #ffffff;
 }
 
 .main-link:hover {
     text-decoration: underline;
-    color: #ffffff; /* Color al pasar el ratón */
+    color: #ffffff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
-/* ======================================================================
-   CONTENEDOR PRINCIPAL DEL EXPEDIENTE
-   ====================================================================== */
-.employee-details {
-  padding: 20px;
-  margin: 20px auto;
-  color: #f0f0f0;
-  display: flex;
-  flex-direction: column;
-  max-width: 1100px;
-  width: 90%;
-}
-
-/* ======================================================================
-   SECCIÓN SUPERIOR (IMAGEN EMPLEADO Y BANNER DEPARTAMENTO)
-   ====================================================================== */
-.top-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
-  align-items: flex-start;
-}
-
-.employee-image-container {
-  flex: 0 0 auto;
-  width: 250px;
-  background-color: #2e3a42;
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-}
-
-.employee-image {
-  width: 100%;
-  aspect-ratio: 1 / 1;  /* Mantiene proporción cuadrada estable */
-  border-radius: 10px;
-  overflow: hidden;
-  background: #0a0a0a;
-  margin-bottom: 10px;
-}
-.employee-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* Cubre el área sin bordes negros */
-}
-
-.department-banner-container {
-  flex: 1 1 600px;
-  min-width: 300px;
-  height: 250px;
-  background-color: #2e3a42;
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.department-banner {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #0a0a0a;
-}
-.department-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Mantiene la relación 1200x400 sin deformar */
-}
-
-/* ======================================================================
-   SECCIONES DE INFORMACIÓN
-   ====================================================================== */
-.info-section-box {
-  background-color: #21262d;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-.info-section-box .section-header {
-  background-color: #2e3a42;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 5px;
-  margin: -20px -20px 20px -20px;
-  font-size: 1.2em;
-}
-
-.data-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
-  gap: 15px;
-}
-.data-grid strong {
-  display: block;
-  margin-bottom: 4px;
-}
-
-.classification-level {
-  font-weight: bold;
-  color: #4CAF50;
-}
-.classification-level.delta { color: #FFC107; }
-.classification-level.epsilon { color: #FF5722; }
-.classification-level.zeta { color: #F44336; }
-
 /* ==========================================================================
-    Estilos para Texto Censurado
+   6. Texto Censurado / Redactado
+   Aparece como bloque negro. El contenido solo es visible
+   inspeccionando el código fuente (efecto "clasificado").
    ========================================================================== */
 
-/* Opción 1: Bloque negro simple */
 .censored-text {
-    background-color: #000; /* Fondo negro */
-    color: #000; /* Texto también negro, haciéndolo ilegible */
-    padding: 0 0.5em; /* Espacio alrededor del texto censurado */
+    background-color: #000;
+    color: #000;
+    padding: 0 0.5em;
     border-radius: 3px;
-    /* Opcional: para evitar que la selección de texto lo revele */
-    user-select: none; /* Deshabilita la selección de texto */
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
+    cursor: default;
+    pointer-events: none;
 }
 
-/* ======================================================================
-   OPTIMIZACIÓN PARA MÓVILES
-   ====================================================================== */
-@media (max-width: 768px) {
+/* ==========================================================================
+   7. Contenedor Principal del Expediente
+   ========================================================================== */
 
-    /* Mejoras para el header en móviles */
+.employee-details {
+    padding: 20px;
+    margin: 20px auto;
+    color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+    width: 90%;
+}
+
+/* ==========================================================================
+   8. Sección Superior (Imagen Empleado y Banner Departamento)
+   ========================================================================== */
+
+.top-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+}
+
+.employee-image-container {
+    flex: 0 0 auto;
+    width: 250px;
+    background-color: #2e3a42;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.employee-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0a0a0a;
+    margin-bottom: 10px;
+}
+
+.employee-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.department-banner-container {
+    flex: 1 1 600px;
+    min-width: 300px;
+    height: 250px;
+    background-color: #2e3a42;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.department-banner {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.department-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   9. Secciones de Información
+   ========================================================================== */
+
+.info-section-box {
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.info-section-box .section-header {
+    background-color: #2e3a42;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: -20px -20px 20px -20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.data-grid strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #58a6ff;
+}
+
+/* Niveles de clasificación */
+.classification-level         { font-weight: bold; color: #4CAF50; }
+.classification-level.delta   { color: #FFC107; }
+.classification-level.epsilon { color: #FF5722; }
+.classification-level.zeta    { color: #F44336; }
+
+/* ==========================================================================
+   10. Media Queries — Móvil (max-width: 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Header */
     .header h1 {
         font-size: 1.5em;
         flex-direction: column;
         gap: 5px;
     }
-    
+
     .header h1 img {
-        height: 70px; /* Reducir tamaño de imagen en móviles */
+        height: 70px;
     }
-    
+
     .slogan {
         font-size: 1em;
         margin-bottom: 1em;
     }
 
-    .footer {
-        background-color: #161b22; /* Fondo del pie de página */
-        color: #c9d1d9;
-        text-align: center;
-        padding: 1em 0;
-        border-top: 1px solid #30363d;
-        margin-top: auto; /* Permite que el footer se mueva al final del espacio disponible */
-        flex-shrink: 0;
-    }
-
-    /* Apila imagen y banner uno sobre otro */
+    /* Sección superior */
     .top-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 30px;
+        flex-direction: column;
+        gap: 15px;
     }
 
-    /* Centrar imagen del empleado en móviles */
     .employee-image-container {
-        margin: 0 auto;            /* Centra horizontalmente */
-        text-align: center;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
 
     .employee-image {
         width: 100%;
-        aspect-ratio: 1 / 1; /* Mantiene forma cuadrada */
+        aspect-ratio: 1 / 1;
     }
 
-    /* Banner del departamento con borde fino y sin espacio sobrante */
+    /* Banner del departamento */
     .department-banner-container {
         width: 100%;
-        max-width: 95%;
-        margin: 0 auto;                     /* Centrado */
-        padding: 0;                         /* Sin espacio interno */
-        background: none;                   /* Sin fondo que expanda */
-        border: 0px solid #30363d;           /* Borde gris claro fino */
-        border-radius: none;
-        overflow: hidden;                   /* Que el borde recorte la imagen */
+        min-width: unset;
+        height: auto;
+        padding: 0;
+        background: none;
+        border: none;
     }
+
     .department-banner {
         width: 100%;
-        aspect-ratio: 3 / 1;                 /* Mantiene proporción 1200x400 */
+        aspect-ratio: 3 / 1;
         height: auto;
-        border-radius: 0;                    /* Sin doble borde redondeado */
+        border-radius: 6px;
     }
+
     .department-banner img {
         width: 100%;
         height: 100%;
@@ -305,10 +331,24 @@ body {
         display: block;
     }
 
-
-    /* Reajustar columnas de datos */
+    /* Grid de datos */
     .data-grid {
         grid-template-columns: 1fr;
         gap: 10px;
+    }
+
+    /* Secciones */
+    .employee-details {
+        padding: 10px;
+        width: 95%;
+    }
+
+    .info-section-box {
+        padding: 15px;
+    }
+
+    .info-section-box .section-header {
+        margin: -15px -15px 15px -15px;
+        font-size: 1.1em;
     }
 }
