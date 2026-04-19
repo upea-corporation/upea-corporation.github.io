@@ -710,5 +710,16 @@ window.updatesData = [
         items: [
           "The footer addresses have been corrected."
         ],
+      },
+      {
+        isoDate: "2026-04-19",
+        time: "13:23",
+        items: [
+          "Deletion of all information linked to entity <strong><u>ZAE#005</u></strong> has been carried out at the express request of the user.",
+          "The date of the last update has been integrated into the individual file of each ZAE entity.",
+          "The list of classifications for ZAE entities has been updated; this version is projected to remain final.",
+          "Registration forms for ZAE entities have been updated, integrating the new classification criteria.",
+          "The date of the last update has been added to the bottom section of the calendar for easier reference."
+        ],
       }
-];
+    ];

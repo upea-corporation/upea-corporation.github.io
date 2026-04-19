@@ -710,6 +710,17 @@ window.updatesData = [
         items: [
           "Se han corregido las direcciones del pie de página en las páginas traducidas al inglés."
         ],
+      },
+      {
+        isoDate: "2026-04-19",
+        time: "13:23",
+        items: [
+          "Se ha procedido a la eliminación de toda la información vinculada a la entidad <strong><u>EAZ#005</u></strong> a solicitud expresa del usuario.",
+          "Se ha integrado la fecha de la última actualización en el expediente individual de cada entidad EAZ.",
+          "Se ha actualizado el listado de clasificaciones para las entidades EAZ; se proyecta que esta versión se mantenga como definitiva.",
+          "Se han actualizado los formularios de registro de las entidades EAZ, integrando los nuevos criterios de clasificación.",
+          "Se ha incorporado la fecha de la última actualización en la sección inferior del calendario para facilitar su consulta."
+        ],
       }
     ];
 

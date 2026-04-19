@@ -82,9 +82,6 @@
         .calendar-day.other-month {
             opacity: 0.4;
         }
-        .calendar-day.today {
-            border: 2px solid #f0883e;
-        }
         /* Modal de actualizaciones */
         .updates-modal {
             position: fixed;
@@ -187,3 +184,29 @@
             .calendar-day { font-size: 0.8rem; }
             .calendar-weekday { font-size: 0.7rem; }
         }
+
+/* ── Mensaje "Última actualización" debajo del calendario ── */
+.calendar-last-update {
+    margin: 12px 0 4px 0;
+    padding: 8px 12px;
+    background: #1c2128;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #c9d1d9;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* ── Día de la última actualización: resaltado dorado ── */
+.calendar-day.latest-update {
+    border: 2px solid #e3b341;
+    color: #e3b341;
+    font-weight: bold;
+}
+
+.calendar-day.latest-update.has-updates {
+    background: #2b2000;
+    border-color: #e3b341;
+    box-shadow: 0 0 6px rgba(227, 179, 65, 0.35);
+}

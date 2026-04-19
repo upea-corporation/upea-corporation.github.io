@@ -1,6 +1,6 @@
 {
   "name": "upea-web-client",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Sitio Web Wiki del Cliente para UPEA Corporation",
   "main": "index.html",
   "scripts": {

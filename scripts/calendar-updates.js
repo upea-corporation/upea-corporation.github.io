@@ -1,34 +1,18 @@
 (function(){
   const data = window.updatesData || [];
   
-  // Configuración: si quieres mostrar " UTC+1" en invierno o solo la hora sin nada
-  const SHOW_UTC_IN_WINTER = true;  // false = solo muestra "+2" en verano, nada en invierno
+  const SHOW_UTC_IN_WINTER = true;
   
-  // Determina el sufijo horario según la fecha (UTC+2 en verano, UTC+1 en invierno)
   function getTimezoneSuffix(isoDate) {
       const [year, month, day] = isoDate.split('-').map(Number);
-      // Fecha a las 12:00 UTC (para evitar problemas con horas límite)
       const dateUTC = Date.UTC(year, month-1, day, 12, 0, 0);
-      
-      // Último domingo de marzo (mes 2 = marzo)
       let marLast = new Date(Date.UTC(year, 2, 31));
-      while (marLast.getUTCDay() !== 0) { // 0 = domingo
-          marLast.setUTCDate(marLast.getUTCDate() - 1);
-      }
-      // Último domingo de octubre (mes 9 = octubre)
+      while (marLast.getUTCDay() !== 0) marLast.setUTCDate(marLast.getUTCDate() - 1);
       let octLast = new Date(Date.UTC(year, 9, 31));
-      while (octLast.getUTCDay() !== 0) {
-          octLast.setUTCDate(octLast.getUTCDate() - 1);
-      }
-      
-      // El cambio ocurre a las 01:00 UTC:
-      // - Horario de verano comienza el último domingo de marzo a las 01:00 UTC
-      // - Termina el último domingo de octubre a las 01:00 UTC
-      const dstStart = marLast.getTime() + 3600000; // 01:00 UTC
+      while (octLast.getUTCDay() !== 0) octLast.setUTCDate(octLast.getUTCDate() - 1);
+      const dstStart = marLast.getTime() + 3600000;
       const dstEnd   = octLast.getTime() + 3600000;
-      
       const isDST = (dateUTC >= dstStart && dateUTC < dstEnd);
-      
       if (isDST) return ' UTC+2';
       return SHOW_UTC_IN_WINTER ? ' UTC+1' : '';
   }
@@ -45,27 +29,84 @@
   
   const minDate = new Date(datesWithUpdates[0] + 'T00:00:00');
   const maxDate = new Date(datesWithUpdates[datesWithUpdates.length-1] + 'T00:00:00');
-  
-  let currentYear = minDate.getFullYear();
-  let currentMonth = minDate.getMonth();
+  const latestIso = datesWithUpdates[datesWithUpdates.length-1]; // fecha más reciente
+
+  // ── Mostrar siempre el mes de la última actualización al cargar ──
+  let currentYear  = maxDate.getFullYear();
+  let currentMonth = maxDate.getMonth();
   
   const calendarApp = document.getElementById('calendar-app');
   
+  // ── Mensaje "hace X tiempo" ──
+  function buildTimeSinceMessage() {
+      const [ly, lm, ld] = latestIso.split('-').map(Number);
+      const lastUpdate = new Date(ly, lm-1, ld);
+      const now = new Date();
+      
+      // Diferencia en días completos (ignorando horas)
+      const nowMidnight  = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const diffMs   = nowMidnight - lastUpdate;
+      const diffDays = Math.floor(diffMs / 86400000);
+      
+      const [dd, mm, yyyy] = [
+          String(ld).padStart(2,'0'),
+          String(lm).padStart(2,'0'),
+          String(ly)
+      ];
+      const displayDate = `${dd}/${mm}/${yyyy}`;
+      
+      // Obtener la hora de la última entrada de ese día
+      const lastEntries = updatesByDate[latestIso];
+      const lastTime = lastEntries[lastEntries.length - 1].time || '';
+      const tzSuffix = getTimezoneSuffix(latestIso);
+      const timeStr  = lastTime ? ` a las ${lastTime}${tzSuffix}` : '';
+      
+      let timeAgo;
+      if (diffDays === 0) {
+          timeAgo = 'hoy mismo';
+      } else if (diffDays === 1) {
+          timeAgo = 'hace 1 día';
+      } else if (diffDays < 7) {
+          timeAgo = `hace ${diffDays} días`;
+      } else if (diffDays < 14) {
+          timeAgo = 'hace 1 semana';
+      } else if (diffDays < 30) {
+          const weeks = Math.floor(diffDays / 7);
+          timeAgo = `hace ${weeks} semanas`;
+      } else if (diffDays < 60) {
+          timeAgo = 'hace 1 mes';
+      } else if (diffDays < 365) {
+          const months = Math.floor(diffDays / 30);
+          timeAgo = `hace ${months} meses`;
+      } else if (diffDays < 730) {
+          timeAgo = 'hace 1 año';
+      } else {
+          const years = Math.floor(diffDays / 365);
+          timeAgo = `hace ${years} años`;
+      }
+      
+      return `Última actualización: <strong>${displayDate}${timeStr}</strong> — <span style="color:#79c0ff">${timeAgo}</span>`;
+  }
+  
   function renderCalendar() {
       const firstDay = new Date(currentYear, currentMonth, 1);
-      const lastDay = new Date(currentYear, currentMonth + 1, 0);
+      const lastDay  = new Date(currentYear, currentMonth + 1, 0);
       
       let startDayOfWeek = firstDay.getDay();
       startDayOfWeek = (startDayOfWeek === 0) ? 6 : startDayOfWeek - 1;
       
-      const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                          'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      
+      const isPrevDisabled = (currentYear === minDate.getFullYear() && currentMonth <= minDate.getMonth());
+      const isNextDisabled = (currentYear === maxDate.getFullYear() && currentMonth >= maxDate.getMonth());
       
       let html = `
           <div class="calendar-header">
               <h3>${monthNames[currentMonth]} ${currentYear}</h3>
               <div class="calendar-nav">
-                  <button id="prevMonthBtn" ${(currentYear === minDate.getFullYear() && currentMonth <= minDate.getMonth()) ? 'disabled' : ''}>← Mes anterior</button>
-                  <button id="nextMonthBtn" ${(currentYear === maxDate.getFullYear() && currentMonth >= maxDate.getMonth()) ? 'disabled' : ''}>Mes siguiente →</button>
+                  <button id="prevMonthBtn" ${isPrevDisabled ? 'disabled' : ''}>← Mes anterior</button>
+                  <button id="nextMonthBtn" ${isNextDisabled ? 'disabled' : ''}>Mes siguiente →</button>
               </div>
           </div>
           <div class="calendar-grid">
@@ -82,26 +123,26 @@
           html += `<div class="calendar-day other-month"></div>`;
       }
       
-      const today = new Date();
-      const todayStr = today.getFullYear() + '-' + 
-                       String(today.getMonth() + 1).padStart(2, '0') + '-' + 
-                       String(today.getDate()).padStart(2, '0');
       
       for (let d = 1; d <= lastDay.getDate(); d++) {
-          const iso = currentYear + '-' + 
-                      String(currentMonth + 1).padStart(2, '0') + '-' + 
-                      String(d).padStart(2, '0');
+          const iso = currentYear + '-' +
+                      String(currentMonth+1).padStart(2,'0') + '-' +
+                      String(d).padStart(2,'0');
           const hasUpdates = updatesByDate.hasOwnProperty(iso);
-          const isToday = (iso === todayStr);
+          const isLatest   = (iso === latestIso);
           
           let classes = 'calendar-day';
           if (hasUpdates) classes += ' has-updates';
-          if (isToday) classes += ' today';
+          if (isLatest)   classes += ' latest-update';
           
           html += `<div class="${classes}" data-date="${iso}">${d}</div>`;
       }
       
       html += '</div>';
+
+      // Mensaje de última actualización
+      html += `<p class="calendar-last-update">${buildTimeSinceMessage()}</p>`;
+      
       calendarApp.innerHTML = html;
       
       document.getElementById('prevMonthBtn')?.addEventListener('click', () => {
@@ -117,10 +158,7 @@
       });
       
       document.querySelectorAll('.calendar-day.has-updates').forEach(day => {
-          day.addEventListener('click', (e) => {
-              const date = day.dataset.date;
-              showUpdatesModal(date);
-          });
+          day.addEventListener('click', () => showUpdatesModal(day.dataset.date));
       });
   }
   
@@ -153,11 +191,7 @@
           `;
       });
       
-      modalHtml += `
-                  </div>
-              </div>
-          </div>
-      `;
+      modalHtml += `</div></div></div>`;
       
       const oldModal = document.getElementById('updatesModal');
       if (oldModal) oldModal.remove();
@@ -165,18 +199,11 @@
       document.body.insertAdjacentHTML('beforeend', modalHtml);
       document.body.classList.add('modal-open');
       
-      const modal = document.getElementById('updatesModal');
+      const modal    = document.getElementById('updatesModal');
       const closeBtn = modal.querySelector('.modal-close');
-      
-      const closeModal = () => {
-          modal.remove();
-          document.body.classList.remove('modal-open');
-      };
-      
+      const closeModal = () => { modal.remove(); document.body.classList.remove('modal-open'); };
       closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeModal();
-      });
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   }
   
   renderCalendar();
