@@ -721,6 +721,13 @@ window.updatesData = [
           "Se han actualizado los formularios de registro de las entidades EAZ, integrando los nuevos criterios de clasificación.",
           "Se ha incorporado la fecha de la última actualización en la sección inferior del calendario para facilitar su consulta."
         ],
+      },
+      {
+        isoDate: "2026-04-20",
+        time: "14:48",
+        items: [
+          "Corrección de duplicidad nominal en la clasificación de la entidad EAZ."
+        ],
       }
     ];
 

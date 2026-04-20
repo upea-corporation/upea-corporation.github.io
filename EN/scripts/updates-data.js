@@ -721,5 +721,12 @@ window.updatesData = [
           "Registration forms for ZAE entities have been updated, integrating the new classification criteria.",
           "The date of the last update has been added to the bottom section of the calendar for easier reference."
         ],
+      },
+      {
+        isoDate: "2026-04-20",
+        time: "14:48",
+        items: [
+          "Correction of nominal duplication in the classification of the ZAE entity."
+        ],
       }
     ];
