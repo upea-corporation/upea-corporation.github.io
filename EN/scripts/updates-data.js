@@ -728,5 +728,12 @@ window.updatesData = [
         items: [
           "Correction of nominal duplication in the classification of the ZAE entity."
         ],
+      },
+      {
+        isoDate: "2026-04-28",
+        time: "12:31",
+        items: [
+          "We resolved technical issues on the updates page to ensure it displays correctly."
+        ],
       }
     ];

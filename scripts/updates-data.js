@@ -728,6 +728,13 @@ window.updatesData = [
         items: [
           "Corrección de duplicidad nominal en la clasificación de la entidad EAZ."
         ],
+      },
+      {
+        isoDate: "2026-04-28",
+        time: "12:31",
+        items: [
+          "Solucionamos incidencias técnicas en la página de actualizaciones en inglés para garantizar su correcta visualización."
+        ],
       }
     ];
 
