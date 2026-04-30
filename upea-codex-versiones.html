@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>UPEA Codex - Historial de Versiones</title>
+
+    <link rel="icon" type="image/png" href="image/upea-corp-logo.webp">
+    <link rel="apple-touch-icon" href="image/upea-corp-logo.webp">
+    <meta name="description" content="Historial oficial de versiones de UPEA Codex, la aplicación desarrollada por el equipo de UPEA Corporation. Descarga la versión más reciente para Windows, Linux y macOS.">
+    <meta name="keywords" content="UPEA Codex, UPEA Corporation, UPEA Corp, aplicación, versiones, descarga, Windows, Linux, macOS, changelog">
+    <meta name="theme-color" content="#0d1117">
+
+    <style>
+        /* ─── RESET & BASE ─── */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-main:       #0d1117;
+            --bg-card:       #161b22;
+            --bg-card-hover: #1c2330;
+            --border:        #30363d;
+            --border-accent: #58a6ff;
+            --text-primary:  #e6edf3;
+            --text-secondary:#8b949e;
+            --text-muted:    #6e7681;
+            --accent-blue:   #58a6ff;
+            --accent-green:  #3fb950;
+            --accent-orange: #d29922;
+            --accent-red:    #f85149;
+            --link:          #58a6ff;
+            --link-hover:    #79c0ff;
+            --btn-win:       #0078d4;
+            --btn-win-h:     #106ebe;
+            --btn-linux:     #e95420;
+            --btn-linux-h:   #c7431a;
+            --btn-mac:       #999999;
+            --btn-mac-h:     #777777;
+            --font-main:     'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono:     'Consolas', 'Courier New', monospace;
+            --radius:        6px;
+            --radius-lg:     10px;
+            --shadow:        0 1px 3px rgba(0,0,0,0.4);
+            --shadow-lg:     0 4px 16px rgba(0,0,0,0.5);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── FLOATING DOT (matches the site's floating-dot.js effect) ─── */
+        .floating-dot {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.7;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 8px var(--accent-blue);
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(88,166,255,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .header h1 img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .header .slogan {
+            margin-top: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .header .slogan u {
+            text-decoration-color: var(--border-accent);
+            text-underline-offset: 3px;
+        }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            background-color: #161b22;
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar ul.nav-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .navbar ul.nav-links li a {
+            display: block;
+            padding: 12px 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s, background 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .navbar ul.nav-links li a:hover,
+        .navbar ul.nav-links li a.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--accent-blue);
+            background: rgba(88,166,255,0.05);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 12px 0;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ─── MAIN CONTAINER ─── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px 20px 50px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* ─── SECTION: INTRO ─── */
+        .presentation-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 30px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-intro::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+        }
+
+        .presentation-intro h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .presentation-intro p {
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+            margin-bottom: 8px;
+        }
+
+        .presentation-intro p:last-child { margin-bottom: 0; }
+
+        /* ─── APP HEADER CARD ─── */
+        .app-header-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 30px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #1f3352, #0d2137);
+            border: 1px solid var(--border-accent);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 18px rgba(88,166,255,0.15);
+        }
+
+        .app-meta h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .app-meta p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .badge-team { background: rgba(88,166,255,0.15); color: var(--accent-blue); border: 1px solid rgba(88,166,255,0.3); }
+        .badge-latest { background: rgba(63,185,80,0.15); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.3); }
+        .badge-stable { background: rgba(210,153,34,0.15); color: var(--accent-orange); border: 1px solid rgba(210,153,34,0.3); }
+
+        /* ─── NOTICE BOX ─── */
+        .notice-box {
+            background: rgba(88,166,255,0.08);
+            border: 1px solid rgba(88,166,255,0.25);
+            border-left: 3px solid var(--accent-blue);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .notice-box strong { color: var(--accent-blue); }
+
+        /* ─── EXPLICACIÓN SOBRE FIRMA DIGITAL Y ADVERTENCIAS ─── */
+        .warning-explanation {
+            background: #1c2128;
+            border-left: 4px solid #e3b341;
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            margin-bottom: 32px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .warning-explanation p {
+            margin-bottom: 0.75rem;
+        }
+
+        .warning-explanation p:last-child {
+            margin-bottom: 0;
+        }
+
+        .warning-explanation strong {
+            color: #e3b341;
+        }
+
+        /* ─── VERSION BLOCK ─── */
+        .version-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .version-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .version-block:hover {
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .version-block.latest {
+            border-color: rgba(63,185,80,0.4);
+        }
+
+        .version-header {
+            background: linear-gradient(135deg, #1c2330, #161b22);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .version-header .v-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+
+        .version-header .v-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* ─── SHA256 BOX ─── */
+        .sha-section {
+            padding: 16px 24px;
+            background: rgba(22,27,34,0.8);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sha-section h4 {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .sha-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sha-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .sha-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            width: 110px;
+            flex-shrink: 0;
+            padding-top: 3px;
+        }
+
+        .sha-value {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent-green);
+            word-break: break-all;
+            background: rgba(63,185,80,0.05);
+            border: 1px solid rgba(63,185,80,0.15);
+            padding: 3px 8px;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 0;
+            cursor: text;
+            user-select: all;
+        }
+
+        /* ─── DOWNLOADS ─── */
+        .download-section {
+            padding: 20px 24px;
+        }
+
+        .download-section h4 {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .lang-group {
+            margin-bottom: 18px;
+        }
+
+        .lang-group:last-child { margin-bottom: 0; }
+
+        .lang-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-label::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 14px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .dl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+        }
+
+        .dl-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .dl-btn:active { transform: translateY(0); }
+
+        .dl-btn.win   { background: var(--btn-win);   }
+        .dl-btn.win:hover   { background: var(--btn-win-h);   }
+        .dl-btn.linux { background: var(--btn-linux); }
+        .dl-btn.linux:hover { background: var(--btn-linux-h); }
+        .dl-btn.mac   { background: var(--btn-mac);   color: #111; }
+        .dl-btn.mac:hover   { background: var(--btn-mac-h);   }
+
+        .dl-btn svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ─── COMMANDS SECTION ─── */
+        .commands-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 30px;
+            margin: 32px 0;
+        }
+
+        .commands-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .commands-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .command-card {
+            flex: 1;
+            min-width: 200px;
+            background: #0d1117;
+            border-left: 4px solid var(--accent-blue);
+            padding: 16px;
+            border-radius: var(--radius);
+        }
+
+        .command-card p {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .command-card code {
+            display: block;
+            background: #010409;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #bbf0ff;
+            word-break: break-all;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background-color: #0d1117;
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.825rem;
+            color: var(--text-muted);
+        }
+
+        .footer a { color: var(--link); text-decoration: none; }
+        .footer a:hover { color: var(--link-hover); text-decoration: underline; }
+
+        .footer .footer-link {
+            color: var(--text-muted);
+            font-size: 0.775rem;
+        }
+
+        .footer .footer-link:hover { color: var(--link-hover); }
+
+        .footer .icon-link img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin: 0 4px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer .icon-link:hover img { opacity: 1; }
+
+        .developer-credits {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .developer-credits span {
+            background: #161b22;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            color: var(--text-secondary);
+        }
+
+        .developer-credits span i {
+            margin-right: 0.4rem;
+            color: var(--accent-blue);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.2rem; }
+            .menu-toggle { display: flex; }
+            .navbar ul.nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 0;
+            }
+            .navbar ul.nav-links.open { display: flex; }
+            .navbar ul.nav-links li a {
+                padding: 10px 16px;
+                width: 100%;
+            }
+            .app-header-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .sha-label { width: 100%; margin-bottom: 4px; }
+            .sha-row { flex-direction: column; gap: 4px; }
+            .download-buttons { flex-direction: column; }
+            .dl-btn { justify-content: center; width: 100%; }
+            .version-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .version-header .v-date { margin-left: 0; font-size: 0.7rem; }
+            .container { padding: 20px 16px 40px; }
+            .presentation-intro, .app-header-card, .notice-box, .commands-section, .warning-explanation {
+                padding: 18px 16px;
+            }
+            .badge { font-size: 0.7rem; }
+            .developer-credits { flex-direction: column; gap: 6px; align-items: center; }
+            .commands-grid { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── HEADER ─── -->
+    <header class="header">
+        <h1>
+            <img src="image/upea-corp-logo.webp" alt="Icono UPEA"> UPEA Corporation
+        </h1>
+        <p class="slogan"><u>Unidad de Protección Especial Antropoide</u></p>
+    </header>
+
+    <!-- ─── MAIN ─── -->
+    <main class="container">
+
+        <!-- Intro -->
+        <section class="presentation-intro">
+            <h2>Historial de Versiones — UPEA Codex</h2>
+            <p>Esta página recoge el registro oficial de todas las versiones publicadas de <strong>UPEA Codex</strong>, la aplicación de escritorio desarrollada por el equipo de <strong>UPEA Corporation</strong>.</p>
+            <p>Cada versión incluye los hashes SHA-256 de verificación para garantizar la integridad del archivo descargado, así como los enlaces de descarga por plataforma e idioma.</p>
+        </section>
+
+        <!-- App header card -->
+        <div class="app-header-card">
+            <div class="app-icon">📖</div>
+            <div class="app-meta">
+                <h2>UPEA Codex</h2>
+                <p>Aplicación desarrollada por el equipo de UPEA Corporation</p>
+                <div>
+                    <span class="badge badge-team">UPEA Corporation</span>
+                    <span class="badge badge-latest">Última versión: 1.0.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice de verificación de integridad -->
+        <div class="notice-box">
+            <strong>ℹ Verificación de integridad:</strong> Tras descargar la aplicación, se recomienda verificar el hash SHA-256 del archivo descargado con los valores indicados en esta página. Un hash diferente indica que el archivo puede estar modificado o corrupto.
+        </div>
+
+        <!-- NUEVA EXPLICACIÓN SOBRE ADVERTENCIAS Y FIRMA DIGITAL -->
+        <div class="warning-explanation">
+            <p><strong>⚠️ Sobre las advertencias de seguridad al descargar o ejecutar</strong></p>
+            <p>Es posible que su navegador o sistema operativo muestre un aviso indicando que el archivo podría ser malicioso o que el editor no está identificado. Le pedimos tranquilidad: esto ocurre porque la aplicación <strong>no dispone de una firma digital de pago</strong>. Originalmente, UPEA Codex <strong>no estaba planeado como una aplicación descargable</strong>; su desarrollo surgió para ampliar el proyecto UPEA Corporation, ofrecer mayor comodidad a los colaboradores y dar un paso más en la difusión de nuestra iniciativa.</p>
+            <p>Nunca fue concebido como un proyecto ambicioso que requiriera firma digital ni hospedaje masivo, pero decidimos compartirlo en Netlify para que más personas pudieran participar. A pesar de no contar con una firma pagada, <strong>publicamos el código hash SHA256 de cada archivo</strong>. Usted puede verificar la integridad y autenticidad del software comparando el hash calculado con el que mostramos en esta página. Si coinciden, el archivo es legítimo y no ha sido alterado.</p>
+            <p>Agradecemos profundamente su comprensión y confianza. Seguiremos trabajando con transparencia y rigor.</p>
+        </div>
+
+        <!-- ─── LISTA DE VERSIONES ─── -->
+        <div class="version-list">
+
+            <!-- ══════════════════════════════════════════ -->
+            <!--  VERSIÓN 1.1.0 (oculta temporalmente)      -->
+            <!-- ══════════════════════════════════════════ -->
+            <div style="display: none;">
+                <div class="version-block latest">
+                    <div class="version-header">
+                        <span class="v-number">v1.1.0</span>
+                        <span class="badge badge-latest">Última versión</span>
+                        <span class="badge badge-stable">Estable</span>
+                        <span class="v-date">2026</span>
+                    </div>
+                    <div class="sha-section">
+                        <h4>🔒 Hashes SHA-256 — Verificación de integridad</h4>
+                        <div class="sha-grid">
+                            <div class="sha-row"><span class="sha-label">Windows (ES)</span><code class="sha-value">PENDIENTE — Coloca aquí el SHA-256 del instalador Windows ES v1.1.0</code></div>
+                            <div class="sha-row"><span class="sha-label">Windows (EN)</span><code class="sha-value">PENDIENTE — Coloca aquí el SHA-256 del instalador Windows EN v1.1.0</code></div>
+                            <div class="sha-row"><span class="sha-label">Linux (ES)</span><code class="sha-value">PENDIENTE — Coloca aquí el SHA-256 del paquete Linux ES v1.1.0</code></div>
+                            <div class="sha-row"><span class="sha-label">Linux (EN)</span><code class="sha-value">PENDIENTE — Coloca aquí el SHA-256 del paquete Linux EN v1.1.0</code></div>
+                            <div class="sha-row"><span class="sha-label">macOS (ES)</span><code class="sha-value">PENDIENTE — Coloca aquí el SHA-256 del .dmg macOS ES v1.1.0</code></div>
+                            <div class="sha-row"><span class="sha-label">macOS (EN)</span><code class="sha-value">PENDIENTE — Coloca aquí el SHA-256 del .dmg macOS EN v1.1.0</code></div>
+                        </div>
+                    </div>
+                    <div class="download-section">
+                        <h4>⬇ Descargas — v1.1.0</h4>
+                        <div class="lang-group">
+                            <div class="lang-label">Español (ES)</div>
+                            <div class="download-buttons">
+                                <a href="#" class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
+                                <a href="#" class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
+                                <a href="#" class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
+                            </div>
+                        </div>
+                        <div class="lang-group">
+                            <div class="lang-label">English (EN)</div>
+                            <div class="download-buttons">
+                                <a href="#" class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
+                                <a href="#" class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
+                                <a href="#" class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /v1.1.0 oculta -->
+
+            <!-- ══════════════════════════════════════════ -->
+            <!--  VERSIÓN 1.0.0                             -->
+            <!-- ══════════════════════════════════════════ -->
+            <div class="version-block">
+                <div class="version-header">
+                    <span class="v-number">v1.0.0</span>
+                    <span class="badge badge-latest">Última versión</span>
+                    <span class="badge badge-stable">Estable</span>
+                    <span class="v-date">28 de Abril de 2026 (14:34 UTC+2)</span>
+                </div>
+
+                <!-- SHA-256 -->
+                <div class="sha-section">
+                    <h4>🔒 Hashes SHA-256 — Verificación de integridad</h4>
+                    <div class="sha-grid">
+                        <div class="sha-row"><span class="sha-label">Windows (ES)</span><code class="sha-value">sha256:44636c23210c7e8f7550e1eacb52ffb5b1b4cfeec96d77e66d850413c96202d0</code></div>
+                        <div class="sha-row"><span class="sha-label">Windows (EN)</span><code class="sha-value">sha256:54a209af6679801e22a776e290d9f0d3f02f0049a28341375591f45611a57d05</code></div>
+                        <div class="sha-row"><span class="sha-label">Linux (ES)</span><code class="sha-value">sha256:cb31a7b2724b3973add87975ed668c1c6935918d696cfff83c2f123e606efe0e</code></div>
+                        <div class="sha-row"><span class="sha-label">Linux (EN)</span><code class="sha-value">sha256:3b7bd4ab3807a35d192ce0404b4bfd8faf62b9ed239deffe71aa41186971f515</code></div>
+                        <div class="sha-row"><span class="sha-label">macOS (ES)</span><code class="sha-value">sha256:aa8709f9fa59ad7ce857a792a4bd2c31962cb6c0ff7c375d23ecfb26f572de6d</code></div>
+                        <div class="sha-row"><span class="sha-label">macOS (EN)</span><code class="sha-value">sha256:7ccafc07402a10e36a544ae6707a67b9c352d29fb0ab00e842a9ae85b83747d0</code></div>
+                    </div>
+                </div>
+
+                <!-- Descargas -->
+                <div class="download-section">
+                    <h4>⬇ Descargas — v1.0.0</h4>
+                    <div class="lang-group">
+                        <div class="lang-label">Español (ES)</div>
+                        <div class="download-buttons">
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.0.0/UPEA.CODEX.Setup.1.0.0.-.ESPANOL.exe" download class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.0.0/UPEA.CODEX-1.0.0.-.ESPANOL.AppImage" download class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.0.0/UPEA.CODEX-1.0.0.-.ESPANOL.dmg" download class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
+                        </div>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">English (EN)</div>
+                        <div class="download-buttons">
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.0.0/UPEA.CODEX.Setup.1.0.0.-.ENGLISH.exe" download class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.0.0/UPEA.CODEX-1.0.0.-.ENGLISH.AppImage" download class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.0.0/UPEA.CODEX-1.0.0.-.ENGLISH.dmg" download class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /v1.0.0 -->
+
+        </div><!-- /version-list -->
+
+        <!-- ========= SECCIÓN: COMANDOS DE VERIFICACIÓN SHA256 ========= -->
+        <div class="commands-section">
+            <h3><i class="fas fa-terminal"></i> Cómo verificar el hash SHA256</h3>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <p><i class="fab fa-windows"></i> Windows (CMD o PowerShell)</p>
+                    <code>certutil -hashfile "ruta_del_archivo.exe" SHA256</code>
+                    <code style="margin-top:8px;">Get-FileHash -Algorithm SHA256 "ruta_del_archivo.exe"</code>
+                </div>
+                <div class="command-card">
+                    <p><i class="fab fa-linux"></i> Linux (terminal)</p>
+                    <code>sha256sum ruta_del_archivo.AppImage</code>
+                </div>
+                <div class="command-card">
+                    <p><i class="fab fa-apple"></i> macOS (terminal)</p>
+                    <code>shasum -a 256 ruta_del_archivo.dmg</code>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+                <i class="fas fa-info-circle"></i> Reemplace "ruta_del_archivo" por la ruta del archivo descargado. Compare el resultado con el hash SHA256 mostrado en esta página. Si coinciden, el archivo es auténtico y no ha sido alterado.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer">
+        <p>© 2026 UPEA Corporation - Todos los derechos reservados.
+            <a href="https://www.youtube.com/channel/UCUS3exmv__qg_IlczrJfVJw" class="icon-link">
+                <img src="image/rrss/YouTube-Icon.svg" alt="Cuenta Oficial de YouTube de UPEA Corp.">
+            </a>
+            <a href="https://x.com/UPEA_Corp" class="icon-link">
+                <img src="image/rrss/Twitter-Icon.svg" alt="Cuenta Oficial de Twitter/X de UPEA Corp.">
+            </a>
+            <a href="https://bsky.app/profile/upea-corp.netlify.app" class="icon-link">
+                <img src="image/rrss/Bluesky-Icon.svg" alt="Cuenta Oficial de BlueSky de UPEA Corp.">
+            </a>
+            <br>
+            <a href="foot-page/extensiones-de-netlify.html" class="footer-link">Extensiones de Netlify</a> |
+            <a href="foot-page/politica-de-cookies.html" class="footer-link">Política de Cookies</a> |
+            <a href="foot-page/terminos-y-condiciones.html" class="footer-link">Términos y Condiciones de Uso</a> |
+            <a href="foot-page/politica-de-seguridad-y-privacidad.html" class="footer-link">Política de Seguridad y Privacidad</a> |
+            <a href="foot-page/copyright.html" class="footer-link">Copyright</a> |
+            <a href="foot-page/terminos-y-condiciones-de-registros.html" class="footer-link">Términos y Condiciones de Registros</a>
+        </p>
+        <!-- Developer & verification credits añadidos -->
+        <div class="developer-credits">
+            <span><i class="fas fa-code"></i> Desarrollador: IrdurDev</span>
+            <span><i class="fas fa-check-circle"></i> Verificación oficial: UPEA Corporation Team</span>
+        </div>
+    </footer>
+
+    <!-- Script para el menú hamburguesa -->
+    <script>
+        (function() {
+            const toggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('.navbar ul.nav-links');
+            if (toggle && navUl) {
+                toggle.addEventListener('click', function() {
+                    navUl.classList.toggle('open');
+                });
+            }
+        })();
+    </script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>

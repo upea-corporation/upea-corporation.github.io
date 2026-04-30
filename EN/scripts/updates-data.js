@@ -735,5 +735,13 @@ window.updatesData = [
         items: [
           "We resolved technical issues on the updates page to ensure it displays correctly."
         ],
+      },
+      {
+        isoDate: "2026-04-30",
+        time: "12:00",
+        items: [
+          "We have updated the <a href='access.html' class='main-link'>access</a> page to include the download link for the new UPEA Codex tool.",
+          "We have renamed the UPEA Codex website as <strong><u>UPEA Codex Classic</u></strong>, which will remain active only as a historical archive."
+        ],
       }
     ];
