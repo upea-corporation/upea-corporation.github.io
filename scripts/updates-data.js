@@ -743,6 +743,15 @@ window.updatesData = [
           "Actualizamos la página de <a href='acceso.html' class='main-link'>acceso</a> para incluir el enlace de descarga de la nueva herramienta UPEA Codex.",
           "Renombramos la web de UPEA Codex como <strong><u>UPEA Codex Classic</u></strong>, la cual permanecerá activa únicamente como archivo histórico."
         ],
+      },
+      {
+        isoDate: "2026-05-21",
+        time: "20:44",
+        items: [
+          "Disponible la versión 1.1.0 de la aplicación UPEA Codex.",
+          "Se han corregido los errores de descarga de UPEA Codex.",
+          "Se añadió marca de agua según la IA usada para generar la imagen de las entidades EAZ específicas."
+        ],
       }
     ];
 

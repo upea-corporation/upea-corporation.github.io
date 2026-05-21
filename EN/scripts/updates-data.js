@@ -743,5 +743,14 @@ window.updatesData = [
           "We have updated the <a href='access.html' class='main-link'>access</a> page to include the download link for the new UPEA Codex tool.",
           "We have renamed the UPEA Codex website as <strong><u>UPEA Codex Classic</u></strong>, which will remain active only as a historical archive."
         ],
+      },
+      {
+        isoDate: "2026-05-21",
+        time: "20:44",
+        items: [
+          "<strong><u>UPEA Codex</u></strong> application version 1.1.0 is now available.",
+          "<strong><u>UPEA Codex</u></strong> download errors have been fixed.",
+          "A watermark was added according to the AI used to generate the image of specific ZAE entities."
+        ],
       }
     ];

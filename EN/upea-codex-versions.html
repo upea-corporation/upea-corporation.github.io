@@ -333,10 +333,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .version-block.latest {
-            border-color: rgba(63,185,80,0.4);
-        }
-
         .version-header {
             background: linear-gradient(135deg, #1c2330, #161b22);
             padding: 18px 24px;
@@ -685,47 +681,46 @@
         <div class="version-list">
 
             <!-- ══════════════════════════════════════════ -->
-            <!--  VERSION 1.1.0 (temporarily hidden)        -->
+            <!--  VERSIÓN 1.1.0                             -->
             <!-- ══════════════════════════════════════════ -->
-            <div style="display: none;">
-                <div class="version-block latest">
-                    <div class="version-header">
-                        <span class="v-number">v1.1.0</span>
-                        <span class="badge badge-stable">Stable</span>
-                        <span class="v-date">2026</span>
+            <div class="version-block latest">
+                <div class="version-header">
+                    <span class="v-number">v1.1.0</span>
+                    <span class="badge badge-latest">Latest version</span>
+                    <span class="badge badge-stable">Stable</span>
+                    <span class="v-date">May 21, 2026 (20:28 UTC+2)</span>
+                </div>
+                <div class="sha-section">
+                    <h4>🔒 Hashes SHA-256 — Integrity verification</h4>
+                    <div class="sha-grid">
+                        <div class="sha-row"><span class="sha-label">Windows (ES)</span><code class="sha-value">sha256:1234c9851bfe2811915ec71ed7da44571872d97a680479df98c9ece6a4d49c1a</code></div>
+                        <div class="sha-row"><span class="sha-label">Windows (EN)</span><code class="sha-value">sha256:d9660ff795bc988c6b38810a06792a985211d0016e6b7ecba7cfabcf2e3f56fd</code></div>
+                        <div class="sha-row"><span class="sha-label">Linux (ES)</span><code class="sha-value">sha256:a7a86146dbdd6615e8b257c395790f34e2b586ec815e3e97c093fbef98972304</code></div>
+                        <div class="sha-row"><span class="sha-label">Linux (EN)</span><code class="sha-value">sha256:666152352dd8aa8fceb13f693b74df4fb7adfffeaf3697a37639010c27cc152b</code></div>
+                        <div class="sha-row"><span class="sha-label">macOS (ES)</span><code class="sha-value">sha256:98bfcf8d75bf777dd7f3f02c111407d3c9da22952e1855fdddafea1aef575c27</code></div>
+                        <div class="sha-row"><span class="sha-label">macOS (EN)</span><code class="sha-value">sha256:d43eb93e7279bc6c05b0f07acafb60173c6e41f760b2dd28498357766c177ff1</code></div>
                     </div>
-                    <div class="sha-section">
-                        <h4>🔒 SHA-256 Hashes — Integrity verification</h4>
-                        <div class="sha-grid">
-                            <div class="sha-row"><span class="sha-label">Windows (ES)</span><code class="sha-value">PENDING — Place the SHA-256 of the Windows ES installer v1.1.0 here</code></div>
-                            <div class="sha-row"><span class="sha-label">Windows (EN)</span><code class="sha-value">PENDING — Place the SHA-256 of the Windows EN installer v1.1.0 here</code></div>
-                            <div class="sha-row"><span class="sha-label">Linux (ES)</span><code class="sha-value">PENDING — Place the SHA-256 of the Linux ES package v1.1.0 here</code></div>
-                            <div class="sha-row"><span class="sha-label">Linux (EN)</span><code class="sha-value">PENDING — Place the SHA-256 of the Linux EN package v1.1.0 here</code></div>
-                            <div class="sha-row"><span class="sha-label">macOS (ES)</span><code class="sha-value">PENDING — Place the SHA-256 of the macOS ES .dmg v1.1.0 here</code></div>
-                            <div class="sha-row"><span class="sha-label">macOS (EN)</span><code class="sha-value">PENDING — Place the SHA-256 of the macOS EN .dmg v1.1.0 here</code></div>
+                </div>
+                <div class="download-section">
+                    <h4>⬇ Descargas — v1.1.0</h4>
+                    <div class="lang-group">
+                        <div class="lang-label">Español (ES)</div>
+                        <div class="download-buttons">
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.1.0/UPEA.CODEX.Setup.1.1.0.-.ESPANOL.exe" download class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.1.0/UPEA.CODEX-1.1.0.-.ESPANOL.AppImage" download class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.1.0/UPEA.CODEX-1.1.0.-.ESPANOL.dmg" download class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
                         </div>
                     </div>
-                    <div class="download-section">
-                        <h4>⬇ Downloads — v1.1.0</h4>
-                        <div class="lang-group">
-                            <div class="lang-label">Español (ES)</div>
-                            <div class="download-buttons">
-                                <a href="#" class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
-                                <a href="#" class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
-                                <a href="#" class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
-                            </div>
-                        </div>
-                        <div class="lang-group">
-                            <div class="lang-label">English (EN)</div>
-                            <div class="download-buttons">
-                                <a href="#" class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
-                                <a href="#" class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
-                                <a href="#" class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
-                            </div>
+                    <div class="lang-group">
+                        <div class="lang-label">English (EN)</div>
+                        <div class="download-buttons">
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.1.0/UPEA.CODEX.Setup.1.1.0.-.ENGLISH.exe" download class="dl-btn win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801"/></svg>Windows</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.1.0/UPEA.CODEX-1.1.0.-.ENGLISH.AppImage" download class="dl-btn linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.121.779.454 1.493.85 2.153.396.659.85 1.266 1.34 1.818.232.264.467.527.695.792.5.582 1.084 1.162 1.657 1.713 1.15 1.126 1.677 2.214 1.65 3.219.02.523-.107 1.022-.4 1.499-.15.25-.35.47-.586.636-.19.136-.42.237-.68.279-.7.011-.137.02-.2.02-.41 0-.823-.082-1.19-.232-.37-.15-.7-.38-.964-.68-.51-.594-.72-1.451-.677-2.34.042-.894.286-1.884.658-2.875a19.9 19.9 0 0 1 1.23-2.76 21 21 0 0 0-1.44 2.66c-.427.98-.692 2.042-.716 3.11-.025 1.07.22 2.18.82 3.04.603.862 1.536 1.465 2.559 1.677.503.102 1.028.112 1.55.017.522-.095 1.046-.31 1.507-.66.463-.35.857-.83 1.12-1.396.262-.567.385-1.217.38-1.89.003-1.366-.618-2.688-1.827-3.866-.593-.584-1.189-1.172-1.7-1.76-.252-.293-.497-.59-.73-.89-.468-.6-.86-1.23-1.1-1.9-.243-.673-.3-1.358-.135-2.058.17-.7.545-1.346 1.05-1.888.505-.541 1.098-1.005 1.72-1.41.62-.406 1.273-.765 1.906-1.153.635-.39 1.25-.81 1.806-1.322.557-.512 1.057-1.117 1.384-1.86.328-.742.42-1.612.237-2.53-.184-.918-.63-1.86-1.34-2.668C15.507.806 14.036.108 12.504 0"/></svg>Linux</a>
+                            <a href="https://github.com/upea-corporation/upea-codex-download/releases/download/v1.1.0/UPEA.CODEX-1.1.0.-.ENGLISH.dmg" download class="dl-btn mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</a>
                         </div>
                     </div>
                 </div>
-            </div><!-- /v1.1.0 hidden -->
+            </div> <!-- /v1.1.0 -->
 
             <!-- ══════════════════════════════════════════ -->
             <!--  VERSION 1.0.0                             -->
@@ -733,7 +728,6 @@
             <div class="version-block">
                 <div class="version-header">
                     <span class="v-number">v1.0.0</span>
-                    <span class="badge badge-latest">Latest version</span>
                     <span class="badge badge-stable">Stable</span>
                     <span class="v-date">April 28, 2026 (14:34 UTC+2)</span>
                 </div>
@@ -839,7 +833,5 @@
             }
         })();
     </script>
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </body>
 </html>
