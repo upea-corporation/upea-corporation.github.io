@@ -774,6 +774,13 @@ window.updatesData = [
         items: [
           "Añadimos la visualización de las fechas de registro y de las últimas modificaciones en los expedientes de cada Entidad EAZ para brindarte un seguimiento claro e histórico de su información, exceptuando las entrevistas, que se mantienen sin cambios por sus términos de registro."
         ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "15:13",
+        items: [
+          "Actualizamos la base de datos de acceso a las entrevistas para reflejar correctamente la nueva denominación y la información correspondiente a la entidad EAZ#666-0."
+        ],
       }
     ];
 

@@ -774,5 +774,12 @@ window.updatesData = [
         items: [
           "We have added the display of registration dates and last modifications to the files of each ZAE Entity to provide you with clear and historical tracking of their information, except for the interviews, which remain unchanged due to their registration terms."
         ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "15:13",
+        items: [
+          "We updated the interview access database to correctly reflect the new designation and the information corresponding to the entity ZAE#666-0."
+        ],
       }
     ];
