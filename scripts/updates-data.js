@@ -752,6 +752,28 @@ window.updatesData = [
           "Se han corregido los errores de descarga de UPEA Codex.",
           "Se añadió marca de agua según la IA usada para generar la imagen de las entidades EAZ específicas."
         ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "11:38",
+        items: [
+          "Se ha procedido a la eliminación de toda la información vinculada a la entidad EAZ#666-2, esta entidad ya no existe.",
+          "La entidad EAZ#666 pasara ha nombrarse como EAZ#666-0, referencia al origen de la entidad base de su creación de sus evoluciones."
+        ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "12:46",
+        items: [
+          "Actualizamos los términos y condiciones de registro para permitir que las entidades EAZ utilicen fotografías de cosplay con sus Fursuits, ampliando esta posibilidad más allá del uso exclusivo de estilos Pseudos y Semihumanos."
+        ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "13:42",
+        items: [
+          "Añadimos la visualización de las fechas de registro y de las últimas modificaciones en los expedientes de cada Entidad EAZ para brindarte un seguimiento claro e histórico de su información, exceptuando las entrevistas, que se mantienen sin cambios por sus términos de registro."
+        ],
       }
     ];
 

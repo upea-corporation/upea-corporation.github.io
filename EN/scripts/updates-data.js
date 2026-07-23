@@ -752,5 +752,27 @@ window.updatesData = [
           "<strong><u>UPEA Codex</u></strong> download errors have been fixed.",
           "A watermark was added according to the AI used to generate the image of specific ZAE entities."
         ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "11:38",
+        items: [
+          "All information linked to the entity ZAE#666-2 has been deleted; this entity no longer exists.",
+          "The entity ZAE#666 will be renamed to ZAE#666-0, referencing the origin of the base entity from which its evolutions were created."
+        ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "12:46",
+        items: [
+          "We have updated the registration terms and conditions to allow ZAE entities to use cosplay photographs with their Fursuits, extending this possibility beyond the exclusive use of Pseudo and Semi-human styles."
+        ],
+      },
+      {
+        isoDate: "2026-07-23",
+        time: "13:42",
+        items: [
+          "We have added the display of registration dates and last modifications to the files of each ZAE Entity to provide you with clear and historical tracking of their information, except for the interviews, which remain unchanged due to their registration terms."
+        ],
       }
     ];
