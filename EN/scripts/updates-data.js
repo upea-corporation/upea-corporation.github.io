@@ -781,5 +781,12 @@ window.updatesData = [
         items: [
           "We updated the interview access database to correctly reflect the new designation and the information corresponding to the entity ZAE#666-0."
         ],
+      },
+      {
+        isoDate: "2026-09-06",
+        time: "22:14",
+        items: [
+          "The image of entity ZAE#000 and ZAE#000-1 has been updated to the most up-to-date version."
+        ],
       }
     ];

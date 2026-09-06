@@ -781,6 +781,13 @@ window.updatesData = [
         items: [
           "Actualizamos la base de datos de acceso a las entrevistas para reflejar correctamente la nueva denominación y la información correspondiente a la entidad EAZ#666-0."
         ],
+      },
+      {
+        isoDate: "2026-09-06",
+        time: "22:14",
+        items: [
+          "Se ha actualizado la imagen de la entidad EAZ#000 y EAZ#000-1 por la más actualizada."
+        ],
       }
     ];
 
