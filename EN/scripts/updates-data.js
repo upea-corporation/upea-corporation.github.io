@@ -788,5 +788,13 @@ window.updatesData = [
         items: [
           "The image of entity ZAE#000 and ZAE#000-1 has been updated to the most up-to-date version."
         ],
+      },
+      {
+        isoDate: "2026-09-14",
+        time: "21:03",
+        items: [
+          "Versions v1.0.0 and v1.1.0 of UPEA Codex have been archived after it was determined that their coding system is incompatible with web data integration; instead, version v2.0.0 is being deployed as the latest and most stable option for such integration.",
+          "Version v2.0.0 of UPEA Codex includes a critical fix for macOS users. An issue preventing the application from closing completely has been resolved, stopping it from continuing to run indefinitely in the background."
+        ],
       }
     ];

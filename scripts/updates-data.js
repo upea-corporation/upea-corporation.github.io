@@ -788,6 +788,14 @@ window.updatesData = [
         items: [
           "Se ha actualizado la imagen de la entidad EAZ#000 y EAZ#000-1 por la más actualizada."
         ],
+      },
+      {
+        isoDate: "2026-09-14",
+        time: "21:03",
+        items: [
+          "Se han archivado las versiones v1.0.0 y v1.1.0 de UPEA Codex tras comprobar que su sistema de codificación no es compatible con la integración de datos en la web; en su lugar, se despliega la versión v2.0.0 como la opción más reciente y estable para dicha integración.",
+          "La versión v2.0.0 de UPEA Codex incluye una corrección crítica para usuarios de macOS. Se resolvió un problema que impedía que la aplicación se cerrara por completo, evitando que permaneciera en ejecución en segundo plano de forma indeterminada."
+        ],
       }
     ];
 
