@@ -796,6 +796,14 @@ window.updatesData = [
           "Se han archivado las versiones v1.0.0 y v1.1.0 de UPEA Codex tras comprobar que su sistema de codificación no es compatible con la integración de datos en la web; en su lugar, se despliega la versión v2.0.0 como la opción más reciente y estable para dicha integración.",
           "La versión v2.0.0 de UPEA Codex incluye una corrección crítica para usuarios de macOS. Se resolvió un problema que impedía que la aplicación se cerrara por completo, evitando que permaneciera en ejecución en segundo plano de forma indeterminada."
         ],
+      },
+      {
+        isoDate: "2026-09-17",
+        time: "02:39",
+        items: [
+          "Se ha modificado el método de acceso a la aplicación UPEA CODEX, retirándola de la vista pública. La plataforma sigue operativa, pero ahora se encuentra bajo un entorno de acceso oculto. Hemos implementado esta medida para reforzar la seguridad y proteger nuestra propiedad intelectual en herramientas de codificación y descodificación. Debido a que el sistema maneja datos cifrados sensibles y la arquitectura frontend de la web no ofrece una protección absoluta, esta restricción es indispensable para prevenir filtraciones y garantizar la confidencialidad de la información.",
+          "Se ha completado con éxito la actualización de la base de datos de UPEA Corporation."
+        ],
       }
     ];
 

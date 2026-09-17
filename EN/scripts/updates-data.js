@@ -796,5 +796,13 @@ window.updatesData = [
           "Versions v1.0.0 and v1.1.0 of UPEA Codex have been archived after it was determined that their coding system is incompatible with web data integration; instead, version v2.0.0 is being deployed as the latest and most stable option for such integration.",
           "Version v2.0.0 of UPEA Codex includes a critical fix for macOS users. An issue preventing the application from closing completely has been resolved, stopping it from continuing to run indefinitely in the background."
         ],
+      },
+      {
+        isoDate: "2026-09-17",
+        time: "02:39",
+        items: [
+          "The access method for the UPEA CODEX application has been modified, removing it from public view. The platform remains operational but is now accessible only via a restricted, non-public interface. We have implemented this measure to enhance security and protect our intellectual property regarding encoding and decoding tools. As the system handles sensitive encrypted data and the web frontend architecture does not provide absolute protection, this restriction is essential to prevent data leaks and ensure information confidentiality.",
+          "The update of the UPEA Corporation database has been successfully completed."
+        ],
       }
     ];
