@@ -804,5 +804,12 @@ window.updatesData = [
           "The access method for the UPEA CODEX application has been modified, removing it from public view. The platform remains operational but is now accessible only via a restricted, non-public interface. We have implemented this measure to enhance security and protect our intellectual property regarding encoding and decoding tools. As the system handles sensitive encrypted data and the web frontend architecture does not provide absolute protection, this restriction is essential to prevent data leaks and ensure information confidentiality.",
           "The update of the UPEA Corporation database has been successfully completed."
         ],
-      }
+      },
+      {
+        isoDate: "2026-09-24",
+        time: "05:06",
+        items: [
+          "The Registration Terms and Conditions, Terms and Conditions of Use, and Security and Privacy Policy have been updated."
+        ],
+      },
     ];

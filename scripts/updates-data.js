@@ -804,7 +804,14 @@ window.updatesData = [
           "Se ha modificado el método de acceso a la aplicación UPEA CODEX, retirándola de la vista pública. La plataforma sigue operativa, pero ahora se encuentra bajo un entorno de acceso oculto. Hemos implementado esta medida para reforzar la seguridad y proteger nuestra propiedad intelectual en herramientas de codificación y descodificación. Debido a que el sistema maneja datos cifrados sensibles y la arquitectura frontend de la web no ofrece una protección absoluta, esta restricción es indispensable para prevenir filtraciones y garantizar la confidencialidad de la información.",
           "Se ha completado con éxito la actualización de la base de datos de UPEA Corporation."
         ],
-      }
+      },
+      {
+        isoDate: "2026-09-24",
+        time: "05:06",
+        items: [
+          "Se ha actualizado los Términos y Condiciones de Registro, Términos y Condiciones de Uso, Política de Seguridad y Privacidad."
+        ],
+      },
     ];
 
   // Ejemplo añadir update nuevo sin romper el codigo
